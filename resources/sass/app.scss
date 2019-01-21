@@ -5,10 +5,30 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "bulma";
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+@font-face {
+  font-family: 'Diablo Heavy';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Diablo Heavy'), url('diablo.woff') format('woff');
+}
+
+html,
+body{
+  font-family: 'Diablo Heavy', sans-serif;
+  height:100%;
+  background-color: #333333;
+  color: #706850;
+}
+
+#app {
+	height:100%;
+}
+
+.has-vertically-centered-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
