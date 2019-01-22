@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 
+//Promise polyfill
+var Promise = require('es6-promise').Promise;
+
+//Router - move this to separate file
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
@@ -33,23 +37,20 @@ const router = new VueRouter({
             name: 'home',
             component: Home
         },
-        // {
-        //     path: '/hello',
-        //     name: 'hello',
-        //     component: Hello,
-        // },
     ],
 });
+
+
+//Vuex store
+import { store } from './store/store'
 
 const app = new Vue({
     el: '#app',
     data: {
-        character: {
-            classes: ['Amazon', 'Assasin', 'Barbarian', 'Druid', 'Paladin', 'Necromaner', 'Sorceress'],
-            selected: ''
-        },
+        
     },
     components: { App },
+    store,
     router,
 });
 

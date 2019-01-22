@@ -12,7 +12,7 @@
             'main-nav-bar': mainNavBar
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Home mounted.');
         }
     }
 </script>

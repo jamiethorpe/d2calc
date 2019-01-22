@@ -24,7 +24,8 @@
 
                     <div class="navbar-item">
                         <div class="select">
-                            <select v-model="character.selected">
+                            <select @change="selectClass">
+                                <option disabled>Character</option>
                                 <option v-for="(name, index) in character.classes" :key="index">{{ name }}</option>
                             </select>
                         </div>
@@ -50,12 +51,18 @@
     export default {
         data() {
             return {
-                user: null
+                
             }
         },
-        props: ['character'],
+        computed: {
+            character() {
+                return this.$store.getters.character;
+            }
+        },
         methods: {
-
+            selectClass(event) {
+                this.$store.commit('selectClass', event.target.value)
+            },
         },
         mounted() {
             console.log('NavBar mounted.');
