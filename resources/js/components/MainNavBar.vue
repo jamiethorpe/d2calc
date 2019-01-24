@@ -70,7 +70,7 @@
             }
         },
         mounted() {
-            console.log('NavBar mounted.');
+            console.log('NavBar mounted..');
         }
     }
 </script>
