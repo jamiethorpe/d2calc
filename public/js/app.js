@@ -4462,7 +4462,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log('NavBar mounted.');
+    console.log('NavBar mounted..');
   }
 });
 
@@ -4487,11 +4487,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Amazon',
   data: function data() {
     return {
-      class: 'Amazon'
+      class: 'Amazon',
+      trees: [{
+        name: 'Javelin and Spear',
+        isActive: true
+      }, {
+        name: 'Passive and Magic',
+        isActive: false
+      }, {
+        name: 'Bow and Crossbow',
+        isActive: false
+      }]
     };
   },
   methods: {
@@ -24102,7 +24118,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Amazon\n    ")])
+  return _c("div", [
+    _c("div", { staticClass: "tabs is-centered" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.trees, function(tree, index) {
+          return _c(
+            "li",
+            { key: index, class: { "is-active": tree.isActive } },
+            [_c("a", [_vm._v(_vm._s(tree.name))])]
+          )
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
