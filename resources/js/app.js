@@ -17,17 +17,35 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 Vue.mixin({
-    data: function () {
+    data() {
         return {
             get appName() {
                 return "D2Calc";
             }
         }
+    },
+    methods: {
+        lowerFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+        capFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
     }
 });
 
+//Helpers
+import Helpers from './helpers';
+
 import App from './views/App';
 import Home from './views/Home';
+import Amazon from './views/Amazon';
+// import Assassin from './views/Assassin';
+// import Barbarian from './views/Barbarian';
+// import Druid from './views/Druid';
+// import Paladin from './views/Paladin';
+// import Necromancer from './views/Necromancer';
+// import Sorceress from './views/Sorceress';
 
 const router = new VueRouter({
     mode: 'history',
@@ -36,6 +54,11 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home
+        },
+        {
+            path: '/amazon',
+            name: 'Amazon',
+            component: Amazon
         },
     ],
 });

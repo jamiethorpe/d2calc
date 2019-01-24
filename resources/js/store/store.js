@@ -19,5 +19,5 @@ export const store = new Vuex.Store({
         character(state) {
             return state.character;
         },
-    },
+    }
 });

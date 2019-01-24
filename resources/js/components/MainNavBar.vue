@@ -16,31 +16,35 @@
                     
                 </div>
                 
-                <!-- <div v-if="character" class="navbar-item has-text-centered">
-                    <span class="artist has-text-link"><i>{{ character.name }}</i></span>
-                </div> -->
+                <div v-if="character.selected" class="navbar-item has-text-centered">
+                    <span class="selected-character">{{ character.selected }}</span>
+                </div>
 
                 <div class="navbar-end">
 
-                    <div class="navbar-item">
+                    <!-- <div class="navbar-item">
                         <div class="select">
                             <select @change="selectClass">
                                 <option disabled>Character</option>
                                 <option v-for="(name, index) in character.classes" :key="index">{{ name }}</option>
                             </select>
                         </div>
-                    </div>
-                    <!-- <a class="navbar-item has-dropdown is-hoverable" href="/register">Character</a>
+                    </div> -->
+                    <!-- <a class="navbar-item has-dropdown is-hoverable" href="/register">Character</a> -->
                         
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#">{{ user.name }}</a>
+                        <a class="navbar-link" href="#">Characters</a>
 
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="/logout">
-                                Logout
-                            </a>
+                            <router-link 
+                            class="navbar-item" 
+                            v-for="(name, index) in character.classes"
+                            :key="index"
+                            :to="link(name)">
+                                {{ name }}
+                            </router-link>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,6 +52,7 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
@@ -57,12 +62,12 @@
         computed: {
             character() {
                 return this.$store.getters.character;
-            }
+            },
         },
         methods: {
-            selectClass(event) {
-                this.$store.commit('selectClass', event.target.value)
-            },
+            link(character) {
+                return '/' + character;
+            }
         },
         mounted() {
             console.log('NavBar mounted.');
@@ -71,27 +76,13 @@
 </script>
 
 <style scoped>
-.artist {
-    font-weight: bold;
-    border-bottom: thin #a7a7a7 solid;
+
+.navbar-brand {
+    font-family: 'Diablo Heavy', serif;
 }
 
-.song-title {
-    font-weight: bold;
-}
-
-.input {
-    border-bottom: thin #a7a7a7 solid;
-    border-right: none;
-    border-left: none;
-    border-top: none;
-    -webkit-box-shadow: inset 0 0 0 rgba(10, 10, 10, 0.1);
-    box-shadow: inset 0 0 0 rgba(10, 10, 10, 0.1);
-    border-radius: 0px;
-}
-
-.key {
-    font-size: 3rem;
+.selected-character {
+    font-family: 'Roboto', serif;
 }
 
 </style>

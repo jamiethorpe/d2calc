@@ -14,9 +14,11 @@
   src: local('Diablo Heavy'), url('diablo.woff') format('woff');
 }
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
 html,
 body{
-  font-family: 'Diablo Heavy', sans-serif;
+  font-family: 'Roboto', sans-serif;
   height:100%;
   background-color: #333333;
   color: #706850;
