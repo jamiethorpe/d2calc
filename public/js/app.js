@@ -4438,18 +4438,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      isActive: false
+    };
   },
   computed: {
     character: function character() {
@@ -4459,6 +4452,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     link: function link(character) {
       return '/' + character;
+    },
+    toggleActive: function toggleActive() {
+      this.isActive = !this.isActive;
     }
   },
   mounted: function mounted() {
@@ -4583,7 +4579,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.selected-character[data-v-0640a734] {\n    font-family: 'Roboto', serif;\n}\n\n", ""]);
+exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    /* margin-left: auto; */\n    font-family: 'Roboto', sans-serif;\n}\n\n", ""]);
 
 // exports
 
@@ -24054,43 +24050,60 @@ var render = function() {
       _c("div", { staticClass: "navbar-menu", attrs: { id: "navMenu" } }, [
         _c("div", { staticClass: "navbar-start" }),
         _vm._v(" "),
-        _vm.character.selected
-          ? _c("div", { staticClass: "navbar-item has-text-centered" }, [
-              _c("span", { staticClass: "selected-character" }, [
-                _vm._v(_vm._s(_vm.character.selected))
-              ])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
         _c("div", { staticClass: "navbar-end" }, [
-          _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
-            _c("a", { staticClass: "navbar-link", attrs: { href: "#" } }, [
-              _vm._v("Characters")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "navbar-dropdown" },
-              _vm._l(_vm.character.classes, function(name, index) {
-                return _c(
-                  "router-link",
-                  {
-                    key: index,
-                    staticClass: "navbar-item",
-                    attrs: { to: _vm.link(name) }
-                  },
-                  [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(name) +
-                        "\n                        "
-                    )
-                  ]
-                )
-              }),
-              1
-            )
-          ])
+          _c(
+            "div",
+            {
+              staticClass:
+                "navbar-item has-dropdown is-hoverable character-select",
+              class: { "is-active": _vm.isActive },
+              on: { click: _vm.toggleActive }
+            },
+            [
+              _vm.character.selected
+                ? _c(
+                    "a",
+                    { staticClass: "navbar-link", attrs: { href: "#" } },
+                    [_vm._v(_vm._s(_vm.character.selected))]
+                  )
+                : _c(
+                    "a",
+                    { staticClass: "navbar-link", attrs: { href: "#" } },
+                    [_vm._v("Character")]
+                  ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "navbar-dropdown" },
+                _vm._l(_vm.character.classes, function(name, index) {
+                  return _c(
+                    "router-link",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.character.selected != name,
+                          expression: "character.selected != name"
+                        }
+                      ],
+                      key: index,
+                      staticClass: "navbar-item",
+                      attrs: { to: _vm.link(name) }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(name) +
+                          "\n                            "
+                      )
+                    ]
+                  )
+                }),
+                1
+              )
+            ]
+          )
         ])
       ])
     ])

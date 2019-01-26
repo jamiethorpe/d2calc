@@ -34,3 +34,15 @@ body{
 	align-items: center;
 	height: 100%;
 }
+
+
+
+@media screen and (max-width: 1087px) {
+	.navbar > .container .navbar-brand {
+		margin-left: 0;
+	}
+
+	.navbar > .container .navbar-menu {
+		margin-right: 0;
+	}
+}

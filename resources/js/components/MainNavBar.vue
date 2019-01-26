@@ -3,41 +3,32 @@
         <div class="container">
             <div class="navbar-brand">
                 <router-link class="navbar-item" :to="{ name: 'home' }">{{ appName }}</router-link>
-
-                <!-- <div class="navbar-burger burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+<!-- 
+                <div class="navbar-burger burger character-select" data-target="navMenu">
+                    <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
+                    <a v-else class="navbar-link" href="#">Character</a>
                 </div> -->
             </div>
+            
 
+
+            
             <div class="navbar-menu" id="navMenu">
                 <div class="navbar-start">
                     
                 </div>
-                
-                <div v-if="character.selected" class="navbar-item has-text-centered">
-                    <span class="selected-character">{{ character.selected }}</span>
-                </div>
 
                 <div class="navbar-end">
-
-                    <!-- <div class="navbar-item">
-                        <div class="select">
-                            <select @change="selectClass">
-                                <option disabled>Character</option>
-                                <option v-for="(name, index) in character.classes" :key="index">{{ name }}</option>
-                            </select>
-                        </div>
-                    </div> -->
-                    <!-- <a class="navbar-item has-dropdown is-hoverable" href="/register">Character</a> -->
                         
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#">Characters</a>
+                    <div @click="toggleActive" :class="{'is-active' : isActive}" class="navbar-item has-dropdown is-hoverable character-select">
+                        <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
+                        <a v-else class="navbar-link" href="#">Character</a>
+
 
                         <div class="navbar-dropdown">
                             <router-link 
-                            class="navbar-item" 
+                            class="navbar-item"
+                            v-show="character.selected != name"
                             v-for="(name, index) in character.classes"
                             :key="index"
                             :to="link(name)">
@@ -56,7 +47,7 @@
     export default {
         data() {
             return {
-                
+                isActive: false,
             }
         },
         computed: {
@@ -67,6 +58,9 @@
         methods: {
             link(character) {
                 return '/' + character;
+            },
+            toggleActive() {
+                this.isActive = !this.isActive;
             }
         },
         mounted() {
@@ -81,8 +75,9 @@
     font-family: 'Diablo Heavy', serif;
 }
 
-.selected-character {
-    font-family: 'Roboto', serif;
+.character-select {
+    /* margin-left: auto; */
+    font-family: 'Roboto', sans-serif;
 }
 
 </style>
