@@ -35,8 +35,6 @@ body{
 	height: 100%;
 }
 
-
-
 @media screen and (max-width: 1087px) {
 	.navbar > .container .navbar-brand {
 		margin-left: 0;
@@ -44,5 +42,11 @@ body{
 
 	.navbar > .container .navbar-menu {
 		margin-right: 0;
+	}
+}
+
+@media screen and (max-width: 625px) {
+	.tree-tabs {
+		font-size: .8rem;
 	}
 }

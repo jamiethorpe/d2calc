@@ -4453,7 +4453,7 @@ __webpack_require__.r(__webpack_exports__);
     link: function link(character) {
       return '/' + character;
     },
-    toggleActive: function toggleActive() {
+    toggleActive: function toggleActive(event) {
       this.isActive = !this.isActive;
     }
   },
@@ -4489,6 +4489,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Amazon',
   data: function data() {
@@ -4503,12 +4524,23 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: 'Bow and Crossbow',
         isActive: false
-      }]
+      }],
+      dropdownActive: false
     };
   },
   methods: {
     selectClass: function selectClass() {
       this.$store.commit('selectClass', this.class);
+    },
+    activeTree: function activeTree() {
+      this.trees.forEach(function (tree) {
+        if (tree.isActive) {
+          return tree.name;
+        }
+      });
+    },
+    toggleDropdown: function toggleDropdown() {
+      this.dropdownActive = !this.dropdownActive;
     }
   },
   mounted: function mounted() {
@@ -4579,7 +4611,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    /* margin-left: auto; */\n    font-family: 'Roboto', sans-serif;\n}\n\n", ""]);
+exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    /* margin-left: auto; */\n    font-family: 'Roboto', sans-serif;\n}\n.navbar-dropdown.is-not-active[data-v-0640a734] {\n    display: none;\n}\n.navbar-dropdown.is-active[data-v-0640a734] {\n    display: block;\n}\n", ""]);
 
 // exports
 
@@ -24056,7 +24088,6 @@ var render = function() {
             {
               staticClass:
                 "navbar-item has-dropdown is-hoverable character-select",
-              class: { "is-active": _vm.isActive },
               on: { click: _vm.toggleActive }
             },
             [
@@ -24074,7 +24105,13 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "navbar-dropdown" },
+                {
+                  staticClass: "navbar-dropdown",
+                  class: {
+                    "is-active": _vm.isActive,
+                    "is-not-active": !_vm.isActive
+                  }
+                },
                 _vm._l(_vm.character.classes, function(name, index) {
                   return _c(
                     "router-link",
@@ -24132,22 +24169,88 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "tabs is-centered" }, [
-      _c(
-        "ul",
-        _vm._l(_vm.trees, function(tree, index) {
-          return _c(
-            "li",
-            { key: index, class: { "is-active": tree.isActive } },
-            [_c("a", [_vm._v(_vm._s(tree.name))])]
+    _c(
+      "div",
+      {
+        staticClass: "dropdown",
+        class: { "is-active": _vm.dropdownActive },
+        on: { click: _vm.toggleDropdown }
+      },
+      [
+        _c("div", { staticClass: "dropdown-trigger" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: {
+                "aria-haspopup": "true",
+                "aria-controls": "dropdown-menu"
+              }
+            },
+            [
+              _c("span", [_vm._v(_vm._s(_vm.activeTree()))]),
+              _vm._v(" "),
+              _vm._m(0)
+            ]
           )
-        }),
-        0
-      )
-    ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { id: "dropdown-menu", role: "menu" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "dropdown-content" },
+              _vm._l(_vm.trees, function(tree, index) {
+                return _c(
+                  "a",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !tree.isActve,
+                        expression: "!tree.isActve"
+                      }
+                    ],
+                    key: index,
+                    staticClass: "dropdown-item",
+                    class: { "is-active": tree.isActive }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(tree.name) +
+                        "\n                "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        )
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small" }, [
+      _c("i", {
+        staticClass: "fas fa-angle-down",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 

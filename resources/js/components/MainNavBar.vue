@@ -20,12 +20,12 @@
 
                 <div class="navbar-end">
                         
-                    <div @click="toggleActive" :class="{'is-active' : isActive}" class="navbar-item has-dropdown is-hoverable character-select">
+                    <div @click="toggleActive" class="navbar-item has-dropdown is-hoverable character-select">
                         <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
                         <a v-else class="navbar-link" href="#">Character</a>
 
 
-                        <div class="navbar-dropdown">
+                        <div class="navbar-dropdown" :class="{'is-active' : isActive, 'is-not-active' : !isActive}">
                             <router-link 
                             class="navbar-item"
                             v-show="character.selected != name"
@@ -59,8 +59,9 @@
             link(character) {
                 return '/' + character;
             },
-            toggleActive() {
+            toggleActive(event) {
                 this.isActive = !this.isActive;
+                
             }
         },
         mounted() {
@@ -80,5 +81,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.navbar-dropdown.is-not-active {
+    display: none;
+}
+
+.navbar-dropdown.is-active {
+    display: block;
+}
 </style>
 

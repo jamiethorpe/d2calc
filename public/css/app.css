@@ -11205,3 +11205,9 @@ body {
   }
 }
 
+@media screen and (max-width: 625px) {
+  .tree-tabs {
+    font-size: 0.8rem;
+  }
+}
+
