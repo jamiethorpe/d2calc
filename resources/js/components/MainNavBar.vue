@@ -20,13 +20,14 @@
 
                 <div class="navbar-end">
                         
-                    <div @click="toggleActive" class="navbar-item has-dropdown is-hoverable character-select">
+                    <div v-on-clickaway="notActive" @click="toggleActive" class="navbar-item has-dropdown character-select">
                         <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
                         <a v-else class="navbar-link" href="#">Character</a>
 
 
                         <div class="navbar-dropdown" :class="{'is-active' : isActive, 'is-not-active' : !isActive}">
                             <router-link 
+                            @click="toggleActive"
                             class="navbar-item"
                             v-show="character.selected != name"
                             v-for="(name, index) in character.classes"
@@ -43,8 +44,10 @@
 </template>
 
 <script>
+    import { mixin as clickaway } from 'vue-clickaway';
 
     export default {
+        mixins: [clickaway],
         data() {
             return {
                 isActive: false,
@@ -59,9 +62,12 @@
             link(character) {
                 return '/' + character;
             },
-            toggleActive(event) {
+            toggleActive() {
                 this.isActive = !this.isActive;
                 
+            },
+            notActive() {
+                this.isActive = false;
             }
         },
         mounted() {

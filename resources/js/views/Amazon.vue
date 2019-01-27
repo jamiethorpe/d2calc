@@ -1,37 +1,83 @@
 <template>
-    <div>
-        <!-- <div class="tabs tree-tabs is-centered">
+    <div class="container">
+        <div class="tabs tree-tabs is-centered">
             <ul>
-                <li :class="{'is-active' : tree.isActive}" v-for="(tree, index) in trees" :key="index">
+                <li @click="setTab(tree)" :class="{'is-active' : tree.isActive}" v-for="(tree, index) in trees" :key="index">
                     <a>{{ tree.name }}</a>
                 </li>
             </ul>
-        </div> -->
-        <div @click="toggleDropdown" :class="{'is-active' : dropdownActive}" class="dropdown">
-            <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                <span>{{ activeTree() }}</span>
-                <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-                </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                    <a v-for="(tree, index) in trees"
-                        v-show="!tree.isActve"
-                        :key="index" 
-                        :class="{ 'is-active' : tree.isActive }" 
-                        class="dropdown-item">
-                            {{ tree.name }}
-                    </a>
+        </div>
+        <div class="columns">
+            <div class="tree column is-6 is-offset-3">
+                <div class="columns is-centered is-mobile skill-row">
+                    <div class="column skill">
+                        <div class="placeholder">1</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">2</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">3</div>
+                    </div>
+                </div>
+                <div class="columns is-mobile skill-row">
+                    <div class="column skill">
+                        <div class="placeholder">1</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">2</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">3</div>
+                    </div>
+                </div>
+                <div class="columns is-mobile skill-row">
+                    <div class="column skill">
+                        <div class="placeholder">1</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">2</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">3</div>
+                    </div>
+                </div>
+                <div class="columns is-mobile skill-row">
+                    <div class="column skill">
+                        <div class="placeholder">1</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">2</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">3</div>
+                    </div>
+                </div>
+                <div class="columns is-mobile skill-row">
+                    <div class="column skill">
+                        <div class="placeholder">1</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">2</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">3</div>
+                    </div>
+                </div>
+                <div class="columns is-mobile skill-row">
+                    <div class="column skill">
+                        <div class="placeholder">1</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">2</div>
+                    </div>
+                    <div class="column skill">
+                        <div class="placeholder">3</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- <tree-tabs></tree-tabs> -->
-        <!-- <javelin-spear-tree></javelin-spear-tree>
-        <passive-magic-tree></passive-magic-tree>
-        <bow-crossbow-tree></bow-crossbow-tree> -->
+        
     </div>
 </template>
 
@@ -44,7 +90,7 @@ export default {
             trees: [
                 {
                     name: 'Javelin and Spear',
-                    isActive: true 
+                    isActive: true,
                 },
                 {
                     name: 'Passive and Magic',
@@ -62,15 +108,13 @@ export default {
         selectClass() {
             this.$store.commit('selectClass', this.class);
         },
-        activeTree() {
-            this.trees.forEach(tree => {
-                if (tree.isActive) {
-                    return tree.name;
-                }
-            });
-        },
         toggleDropdown() {
             this.dropdownActive = !this.dropdownActive;
+        },
+        setTab(selectedTree){
+            this.trees.forEach((tree) => {
+                tree.isActive = (tree.name === selectedTree.name);
+            });
         }
     },
     mounted() {
@@ -80,5 +124,23 @@ export default {
 </script>
 
 <style>
-    
+    .tree {
+        height: 80vh;
+        width: 100%;
+        background-color: #B5B1B2;
+    }
+
+    /* .skill {
+        text-align:center;
+    } */
+
+    .placeholder {
+        background-color: #614b34;
+        -webkit-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
+        box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
+        width: calc((80vh/6) - 1.5rem);
+        height: calc((80vh/6) - 1.5rem);
+        margin: 0 auto;
+    }
 </style>

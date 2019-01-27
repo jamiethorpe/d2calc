@@ -11211,3 +11211,7 @@ body {
   }
 }
 
+.navbar-dropdown a.navbar-item {
+  padding-right: 0;
+}
+
