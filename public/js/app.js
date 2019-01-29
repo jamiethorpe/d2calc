@@ -4564,6 +4564,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Amazon',
   data: function data() {
@@ -4571,7 +4578,25 @@ __webpack_require__.r(__webpack_exports__);
       class: 'Amazon',
       trees: [{
         name: 'Javelin and Spear',
-        isActive: true
+        isActive: true,
+        skills: {
+          //Probably need to add rows, row position, isPlaceholder (for blank skills)
+          jab: {
+            name: 'Jab',
+            description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+            points: 0
+          },
+          powerStrike: {
+            name: 'Power Strike',
+            description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+            points: 0
+          },
+          poisonJavelin: {
+            name: 'Poison Javelin',
+            description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+            points: 0
+          }
+        }
       }, {
         name: 'Passive and Magic',
         isActive: false
@@ -4682,7 +4707,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.tree {\n    height: 80vh;\n    width: 100%;\n    background-color: #B5B1B2;\n}\n\n/* .skill {\n    text-align:center;\n} */\n.placeholder {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    margin: 0 auto;\n}\n", ""]);
+exports.push([module.i, "\n.tree {\n    height: 80vh;\n    width: 100%;\n    background-color: #B5B1B2;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    margin: 0 auto;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-counter {\n    background-color: #000;\n    height: 1rem;\n    width: 1rem;\n    /* margin-top: 3rem;\n    margin-left: 4.25rem; */\n}\n\n/* .jab {\n    background-image: url(/img/amazon_skills.png);\n    background-position: 0 0;\n    width: 48px;\n    height: 48px;\n} */\n.jab {\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    background-image: url(\"/img/amazon_skills.png\");\n    background-position: 0 0;\n    background-size: 1000%;\n    display:block;\n}\n.power-strike {\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    background-image: url(\"/img/amazon_skills.png\");\n    background-position: 11.1111% 0;\n    background-size: 1000%;\n    display:block;\n}\n", ""]);
 
 // exports
 
@@ -24394,7 +24419,56 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "tree column is-6 is-offset-3" }, [
+        _c("div", { staticClass: "columns is-centered is-mobile skill-row" }, [
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill jab" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.jab.points))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "columns is-mobile skill-row" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill power-strike" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.powerStrike.points))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.trees[0].skills.poisonJavelin.name) +
+                  "\n                        "
+              ),
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.poisonJavelin.points))
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _vm._m(6)
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -24402,91 +24476,95 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "columns" }, [
-      _c("div", { staticClass: "tree column is-6 is-offset-3" }, [
-        _c("div", { staticClass: "columns is-centered is-mobile skill-row" }, [
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("3")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns is-mobile skill-row" }, [
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("3")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns is-mobile skill-row" }, [
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("3")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns is-mobile skill-row" }, [
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("3")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns is-mobile skill-row" }, [
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("3")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns is-mobile skill-row" }, [
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("1")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("2")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column skill" }, [
-            _c("div", { staticClass: "placeholder" }, [_vm._v("3")])
-          ])
-        ])
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" }, [_vm._v("2")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" }, [_vm._v("3")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" }, [_vm._v("1")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("1")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("2")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("3")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("1")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("2")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("3")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("1")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("2")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("3")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("1")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("2")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "skill" }, [_vm._v("3")])
       ])
     ])
   }
