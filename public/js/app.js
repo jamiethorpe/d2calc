@@ -4571,6 +4571,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Amazon',
   data: function data() {
@@ -4594,6 +4618,41 @@ __webpack_require__.r(__webpack_exports__);
           poisonJavelin: {
             name: 'Poison Javelin',
             description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+            points: 0
+          },
+          impale: {
+            name: 'Impale',
+            description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+            points: 0
+          },
+          lightningBolt: {
+            name: 'Lightning Bolt',
+            description: 'Leaves a trail of lightning and does lightning damage.',
+            points: 0
+          },
+          chargedStrike: {
+            name: 'Charged Strike',
+            description: 'A lightning attack that releases charged bolts.',
+            points: 0
+          },
+          plagueJavelin: {
+            name: 'Plague Javelin',
+            description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+            points: 0
+          },
+          fend: {
+            name: 'Fend',
+            description: 'Rapidly strikes several close targets.',
+            points: 0
+          },
+          lightningStrike: {
+            name: 'Lightning Strike',
+            description: 'Does lightning damage and releases chain lightning from target.',
+            points: 0
+          },
+          lightningFury: {
+            name: 'Lightning Fury',
+            description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
             points: 0
           }
         }
@@ -4707,7 +4766,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.tree {\n    height: 80vh;\n    width: 100%;\n    background-color: #B5B1B2;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    margin: 0 auto;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-counter {\n    background-color: #000;\n    height: 1rem;\n    width: 1rem;\n    /* margin-top: 3rem;\n    margin-left: 4.25rem; */\n}\n\n/* .jab {\n    background-image: url(/img/amazon_skills.png);\n    background-position: 0 0;\n    width: 48px;\n    height: 48px;\n} */\n.jab {\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    background-image: url(\"/img/amazon_skills.png\");\n    background-position: 0 0;\n    background-size: 1000%;\n    display:block;\n}\n.power-strike {\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    background-image: url(\"/img/amazon_skills.png\");\n    background-position: 11.1111% 0;\n    background-size: 1000%;\n    display:block;\n}\n", ""]);
+exports.push([module.i, "\n.tree {\n    height: 80vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((80vh/6) - 1.5rem);\n    height: calc((80vh/6) - 1.5rem);\n    margin: 0 auto;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.skill-counter {\n    background-color: #000;\n    height: 1.5rem;\n    width: 1.5rem;\n    text-align: center;\n    margin-top: 4.25rem;\n    margin-left: 4.25rem;\n    display: inline-block;\n    color: #beb8a2;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n", ""]);
 
 // exports
 
@@ -24419,27 +24478,29 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "columns" }, [
       _c("div", { staticClass: "tree column is-6 is-offset-3" }, [
         _c("div", { staticClass: "columns is-centered is-mobile skill-row" }, [
           _c("div", { staticClass: "column" }, [
-            _c("div", { staticClass: "skill jab" }, [
+            _c("div", { staticClass: "skill amazon jab" }, [
               _c("div", { staticClass: "skill-counter" }, [
                 _vm._v(_vm._s(_vm.trees[0].skills.jab.points))
               ])
             ])
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(2)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "columns is-mobile skill-row" }, [
-          _vm._m(2),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "column" }, [
-            _c("div", { staticClass: "skill power-strike" }, [
+            _c("div", { staticClass: "skill amazon power-strike" }, [
               _c("div", { staticClass: "skill-counter" }, [
                 _vm._v(_vm._s(_vm.trees[0].skills.powerStrike.points))
               ])
@@ -24447,12 +24508,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "column" }, [
-            _c("div", { staticClass: "skill" }, [
-              _vm._v(
-                "\n                        " +
-                  _vm._s(_vm.trees[0].skills.poisonJavelin.name) +
-                  "\n                        "
-              ),
+            _c("div", { staticClass: "skill amazon poison-javelin" }, [
               _c("div", { staticClass: "skill-counter" }, [
                 _vm._v(_vm._s(_vm.trees[0].skills.poisonJavelin.points))
               ])
@@ -24460,13 +24516,79 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(3),
+        _c("div", { staticClass: "columns is-mobile skill-row" }, [
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon impale" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.impale.points))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon lightning-bolt" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.lightningBolt.points))
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _vm._m(4),
+        _c("div", { staticClass: "columns is-mobile skill-row" }, [
+          _vm._m(5),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon charged-strike" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.chargedStrike.points))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon plague-javelin" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.plagueJavelin.points))
+              ])
+            ])
+          ])
+        ]),
         _vm._v(" "),
-        _vm._m(5),
+        _c("div", { staticClass: "columns is-mobile skill-row" }, [
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon fend" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.fend.points))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(6),
+          _vm._v(" "),
+          _vm._m(7)
+        ]),
         _vm._v(" "),
-        _vm._m(6)
+        _c("div", { staticClass: "columns is-mobile skill-row" }, [
+          _vm._m(8),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon lightning-strike" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.lightningStrike.points))
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "skill amazon lightning-fury" }, [
+              _c("div", { staticClass: "skill-counter" }, [
+                _vm._v(_vm._s(_vm.trees[0].skills.lightningFury.points))
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   ])
@@ -24476,8 +24598,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c("div", { staticClass: "skill placeholder" }, [_vm._v("2")])
+    return _c("div", { staticClass: "columns" }, [
+      _c(
+        "div",
+        { staticClass: "column is-centered is-mobile is-6 is-offset-3" },
+        [
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column" }, [_vm._v("Spent: 0")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [_vm._v("+ All Skills: 0")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [_vm._v("Save")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [_vm._v("Reset")])
+          ])
+        ]
+      )
     ])
   },
   function() {
@@ -24485,7 +24621,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column" }, [
-      _c("div", { staticClass: "skill placeholder" }, [_vm._v("3")])
+      _c("div", { staticClass: "skill placeholder" })
     ])
   },
   function() {
@@ -24493,79 +24629,55 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column" }, [
-      _c("div", { staticClass: "skill placeholder" }, [_vm._v("1")])
+      _c("div", { staticClass: "skill placeholder" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("1")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("2")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("3")])
-      ])
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("1")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("2")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("3")])
-      ])
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("1")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("2")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("3")])
-      ])
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "columns is-mobile skill-row" }, [
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("1")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("2")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "skill" }, [_vm._v("3")])
-      ])
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "skill placeholder" })
     ])
   }
 ]

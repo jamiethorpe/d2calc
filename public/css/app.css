@@ -11182,6 +11182,7 @@ label.panel-block:hover {
 html,
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #190A09;
 }
 
 #app {
