@@ -7,102 +7,21 @@
                 </li>
             </ul>
         </div>
-        <div class="columns">
-            <div class="column is-centered is-mobile is-6 is-offset-3">
-                <div class="columns">
-                <div class="column">Spent: 0</div>
-                <div class="column">+ All Skills: 0</div>
-                <div class="column">Save</div>
-                <div class="column">Reset</div>
-            </div>
-            </div>
+
+        <div class="columns is-centered is-mobile has-text-centered toolbar">
+            <div class="column">Spent: 0</div>
+            <div class="column">+ All Skills: 0</div>
+            <div class="column">Save</div>
+            <div class="column">Reset</div>
         </div>
         
         <div class="columns">
             <div class="tree column is-6 is-offset-3">
-                <div class="columns is-centered is-mobile skill-row">
-                    <div class="column">
-                        <div class="skill amazon jab">
-                            <div class="skill-counter">{{ trees[0].skills.jab.points }}</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                </div>
-                <div class="columns is-mobile skill-row">
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon power-strike">
-                            <div class="skill-counter">{{ trees[0].skills.powerStrike.points }}</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon poison-javelin">
-                            <div class="skill-counter">{{ trees[0].skills.poisonJavelin.points }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-mobile skill-row">
-                    <div class="column">
-                        <div class="skill amazon impale">
-                            <div class="skill-counter">{{ trees[0].skills.impale.points }}</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon lightning-bolt">
-                            <div class="skill-counter">{{ trees[0].skills.lightningBolt.points }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-mobile skill-row">
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon charged-strike">
-                            <div class="skill-counter">{{ trees[0].skills.chargedStrike.points }}</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon plague-javelin">
-                            <div class="skill-counter">{{ trees[0].skills.plagueJavelin.points }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="columns is-mobile skill-row">
-                    <div class="column">
-                        <div class="skill amazon fend">
-                            <div class="skill-counter">{{ trees[0].skills.fend.points }}</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                </div>
-                <div class="columns is-mobile skill-row">
-                    <div class="column">
-                        <div class="skill placeholder"></div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon lightning-strike">
-                            <div class="skill-counter">{{ trees[0].skills.lightningStrike.points }}</div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="skill amazon lightning-fury">
-                            <div class="skill-counter">{{ trees[0].skills.lightningFury.points }}</div>
+                <div class="columns is-multiline is-centered is-mobile">
+                    <div v-for="(skill, index) in trees[0].skills" :key="index" class="column is-4">
+                        <!-- <div @click="skillUp" @contextmenu.prevent="skillDown" class="skill amazon jab"> -->
+                        <div :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                            <div class="skill-counter">{{ skill.points }}</div>
                         </div>
                     </div>
                 </div>
@@ -122,60 +41,134 @@ export default {
                 {
                     name: 'Javelin and Spear',
                     isActive: true,
-                    skills: {
-                        //Probably need to add rows, row position, isPlaceholder (for blank skills)
-                        jab: {
+                    skills: [
+                        {
+                            id: 1,
+                            isPlaceholder: false,
                             name: 'Jab',
                             description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
                             points: 0,
                         },
-                        powerStrike: {
+                        {
+                            id: 2,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 3,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 4,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 5,
+                            isPlaceholder: false,
                             name: 'Power Strike',
                             description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
                             points: 0,
                         },
-                        poisonJavelin: {
+                        {
+                            id: 6,
+                            isPlaceholder: false,
                             name: 'Poison Javelin',
                             description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
                             points: 0,
                         },
-                        impale: {
+                        {
+                            position: 7,
+                            isPlaceholder: false,
                             name: 'Impale',
                             description: 'A more powerful attack with an increased chance the weapon will lose durability.',
                             points: 0,
                         },
-                        lightningBolt: {
+                        {
+                            position: 8,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 9,
+                            isPlaceholder: false,
                             name: 'Lightning Bolt',
                             description: 'Leaves a trail of lightning and does lightning damage.',
                             points: 0,
                         },
-                        chargedStrike: {
+                        {
+                            position: 10,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 11,
+                            isPlaceholder: false,
                             name: 'Charged Strike',
                             description: 'A lightning attack that releases charged bolts.',
                             points: 0,
                         },
-                        plagueJavelin: {
+                        {
+                            id: 12,
+                            isPlaceholder: false,
                             name: 'Plague Javelin',
                             description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
                             points: 0,
                         },
-                        fend: {
+                        {
+                            id: 13,
+                            isPlaceholder: false,
                             name: 'Fend',
                             description: 'Rapidly strikes several close targets.',
                             points: 0,
                         },
-                        lightningStrike: {
+                        {
+                            id: 14,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 15,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 16,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 17,
+                            isPlaceholder: false,
                             name: 'Lightning Strike',
                             description: 'Does lightning damage and releases chain lightning from target.',
                             points: 0,
                         },
-                        lightningFury: {
+                        {
+                            id: 18,
+                            isPlaceholder: false,
                             name: 'Lightning Fury',
                             description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
                             points: 0,
                         },
-
-                    }
+                    ]
                 },
                 {
                     name: 'Passive and Magic',
@@ -200,7 +193,7 @@ export default {
             this.trees.forEach((tree) => {
                 tree.isActive = (tree.name === selectedTree.name);
             });
-        }
+        },
     },
     mounted() {
         this.selectClass();
@@ -215,6 +208,10 @@ export default {
         background-color: #333333;
         border: 3px solid #beb8a2;
         padding-top: .25rem;
+    }
+
+    .tabs:not(:last-child) {
+        margin-bottom: 0.75rem;
     }
 
 
@@ -246,6 +243,10 @@ export default {
         margin-top: 4.25rem;
         margin-left: 4.25rem;
         display: inline-block;
+        color: #beb8a2;
+    }
+
+    .toolbar {
         color: #beb8a2;
     }
 

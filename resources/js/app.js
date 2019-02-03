@@ -30,6 +30,9 @@ Vue.mixin({
         },
         capFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
+        },
+        toKebabCase(string) {
+            return string.replace(/\s+/g, '-').toLowerCase();
         }
     }
 });
