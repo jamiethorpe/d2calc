@@ -19,8 +19,10 @@
             <div class="tree column is-6 is-offset-3">
                 <div class="columns is-multiline is-centered is-mobile">
                     <div v-for="(skill, index) in trees[0].skills" :key="index" class="column is-4">
-                        <!-- <div @click="skillUp" @contextmenu.prevent="skillDown" class="skill amazon jab"> -->
-                        <div :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                        <div @click="skill.points+=1" @contextmenu.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                        </div>
+                        <div v-if="!skill.isPlaceholder">
+                            <div @click="skill.points = 0" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
                             <div class="skill-counter">{{ skill.points }}</div>
                         </div>
                     </div>
@@ -189,11 +191,16 @@ export default {
         toggleDropdown() {
             this.dropdownActive = !this.dropdownActive;
         },
-        setTab(selectedTree){
+        setTab(selectedTree) {
             this.trees.forEach((tree) => {
                 tree.isActive = (tree.name === selectedTree.name);
             });
         },
+        decreaseSkill(skill) {
+            if (skill.points > 0) {
+                skill.points -= 1;
+            }
+        }
     },
     mounted() {
         this.selectClass();
@@ -202,6 +209,10 @@ export default {
 </script>
 
 <style>
+    .hide {
+        visibility: hidden;
+    }
+
     .tree {
         height: 80vh;
         width: 100%;
@@ -214,6 +225,14 @@ export default {
         margin-bottom: 0.75rem;
     }
 
+    .skill-reset {
+        background-color:#BA2710;
+        width: calc((80vh/6) - 3rem);
+        height: 1.5rem;
+        text-align: center;
+        display: inline-block;
+        color: #beb8a2;
+    }
 
     .skill {
         background-color: #614b34;
@@ -240,8 +259,6 @@ export default {
         height: 1.5rem;
         width: 1.5rem;
         text-align: center;
-        margin-top: 4.25rem;
-        margin-left: 4.25rem;
         display: inline-block;
         color: #beb8a2;
     }
