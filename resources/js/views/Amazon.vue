@@ -19,11 +19,9 @@
             <div class="tree column is-6 is-offset-3">
                 <div class="columns is-multiline is-centered is-mobile">
                     <div v-for="(skill, index) in trees[0].skills" :key="index" class="column is-4">
-                        <div @click="skill.points+=1" @contextmenu.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                        </div>
-                        <div v-if="!skill.isPlaceholder">
-                            <div @click="skill.points = 0" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
-                            <div class="skill-counter">{{ skill.points }}</div>
+                        <div @click.self="skill.points+=1" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                            <div v-if="!skill.placeholder" @click="skill.points = 0" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
+                            <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
                         </div>
                     </div>
                 </div>
@@ -214,7 +212,7 @@ export default {
     }
 
     .tree {
-        height: 80vh;
+        height: 75vh;
         width: 100%;
         background-color: #333333;
         border: 3px solid #beb8a2;
@@ -226,12 +224,25 @@ export default {
     }
 
     .skill-reset {
-        background-color:#BA2710;
-        width: calc((80vh/6) - 3rem);
-        height: 1.5rem;
+        background-color:rgb(186,39,16, 0.3);
         text-align: center;
         display: inline-block;
         color: #beb8a2;
+        position: relative;
+        top: 3.75rem;
+        width: 88%;
+        font-family: 'Diablo Heavy', serif;
+    }
+
+    .skill-counter {
+        background-color: #000;
+        text-align: center;
+        display: inline-block;
+        color: #beb8a2;
+        position: relative;
+        left: 3.75rem;
+        width: 1.5rem;
+        top: 2.25rem;
     }
 
     .skill {
@@ -239,9 +250,10 @@ export default {
         -webkit-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         -moz-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
-        width: calc((80vh/6) - 1.5rem);
-        height: calc((80vh/6) - 1.5rem);
+        width: calc((73vh/6) - 1.5rem);
+        height: calc((73vh/6) - 1.5rem);
         margin: 0 auto;
+        user-select: none;
     }
 
     .skill.placeholder {
@@ -252,15 +264,6 @@ export default {
         background-image: url("/img/amazon_skills.png");
         background-size: 1000%;
         display:block;
-    }
-
-    .skill-counter {
-        background-color: #000;
-        height: 1.5rem;
-        width: 1.5rem;
-        text-align: center;
-        display: inline-block;
-        color: #beb8a2;
     }
 
     .toolbar {
