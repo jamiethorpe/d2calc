@@ -513,7 +513,8 @@ export default {
     }
 
     .skill-reset {
-        background-color:rgb(186,39,16, 0.3);
+        background-color:rgb(186,39,16);
+        background-color:rgba(186,39,16, 0.3);
         text-align: center;
         display: inline-block;
         color: #beb8a2;
