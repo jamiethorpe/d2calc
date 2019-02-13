@@ -26,26 +26,13 @@
                 <div class="columns is-multiline is-centered is-mobile">
                     <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
                         <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                            <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
+                            <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" class="skill-reset">Reset</div>
                             <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- <div class="columns">
-            <div class="tree column is-6 is-offset-3">
-                <div class="columns is-multiline is-centered is-mobile">
-                    <div v-for="(skill, index) in trees[0].skills" :key="index" class="column is-4">
-                        <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                            <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
-                            <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         
     </div>
 </template>
@@ -504,6 +491,9 @@ export default {
     .hide {
         visibility: hidden;
     }
+    .visible {
+        visibility: visible;
+    }
 
     .tree {
         height: 75vh;
@@ -511,6 +501,11 @@ export default {
         background-color: #333333;
         border: 3px solid #beb8a2;
         padding-top: .25rem;
+    }
+
+    .tabs li.is-active a {
+        border-bottom-color: #beb8a2;
+        color: #beb8a2;
     }
 
     .tabs:not(:last-child) {

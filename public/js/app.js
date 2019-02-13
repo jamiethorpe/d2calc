@@ -4520,19 +4520,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Amazon',
   data: function data() {
@@ -5002,7 +4989,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.tabs:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.toolbar {\n    color: #beb8a2;\n}\n.toolbar .column {\n    padding: 0;\n}\n.toolbar .column.text-only{\n    padding: 0.75rem 0;\n}\n.class-nav-button {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button.reset {\n    background-color:#BA2710;\n}\n.class-nav-button.save {\n    background-color: #084C61;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n.amazon.inner-sight {\n    background-position: 0 50%;\n}\n.amazon.critical-strike {\n    background-position: 11.1111% 50%;\n}\n.amazon.dodge {\n    background-position: 22.2222% 50%;\n}\n.amazon.slow-missiles {\n    background-position: 33.3333% 50%;\n}\n.amazon.avoid {\n    background-position: 44.4444% 50%;\n}\n.amazon.penetrate {\n    background-position: 55.5555% 50%;\n}\n.amazon.decoy {\n    background-position: 66.6666% 50%;\n}\n.amazon.evade {\n    background-position: 77.7777% 50%;\n}\n.amazon.valkyrie {\n    background-position: 88.8888% 50%;\n}\n.amazon.pierce {\n    background-position: 100% 50%;\n}\n.amazon.magic-arrow {\n    background-position: 0 100%;\n}\n.amazon.fire-arrow {\n    background-position: 11.1111% 100%;\n}\n.amazon.cold-arrow {\n    background-position: 22.2222% 100%;\n}\n.amazon.multiple-shot {\n    background-position: 33.3333% 100%;\n}\n.amazon.exploding-arrow {\n    background-position: 44.4444% 100%;\n}\n.amazon.ice-arrow {\n    background-position: 55.5555% 100%;\n}\n.amazon.guided-arrow {\n    background-position: 66.6666% 100%;\n}\n.amazon.strafe {\n    background-position: 77.7777% 100%;\n}\n.amazon.immolation-arrow {\n    background-position: 88.8888% 100%;\n}\n.amazon.freezing-arrow {\n    background-position: 100% 100%;\n}\n", ""]);
+exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.visible {\n    visibility: visible;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.tabs li.is-active a {\n    border-bottom-color: #beb8a2;\n    color: #beb8a2;\n}\n.tabs:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.toolbar {\n    color: #beb8a2;\n}\n.toolbar .column {\n    padding: 0;\n}\n.toolbar .column.text-only{\n    padding: 0.75rem 0;\n}\n.class-nav-button {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button.reset {\n    background-color:#BA2710;\n}\n.class-nav-button.save {\n    background-color: #084C61;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n.amazon.inner-sight {\n    background-position: 0 50%;\n}\n.amazon.critical-strike {\n    background-position: 11.1111% 50%;\n}\n.amazon.dodge {\n    background-position: 22.2222% 50%;\n}\n.amazon.slow-missiles {\n    background-position: 33.3333% 50%;\n}\n.amazon.avoid {\n    background-position: 44.4444% 50%;\n}\n.amazon.penetrate {\n    background-position: 55.5555% 50%;\n}\n.amazon.decoy {\n    background-position: 66.6666% 50%;\n}\n.amazon.evade {\n    background-position: 77.7777% 50%;\n}\n.amazon.valkyrie {\n    background-position: 88.8888% 50%;\n}\n.amazon.pierce {\n    background-position: 100% 50%;\n}\n.amazon.magic-arrow {\n    background-position: 0 100%;\n}\n.amazon.fire-arrow {\n    background-position: 11.1111% 100%;\n}\n.amazon.cold-arrow {\n    background-position: 22.2222% 100%;\n}\n.amazon.multiple-shot {\n    background-position: 33.3333% 100%;\n}\n.amazon.exploding-arrow {\n    background-position: 44.4444% 100%;\n}\n.amazon.ice-arrow {\n    background-position: 55.5555% 100%;\n}\n.amazon.guided-arrow {\n    background-position: 66.6666% 100%;\n}\n.amazon.strafe {\n    background-position: 77.7777% 100%;\n}\n.amazon.immolation-arrow {\n    background-position: 88.8888% 100%;\n}\n.amazon.freezing-arrow {\n    background-position: 100% 100%;\n}\n", ""]);
 
 // exports
 
@@ -24799,7 +24786,12 @@ var render = function() {
                             "div",
                             {
                               staticClass: "skill-reset",
-                              class: { hide: skill.points <= 0 },
+                              class: [
+                                {
+                                  hide: skill.points <= 0,
+                                  visible: skill.points > 0
+                                }
+                              ],
                               on: {
                                 click: function($event) {
                                   _vm.resetSkill(skill)
