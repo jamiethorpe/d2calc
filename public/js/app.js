@@ -4514,11 +4514,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Amazon',
   data: function data() {
     return {
       class: 'Amazon',
+      pointsSpent: 0,
+      plusAllSkills: 0,
       trees: [{
         name: 'Javelin and Spear',
         isActive: true,
@@ -4633,10 +4641,228 @@ __webpack_require__.r(__webpack_exports__);
         }]
       }, {
         name: 'Passive and Magic',
-        isActive: false
+        isActive: false,
+        skills: [{
+          id: 1,
+          isPlaceholder: false,
+          name: 'Jab',
+          description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+          points: 0
+        }, {
+          id: 2,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 3,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 4,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 5,
+          isPlaceholder: false,
+          name: 'Power Strike',
+          description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+          points: 0
+        }, {
+          id: 6,
+          isPlaceholder: false,
+          name: 'Poison Javelin',
+          description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+          points: 0
+        }, {
+          position: 7,
+          isPlaceholder: false,
+          name: 'Impale',
+          description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+          points: 0
+        }, {
+          position: 8,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 9,
+          isPlaceholder: false,
+          name: 'Lightning Bolt',
+          description: 'Leaves a trail of lightning and does lightning damage.',
+          points: 0
+        }, {
+          position: 10,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 11,
+          isPlaceholder: false,
+          name: 'Charged Strike',
+          description: 'A lightning attack that releases charged bolts.',
+          points: 0
+        }, {
+          id: 12,
+          isPlaceholder: false,
+          name: 'Plague Javelin',
+          description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+          points: 0
+        }, {
+          id: 13,
+          isPlaceholder: false,
+          name: 'Fend',
+          description: 'Rapidly strikes several close targets.',
+          points: 0
+        }, {
+          id: 14,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 15,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 16,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 17,
+          isPlaceholder: false,
+          name: 'Lightning Strike',
+          description: 'Does lightning damage and releases chain lightning from target.',
+          points: 0
+        }, {
+          id: 18,
+          isPlaceholder: false,
+          name: 'Lightning Fury',
+          description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+          points: 0
+        }]
       }, {
         name: 'Bow and Crossbow',
-        isActive: false
+        isActive: false,
+        skills: [{
+          id: 1,
+          isPlaceholder: false,
+          name: 'Jab',
+          description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+          points: 0
+        }, {
+          id: 2,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 3,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 4,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 5,
+          isPlaceholder: false,
+          name: 'Power Strike',
+          description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+          points: 0
+        }, {
+          id: 6,
+          isPlaceholder: false,
+          name: 'Poison Javelin',
+          description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+          points: 0
+        }, {
+          position: 7,
+          isPlaceholder: false,
+          name: 'Impale',
+          description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+          points: 0
+        }, {
+          position: 8,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 9,
+          isPlaceholder: false,
+          name: 'Lightning Bolt',
+          description: 'Leaves a trail of lightning and does lightning damage.',
+          points: 0
+        }, {
+          position: 10,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 11,
+          isPlaceholder: false,
+          name: 'Charged Strike',
+          description: 'A lightning attack that releases charged bolts.',
+          points: 0
+        }, {
+          id: 12,
+          isPlaceholder: false,
+          name: 'Plague Javelin',
+          description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+          points: 0
+        }, {
+          id: 13,
+          isPlaceholder: false,
+          name: 'Fend',
+          description: 'Rapidly strikes several close targets.',
+          points: 0
+        }, {
+          id: 14,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 15,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 16,
+          isPlaceholder: true,
+          name: 'Placeholder',
+          description: 'Placeholder',
+          points: 0
+        }, {
+          id: 17,
+          isPlaceholder: false,
+          name: 'Lightning Strike',
+          description: 'Does lightning damage and releases chain lightning from target.',
+          points: 0
+        }, {
+          id: 18,
+          isPlaceholder: false,
+          name: 'Lightning Fury',
+          description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+          points: 0
+        }]
       }],
       dropdownActive: false
     };
@@ -4653,10 +4879,27 @@ __webpack_require__.r(__webpack_exports__);
         tree.isActive = tree.name === selectedTree.name;
       });
     },
+    increaseSkill: function increaseSkill(skill) {
+      skill.points += 1;
+      this.pointsSpent += 1;
+    },
     decreaseSkill: function decreaseSkill(skill) {
       if (skill.points > 0) {
         skill.points -= 1;
+        this.pointsSpent -= 1;
       }
+    },
+    resetSkill: function resetSkill(skill) {
+      this.pointsSpent = this.pointsSpent - skill.points;
+      skill.points = 0;
+    },
+    resetAll: function resetAll() {
+      this.trees.forEach(function (tree) {
+        tree.skills.forEach(function (skill) {
+          skill.points = 0;
+        });
+      });
+      this.pointsSpent = 0;
     }
   },
   mounted: function mounted() {
@@ -4746,7 +4989,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.tabs:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.toolbar {\n    color: #beb8a2;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n", ""]);
+exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.tabs:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.toolbar {\n    color: #beb8a2;\n}\n.toolbar .column {\n    padding: 0;\n}\n.toolbar .column.text-only{\n    padding: 0.75rem 0;\n}\n.class-nav-button {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button.reset {\n    background-color:#BA2710;\n}\n.class-nav-button.save {\n    background-color: #084C61;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n", ""]);
 
 // exports
 
@@ -24458,7 +24701,36 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c(
+      "div",
+      {
+        staticClass: "columns is-centered is-mobile has-text-centered toolbar"
+      },
+      [
+        _c("div", { staticClass: "column text-only" }, [
+          _vm._v("Spent: " + _vm._s(_vm.pointsSpent))
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("button", { staticClass: "class-nav-button plus-all-skills" }, [
+            _vm._v("+ All Skills: " + _vm._s(_vm.plusAllSkills))
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c(
+            "button",
+            {
+              staticClass: "class-nav-button reset",
+              on: { click: _vm.resetAll }
+            },
+            [_vm._v("Reset")]
+          )
+        ])
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "columns" }, [
       _c("div", { staticClass: "tree column is-6 is-offset-3" }, [
@@ -24480,7 +24752,7 @@ var render = function() {
                       if ($event.target !== $event.currentTarget) {
                         return null
                       }
-                      skill.points += 1
+                      _vm.increaseSkill(skill)
                     },
                     contextmenu: function($event) {
                       if ($event.target !== $event.currentTarget) {
@@ -24500,7 +24772,7 @@ var render = function() {
                           class: { hide: skill.points <= 0 },
                           on: {
                             click: function($event) {
-                              skill.points = 0
+                              _vm.resetSkill(skill)
                             }
                           }
                         },
@@ -24528,21 +24800,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "columns is-centered is-mobile has-text-centered toolbar"
-      },
-      [
-        _c("div", { staticClass: "column" }, [_vm._v("Spent: 0")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column" }, [_vm._v("+ All Skills: 0")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column" }, [_vm._v("Save")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column" }, [_vm._v("Reset")])
-      ]
-    )
+    return _c("div", { staticClass: "column" }, [
+      _c("button", { staticClass: "class-nav-button save" }, [_vm._v("Save")])
+    ])
   }
 ]
 render._withStripped = true

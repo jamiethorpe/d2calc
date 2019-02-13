@@ -9,18 +9,24 @@
         </div>
 
         <div class="columns is-centered is-mobile has-text-centered toolbar">
-            <div class="column">Spent: 0</div>
-            <div class="column">+ All Skills: 0</div>
-            <div class="column">Save</div>
-            <div class="column">Reset</div>
+            <div class="column text-only">Spent: {{ pointsSpent }}</div>
+            <div class="column">
+                <button class="class-nav-button plus-all-skills">+ All Skills: {{ plusAllSkills }}</button>
+            </div>
+            <div class="column">
+                <button class="class-nav-button save">Save</button>
+            </div>
+            <div class="column">
+                <button @click="resetAll" class="class-nav-button reset">Reset</button> 
+            </div>
         </div>
         
         <div class="columns">
             <div class="tree column is-6 is-offset-3">
                 <div class="columns is-multiline is-centered is-mobile">
                     <div v-for="(skill, index) in trees[0].skills" :key="index" class="column is-4">
-                        <div @click.self="skill.points+=1" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                            <div v-if="!skill.placeholder" @click="skill.points = 0" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
+                        <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                            <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
                             <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
                         </div>
                     </div>
@@ -37,6 +43,8 @@ export default {
     data() {
         return {
             class: 'Amazon',
+            pointsSpent: 0,
+            plusAllSkills: 0,
             trees: [
                 {
                     name: 'Javelin and Spear',
@@ -173,10 +181,266 @@ export default {
                 {
                     name: 'Passive and Magic',
                     isActive: false,
+                    skills: [
+                        {
+                            id: 1,
+                            isPlaceholder: false,
+                            name: 'Jab',
+                            description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+                            points: 0,
+                        },
+                        {
+                            id: 2,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 3,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 4,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 5,
+                            isPlaceholder: false,
+                            name: 'Power Strike',
+                            description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+                            points: 0,
+                        },
+                        {
+                            id: 6,
+                            isPlaceholder: false,
+                            name: 'Poison Javelin',
+                            description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+                            points: 0,
+                        },
+                        {
+                            position: 7,
+                            isPlaceholder: false,
+                            name: 'Impale',
+                            description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+                            points: 0,
+                        },
+                        {
+                            position: 8,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 9,
+                            isPlaceholder: false,
+                            name: 'Lightning Bolt',
+                            description: 'Leaves a trail of lightning and does lightning damage.',
+                            points: 0,
+                        },
+                        {
+                            position: 10,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 11,
+                            isPlaceholder: false,
+                            name: 'Charged Strike',
+                            description: 'A lightning attack that releases charged bolts.',
+                            points: 0,
+                        },
+                        {
+                            id: 12,
+                            isPlaceholder: false,
+                            name: 'Plague Javelin',
+                            description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+                            points: 0,
+                        },
+                        {
+                            id: 13,
+                            isPlaceholder: false,
+                            name: 'Fend',
+                            description: 'Rapidly strikes several close targets.',
+                            points: 0,
+                        },
+                        {
+                            id: 14,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 15,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 16,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 17,
+                            isPlaceholder: false,
+                            name: 'Lightning Strike',
+                            description: 'Does lightning damage and releases chain lightning from target.',
+                            points: 0,
+                        },
+                        {
+                            id: 18,
+                            isPlaceholder: false,
+                            name: 'Lightning Fury',
+                            description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+                            points: 0,
+                        },
+                    ]
                 },
                 {
                     name: 'Bow and Crossbow',
                     isActive: false,
+                    skills: [
+                        {
+                            id: 1,
+                            isPlaceholder: false,
+                            name: 'Jab',
+                            description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+                            points: 0,
+                        },
+                        {
+                            id: 2,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 3,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 4,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 5,
+                            isPlaceholder: false,
+                            name: 'Power Strike',
+                            description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+                            points: 0,
+                        },
+                        {
+                            id: 6,
+                            isPlaceholder: false,
+                            name: 'Poison Javelin',
+                            description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+                            points: 0,
+                        },
+                        {
+                            position: 7,
+                            isPlaceholder: false,
+                            name: 'Impale',
+                            description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+                            points: 0,
+                        },
+                        {
+                            position: 8,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 9,
+                            isPlaceholder: false,
+                            name: 'Lightning Bolt',
+                            description: 'Leaves a trail of lightning and does lightning damage.',
+                            points: 0,
+                        },
+                        {
+                            position: 10,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 11,
+                            isPlaceholder: false,
+                            name: 'Charged Strike',
+                            description: 'A lightning attack that releases charged bolts.',
+                            points: 0,
+                        },
+                        {
+                            id: 12,
+                            isPlaceholder: false,
+                            name: 'Plague Javelin',
+                            description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+                            points: 0,
+                        },
+                        {
+                            id: 13,
+                            isPlaceholder: false,
+                            name: 'Fend',
+                            description: 'Rapidly strikes several close targets.',
+                            points: 0,
+                        },
+                        {
+                            id: 14,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 15,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 16,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 17,
+                            isPlaceholder: false,
+                            name: 'Lightning Strike',
+                            description: 'Does lightning damage and releases chain lightning from target.',
+                            points: 0,
+                        },
+                        {
+                            id: 18,
+                            isPlaceholder: false,
+                            name: 'Lightning Fury',
+                            description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+                            points: 0,
+                        },
+                    ]
                 },
             ],
             dropdownActive: false,
@@ -194,10 +458,27 @@ export default {
                 tree.isActive = (tree.name === selectedTree.name);
             });
         },
+        increaseSkill(skill) {
+            skill.points += 1;
+            this.pointsSpent += 1;
+        },
         decreaseSkill(skill) {
             if (skill.points > 0) {
                 skill.points -= 1;
+                this.pointsSpent -= 1;
             }
+        },
+        resetSkill(skill) {
+            this.pointsSpent = (this.pointsSpent - skill.points);
+            skill.points = 0;
+        },
+        resetAll() {
+            this.trees.forEach((tree) => {
+                tree.skills.forEach((skill) => {
+                    skill.points = 0;
+                });
+            });
+            this.pointsSpent = 0;
         }
     },
     mounted() {
@@ -268,6 +549,32 @@ export default {
 
     .toolbar {
         color: #beb8a2;
+    }
+
+    .toolbar .column {
+        padding: 0;
+    }
+
+    .toolbar .column.text-only{
+        padding: 0.75rem 0;
+    }
+
+    .class-nav-button {
+        width:100%;
+        height:100%;
+        font-family: 'Diablo Heavy', serif;
+        color: #beb8a2;
+        border:none;
+        font-size:1rem;
+        padding: 0.75rem 0;
+    }
+
+    .class-nav-button.reset {
+        background-color:#BA2710;
+    }
+
+    .class-nav-button.save {
+        background-color: #084C61;
     }
 
     .amazon.jab {
