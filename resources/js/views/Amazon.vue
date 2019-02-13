@@ -20,8 +20,21 @@
                 <button @click="resetAll" class="class-nav-button reset">Reset</button> 
             </div>
         </div>
-        
+
         <div class="columns">
+            <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
+                <div class="columns is-multiline is-centered is-mobile">
+                    <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
+                        <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                            <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="{'hide' : skill.points <= 0}" class="skill-reset">Reset</div>
+                            <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div class="columns">
             <div class="tree column is-6 is-offset-3">
                 <div class="columns is-multiline is-centered is-mobile">
                     <div v-for="(skill, index) in trees[0].skills" :key="index" class="column is-4">
@@ -32,7 +45,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         
     </div>
 </template>
@@ -93,14 +106,14 @@ export default {
                             points: 0,
                         },
                         {
-                            position: 7,
+                            id: 7,
                             isPlaceholder: false,
                             name: 'Impale',
                             description: 'A more powerful attack with an increased chance the weapon will lose durability.',
                             points: 0,
                         },
                         {
-                            position: 8,
+                            id: 8,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
@@ -114,7 +127,7 @@ export default {
                             points: 0,
                         },
                         {
-                            position: 10,
+                            id: 10,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
@@ -185,8 +198,8 @@ export default {
                         {
                             id: 1,
                             isPlaceholder: false,
-                            name: 'Jab',
-                            description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+                            name: 'Inner Sight',
+                            description: 'Illuminates monsters and decreases their ability to defend themselves.',
                             points: 0,
                         },
                         {
@@ -198,9 +211,9 @@ export default {
                         },
                         {
                             id: 3,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Critical Strike',
+                            description: 'Grants a chance to do double physical damage with your attacks.',
                             points: 0,
                         },
                         {
@@ -213,40 +226,40 @@ export default {
                         {
                             id: 5,
                             isPlaceholder: false,
-                            name: 'Power Strike',
-                            description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+                            name: 'Dodge',
+                            description: 'Grants a chance to move out of the way of a melee attack while standing still.',
                             points: 0,
                         },
                         {
                             id: 6,
-                            isPlaceholder: false,
-                            name: 'Poison Javelin',
-                            description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
-                            points: 0,
-                        },
-                        {
-                            position: 7,
-                            isPlaceholder: false,
-                            name: 'Impale',
-                            description: 'A more powerful attack with an increased chance the weapon will lose durability.',
-                            points: 0,
-                        },
-                        {
-                            position: 8,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
                         },
                         {
-                            id: 9,
+                            id: 7,
                             isPlaceholder: false,
-                            name: 'Lightning Bolt',
-                            description: 'Leaves a trail of lightning and does lightning damage.',
+                            name: 'Slow Missiles',
+                            description: 'Slows down all missile and spell projectiles cast by enemies.',
                             points: 0,
                         },
                         {
-                            position: 10,
+                            id: 8,
+                            isPlaceholder: false,
+                            name: 'Avoid',
+                            description: 'Grants a chance to move out of the way of a missile attack while standing still.',
+                            points: 0,
+                        },
+                        {
+                            id: 9,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
+                            points: 0,
+                        },
+                        {
+                            id: 10,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
@@ -254,30 +267,30 @@ export default {
                         },
                         {
                             id: 11,
-                            isPlaceholder: false,
-                            name: 'Charged Strike',
-                            description: 'A lightning attack that releases charged bolts.',
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                         {
                             id: 12,
                             isPlaceholder: false,
-                            name: 'Plague Javelin',
-                            description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+                            name: 'Penetrate',
+                            description: 'Additional chance to hit.',
                             points: 0,
                         },
                         {
                             id: 13,
                             isPlaceholder: false,
-                            name: 'Fend',
-                            description: 'Rapidly strikes several close targets.',
+                            name: 'Decoy',
+                            description: 'Creates a duplicate image to distract enemies.',
                             points: 0,
                         },
                         {
                             id: 14,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Evade',
+                            description: 'Grants a chance to escape any attack while moving.',
                             points: 0,
                         },
                         {
@@ -289,23 +302,23 @@ export default {
                         },
                         {
                             id: 16,
+                            isPlaceholder: false,
+                            name: 'Valkyrie',
+                            description: 'Summons a powerful Valkyrie warrior to fight by your side.',
+                            points: 0,
+                        },
+                        {
+                            id: 17,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
                         },
                         {
-                            id: 17,
-                            isPlaceholder: false,
-                            name: 'Lightning Strike',
-                            description: 'Does lightning damage and releases chain lightning from target.',
-                            points: 0,
-                        },
-                        {
                             id: 18,
                             isPlaceholder: false,
-                            name: 'Lightning Fury',
-                            description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+                            name: 'Pierce',
+                            description: 'A chance that your missile will continue through its victim.',
                             points: 0,
                         },
                     ]
@@ -316,55 +329,55 @@ export default {
                     skills: [
                         {
                             id: 1,
-                            isPlaceholder: false,
-                            name: 'Jab',
-                            description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                         {
                             id: 2,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Magic Arrow',
+                            description: 'Creates an arrow composed entirely from Mana. Damage starts at the same level as a normal arrow and increases with higher levels of training.',
                             points: 0,
                         },
                         {
                             id: 3,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Fire Arrow',
+                            description: 'Enchants an arrow with the additional damage of fire.',
                             points: 0,
                         },
                         {
                             id: 4,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Cold Arrow',
+                            description: 'Enchants an arrow, adding cold damage and slowing your enemy.',
                             points: 0,
                         },
                         {
                             id: 5,
                             isPlaceholder: false,
-                            name: 'Power Strike',
-                            description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+                            name: 'Multiple Shot',
+                            description: 'Splits one arrow into several. Only 3/4 of the Damage is taken from your weapon.',
                             points: 0,
                         },
                         {
                             id: 6,
-                            isPlaceholder: false,
-                            name: 'Poison Javelin',
-                            description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                         {
-                            position: 7,
-                            isPlaceholder: false,
-                            name: 'Impale',
-                            description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+                            id: 7,
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                         {
-                            position: 8,
+                            id: 8,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
@@ -373,71 +386,71 @@ export default {
                         {
                             id: 9,
                             isPlaceholder: false,
-                            name: 'Lightning Bolt',
-                            description: 'Leaves a trail of lightning and does lightning damage.',
+                            name: 'Exploding Arrow',
+                            description: 'Adds fire damage to normal arrows and explodes on impact.',
                             points: 0,
                         },
                         {
-                            position: 10,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            id: 10,
+                            isPlaceholder: false,
+                            name: 'Ice Arrow',
+                            description: 'Arrows have additional cold damage and momentarily freeze the target.',
                             points: 0,
                         },
                         {
                             id: 11,
                             isPlaceholder: false,
-                            name: 'Charged Strike',
-                            description: 'A lightning attack that releases charged bolts.',
+                            name: 'Guided Arrow',
+                            description: 'Imbues an arrow with the ability to seek its nearest target.',
                             points: 0,
                         },
                         {
                             id: 12,
-                            isPlaceholder: false,
-                            name: 'Plague Javelin',
-                            description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                         {
                             id: 13,
-                            isPlaceholder: false,
-                            name: 'Fend',
-                            description: 'Rapidly strikes several close targets.',
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                         {
                             id: 14,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Strafe',
+                            description: 'Fires a volley of arrows at multiple nearby targets.',
                             points: 0,
                         },
                         {
                             id: 15,
-                            isPlaceholder: true,
-                            name: 'Placeholder',
-                            description: 'Placeholder',
+                            isPlaceholder: false,
+                            name: 'Immolation Arrow',
+                            description: 'Enchants an arrow that does fire damage, and explodes into a patch of fire on the ground. Creatures passing through the flames take additional damage.',
                             points: 0,
                         },
                         {
                             id: 16,
+                            isPlaceholder: false,
+                            name: 'Freezing Arrow',
+                            description: 'Enchants an arrow to deliver cold damage that freezes any monsters near the point of impact.',
+                            points: 0,
+                        },
+                        {
+                            id: 17,
                             isPlaceholder: true,
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
                         },
                         {
-                            id: 17,
-                            isPlaceholder: false,
-                            name: 'Lightning Strike',
-                            description: 'Does lightning damage and releases chain lightning from target.',
-                            points: 0,
-                        },
-                        {
                             id: 18,
-                            isPlaceholder: false,
-                            name: 'Lightning Fury',
-                            description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+                            isPlaceholder: true,
+                            name: 'Placeholder',
+                            description: 'Placeholder',
                             points: 0,
                         },
                     ]
@@ -606,5 +619,65 @@ export default {
     }
     .amazon.lightning-fury {
         background-position: 100% 0;
+    }
+    .amazon.inner-sight {
+        background-position: 0 50%;
+    }
+    .amazon.critical-strike {
+        background-position: 11.1111% 50%;
+    }
+    .amazon.dodge {
+        background-position: 22.2222% 50%;
+    }
+    .amazon.slow-missiles {
+        background-position: 33.3333% 50%;
+    }
+    .amazon.avoid {
+        background-position: 44.4444% 50%;
+    }
+    .amazon.penetrate {
+        background-position: 55.5555% 50%;
+    }
+    .amazon.decoy {
+        background-position: 66.6666% 50%;
+    }
+    .amazon.evade {
+        background-position: 77.7777% 50%;
+    }
+    .amazon.valkyrie {
+        background-position: 88.8888% 50%;
+    }
+    .amazon.pierce {
+        background-position: 100% 50%;
+    }
+    .amazon.magic-arrow {
+        background-position: 0 100%;
+    }
+    .amazon.fire-arrow {
+        background-position: 11.1111% 100%;
+    }
+    .amazon.cold-arrow {
+        background-position: 22.2222% 100%;
+    }
+    .amazon.multiple-shot {
+        background-position: 33.3333% 100%;
+    }
+    .amazon.exploding-arrow {
+        background-position: 44.4444% 100%;
+    }
+    .amazon.ice-arrow {
+        background-position: 55.5555% 100%;
+    }
+    .amazon.guided-arrow {
+        background-position: 66.6666% 100%;
+    }
+    .amazon.strafe {
+        background-position: 77.7777% 100%;
+    }
+    .amazon.immolation-arrow {
+        background-position: 88.8888% 100%;
+    }
+    .amazon.freezing-arrow {
+        background-position: 100% 100%;
     }
 </style>
