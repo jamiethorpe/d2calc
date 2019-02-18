@@ -1,12 +1,6 @@
 <template>
     <div class="container">
-        <div class="tabs tree-tabs is-centered">
-            <ul>
-                <li @click="setTab(tree)" :class="{'is-active' : tree.isActive}" v-for="(tree, index) in trees" :key="index">
-                    <a>{{ tree.name }}</a>
-                </li>
-            </ul>
-        </div>
+        <tree-tabs :trees="trees"></tree-tabs>
 
         <div class="columns is-centered is-mobile has-text-centered toolbar">
             <div class="column text-only">Spent: {{ pointsSpent }}</div>
@@ -38,7 +32,12 @@
 </template>
 
 <script>
+import treeTabs from '../components/TreeTabs.vue';
+
 export default {
+    components: {
+        'tree-tabs':treeTabs,
+    },
     name: 'Amazon',
     data() {
         return {
@@ -453,11 +452,6 @@ export default {
         toggleDropdown() {
             this.dropdownActive = !this.dropdownActive;
         },
-        setTab(selectedTree) {
-            this.trees.forEach((tree) => {
-                tree.isActive = (tree.name === selectedTree.name);
-            });
-        },
         increaseSkill(skill) {
             skill.points += 1;
             this.pointsSpent += 1;
@@ -501,15 +495,6 @@ export default {
         background-color: #333333;
         border: 3px solid #beb8a2;
         padding-top: .25rem;
-    }
-
-    .tabs li.is-active a {
-        border-bottom-color: #beb8a2;
-        color: #beb8a2;
-    }
-
-    .tabs:not(:last-child) {
-        margin-bottom: 0.75rem;
     }
 
     .skill-reset {
@@ -558,6 +543,8 @@ export default {
 
     .toolbar {
         color: #beb8a2;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     .toolbar .column {
@@ -576,6 +563,10 @@ export default {
         border:none;
         font-size:1rem;
         padding: 0.75rem 0;
+    }
+
+    .class-nav-button:hover {
+        cursor: pointer;
     }
 
     .class-nav-button.reset {

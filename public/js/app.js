@@ -4472,10 +4472,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TreeTabs.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4491,36 +4491,71 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'tree-tabs',
+  props: ['trees'],
+  data: function data() {
+    return {};
+  },
+  methods: {
+    setTab: function setTab(selectedTree) {
+      this.trees.forEach(function (tree) {
+        tree.isActive = tree.name === selectedTree.name;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_TreeTabs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TreeTabs.vue */ "./resources/js/components/TreeTabs.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'tree-tabs': _components_TreeTabs_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   name: 'Amazon',
   data: function data() {
     return {
@@ -4874,11 +4909,6 @@ __webpack_require__.r(__webpack_exports__);
     toggleDropdown: function toggleDropdown() {
       this.dropdownActive = !this.dropdownActive;
     },
-    setTab: function setTab(selectedTree) {
-      this.trees.forEach(function (tree) {
-        tree.isActive = tree.name === selectedTree.name;
-      });
-    },
     increaseSkill: function increaseSkill(skill) {
       skill.points += 1;
       this.pointsSpent += 1;
@@ -4977,6 +5007,25 @@ exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'D
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tabs.tree-tabs ul[data-v-d95498b2] {\n    border-bottom: none;\n}\n.tabs li.is-active a[data-v-d95498b2] {\n    border-bottom-color: #beb8a2;\n    color: #beb8a2;\n}\n.tabs[data-v-d95498b2]:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css& ***!
@@ -4989,7 +5038,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.visible {\n    visibility: visible;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.tabs li.is-active a {\n    border-bottom-color: #beb8a2;\n    color: #beb8a2;\n}\n.tabs:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.toolbar {\n    color: #beb8a2;\n}\n.toolbar .column {\n    padding: 0;\n}\n.toolbar .column.text-only{\n    padding: 0.75rem 0;\n}\n.class-nav-button {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button.reset {\n    background-color:#BA2710;\n}\n.class-nav-button.save {\n    background-color: #084C61;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n.amazon.inner-sight {\n    background-position: 0 50%;\n}\n.amazon.critical-strike {\n    background-position: 11.1111% 50%;\n}\n.amazon.dodge {\n    background-position: 22.2222% 50%;\n}\n.amazon.slow-missiles {\n    background-position: 33.3333% 50%;\n}\n.amazon.avoid {\n    background-position: 44.4444% 50%;\n}\n.amazon.penetrate {\n    background-position: 55.5555% 50%;\n}\n.amazon.decoy {\n    background-position: 66.6666% 50%;\n}\n.amazon.evade {\n    background-position: 77.7777% 50%;\n}\n.amazon.valkyrie {\n    background-position: 88.8888% 50%;\n}\n.amazon.pierce {\n    background-position: 100% 50%;\n}\n.amazon.magic-arrow {\n    background-position: 0 100%;\n}\n.amazon.fire-arrow {\n    background-position: 11.1111% 100%;\n}\n.amazon.cold-arrow {\n    background-position: 22.2222% 100%;\n}\n.amazon.multiple-shot {\n    background-position: 33.3333% 100%;\n}\n.amazon.exploding-arrow {\n    background-position: 44.4444% 100%;\n}\n.amazon.ice-arrow {\n    background-position: 55.5555% 100%;\n}\n.amazon.guided-arrow {\n    background-position: 66.6666% 100%;\n}\n.amazon.strafe {\n    background-position: 77.7777% 100%;\n}\n.amazon.immolation-arrow {\n    background-position: 88.8888% 100%;\n}\n.amazon.freezing-arrow {\n    background-position: 100% 100%;\n}\n", ""]);
+exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.visible {\n    visibility: visible;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.toolbar {\n    color: #beb8a2;\n    white-space: nowrap;\n    overflow: hidden;\n}\n.toolbar .column {\n    padding: 0;\n}\n.toolbar .column.text-only{\n    padding: 0.75rem 0;\n}\n.class-nav-button {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button:hover {\n    cursor: pointer;\n}\n.class-nav-button.reset {\n    background-color:#BA2710;\n}\n.class-nav-button.save {\n    background-color: #084C61;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n.amazon.inner-sight {\n    background-position: 0 50%;\n}\n.amazon.critical-strike {\n    background-position: 11.1111% 50%;\n}\n.amazon.dodge {\n    background-position: 22.2222% 50%;\n}\n.amazon.slow-missiles {\n    background-position: 33.3333% 50%;\n}\n.amazon.avoid {\n    background-position: 44.4444% 50%;\n}\n.amazon.penetrate {\n    background-position: 55.5555% 50%;\n}\n.amazon.decoy {\n    background-position: 66.6666% 50%;\n}\n.amazon.evade {\n    background-position: 77.7777% 50%;\n}\n.amazon.valkyrie {\n    background-position: 88.8888% 50%;\n}\n.amazon.pierce {\n    background-position: 100% 50%;\n}\n.amazon.magic-arrow {\n    background-position: 0 100%;\n}\n.amazon.fire-arrow {\n    background-position: 11.1111% 100%;\n}\n.amazon.cold-arrow {\n    background-position: 22.2222% 100%;\n}\n.amazon.multiple-shot {\n    background-position: 33.3333% 100%;\n}\n.amazon.exploding-arrow {\n    background-position: 44.4444% 100%;\n}\n.amazon.ice-arrow {\n    background-position: 55.5555% 100%;\n}\n.amazon.guided-arrow {\n    background-position: 66.6666% 100%;\n}\n.amazon.strafe {\n    background-position: 77.7777% 100%;\n}\n.amazon.immolation-arrow {\n    background-position: 88.8888% 100%;\n}\n.amazon.freezing-arrow {\n    background-position: 100% 100%;\n}\n", ""]);
 
 // exports
 
@@ -23843,6 +23892,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css& ***!
@@ -24663,6 +24742,50 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "tabs tree-tabs is-centered" }, [
+    _c(
+      "ul",
+      _vm._l(_vm.trees, function(tree, index) {
+        return _c(
+          "li",
+          {
+            key: index,
+            class: { "is-active": tree.isActive },
+            on: {
+              click: function($event) {
+                _vm.setTab(tree)
+              }
+            }
+          },
+          [_c("a", [_vm._v(_vm._s(tree.name))])]
+        )
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a& ***!
@@ -24678,147 +24801,132 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "tabs tree-tabs is-centered" }, [
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("tree-tabs", { attrs: { trees: _vm.trees } }),
+      _vm._v(" "),
       _c(
-        "ul",
+        "div",
+        {
+          staticClass: "columns is-centered is-mobile has-text-centered toolbar"
+        },
+        [
+          _c("div", { staticClass: "column text-only" }, [
+            _vm._v("Spent: " + _vm._s(_vm.pointsSpent))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("button", { staticClass: "class-nav-button plus-all-skills" }, [
+              _vm._v("+ All Skills: " + _vm._s(_vm.plusAllSkills))
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c(
+              "button",
+              {
+                staticClass: "class-nav-button reset",
+                on: { click: _vm.resetAll }
+              },
+              [_vm._v("Reset")]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "columns" },
         _vm._l(_vm.trees, function(tree, index) {
           return _c(
-            "li",
+            "div",
             {
-              key: index,
-              class: { "is-active": tree.isActive },
-              on: {
-                click: function($event) {
-                  _vm.setTab(tree)
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: tree.isActive,
+                  expression: "tree.isActive"
                 }
-              }
+              ],
+              key: index,
+              staticClass: "tree column is-6 is-offset-3"
             },
-            [_c("a", [_vm._v(_vm._s(tree.name))])]
+            [
+              _c(
+                "div",
+                { staticClass: "columns is-multiline is-centered is-mobile" },
+                _vm._l(tree.skills, function(skill, index) {
+                  return _c("div", { key: index, staticClass: "column is-4" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "skill",
+                        class: [
+                          { amazon: !skill.isPlaceholder },
+                          _vm.toKebabCase(skill.name)
+                        ],
+                        on: {
+                          click: function($event) {
+                            if ($event.target !== $event.currentTarget) {
+                              return null
+                            }
+                            _vm.increaseSkill(skill)
+                          },
+                          contextmenu: function($event) {
+                            if ($event.target !== $event.currentTarget) {
+                              return null
+                            }
+                            $event.preventDefault()
+                            _vm.decreaseSkill(skill)
+                          }
+                        }
+                      },
+                      [
+                        !skill.placeholder
+                          ? _c(
+                              "div",
+                              {
+                                staticClass: "skill-reset",
+                                class: [
+                                  {
+                                    hide: skill.points <= 0,
+                                    visible: skill.points > 0
+                                  }
+                                ],
+                                on: {
+                                  click: function($event) {
+                                    _vm.resetSkill(skill)
+                                  }
+                                }
+                              },
+                              [_vm._v("Reset")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        !skill.placeholder
+                          ? _c("div", { staticClass: "skill-counter" }, [
+                              _vm._v(_vm._s(skill.points))
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ])
+                }),
+                0
+              )
+            ]
           )
         }),
         0
       )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "columns is-centered is-mobile has-text-centered toolbar"
-      },
-      [
-        _c("div", { staticClass: "column text-only" }, [
-          _vm._v("Spent: " + _vm._s(_vm.pointsSpent))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column" }, [
-          _c("button", { staticClass: "class-nav-button plus-all-skills" }, [
-            _vm._v("+ All Skills: " + _vm._s(_vm.plusAllSkills))
-          ])
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "column" }, [
-          _c(
-            "button",
-            {
-              staticClass: "class-nav-button reset",
-              on: { click: _vm.resetAll }
-            },
-            [_vm._v("Reset")]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "columns" },
-      _vm._l(_vm.trees, function(tree, index) {
-        return _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: tree.isActive,
-                expression: "tree.isActive"
-              }
-            ],
-            key: index,
-            staticClass: "tree column is-6 is-offset-3"
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "columns is-multiline is-centered is-mobile" },
-              _vm._l(tree.skills, function(skill, index) {
-                return _c("div", { key: index, staticClass: "column is-4" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "skill",
-                      class: [
-                        { amazon: !skill.isPlaceholder },
-                        _vm.toKebabCase(skill.name)
-                      ],
-                      on: {
-                        click: function($event) {
-                          if ($event.target !== $event.currentTarget) {
-                            return null
-                          }
-                          _vm.increaseSkill(skill)
-                        },
-                        contextmenu: function($event) {
-                          if ($event.target !== $event.currentTarget) {
-                            return null
-                          }
-                          $event.preventDefault()
-                          _vm.decreaseSkill(skill)
-                        }
-                      }
-                    },
-                    [
-                      !skill.placeholder
-                        ? _c(
-                            "div",
-                            {
-                              staticClass: "skill-reset",
-                              class: [
-                                {
-                                  hide: skill.points <= 0,
-                                  visible: skill.points > 0
-                                }
-                              ],
-                              on: {
-                                click: function($event) {
-                                  _vm.resetSkill(skill)
-                                }
-                              }
-                            },
-                            [_vm._v("Reset")]
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !skill.placeholder
-                        ? _c("div", { staticClass: "skill-counter" }, [
-                            _vm._v(_vm._s(skill.points))
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ])
-              }),
-              0
-            )
-          ]
-        )
-      }),
-      0
-    )
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -37394,6 +37502,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainNavBar_vue_vue_type_template_id_0640a734_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainNavBar_vue_vue_type_template_id_0640a734_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TreeTabs.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/TreeTabs.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true& */ "./resources/js/components/TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true&");
+/* harmony import */ var _TreeTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TreeTabs.vue?vue&type=script&lang=js& */ "./resources/js/components/TreeTabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css& */ "./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _TreeTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "d95498b2",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TreeTabs.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TreeTabs.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/TreeTabs.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TreeTabs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css& ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=style&index=0&id=d95498b2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_style_index_0_id_d95498b2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TreeTabs.vue?vue&type=template&id=d95498b2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
