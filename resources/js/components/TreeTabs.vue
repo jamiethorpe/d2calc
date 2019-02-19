@@ -14,7 +14,7 @@ export default {
     props: ['trees'],
     data() {
         return {
-            
+
         }
     },
     methods: {
@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style scoped>
+    .tabs a {
+        color: #5f5f5f;
+    }
     .tabs.tree-tabs ul {
         border-bottom: none;
     }

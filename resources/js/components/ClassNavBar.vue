@@ -1,8 +1,10 @@
 <template>
     <div class="columns is-centered is-mobile has-text-centered toolbar">
         <div class="column text-only">Spent: {{ pointsSpent }}</div>
-        <div class="column">
-            <button class="class-nav-button plus-all-skills">+ All Skills: {{ plusAllSkills }}</button>
+        <div class="column text-only has-vertically-centered-content">
+            <button class="diablo-button" @click="$emit('minusAllSkills')">-</button>
+            <button class="diablo-button" @click="$emit('plusAllSkills')">+</button>
+            All: {{ plusAllSkillsTotal }}
         </div>
         <div class="column">
             <button class="class-nav-button save">Save</button>
@@ -16,7 +18,7 @@
 <script>
 export default {
     name:'class-nav-bar',
-    props: ['pointsSpent', 'plusAllSkills'],
+    props: ['pointsSpent', 'plusAllSkillsTotal'],
     data() {
         return {
             
@@ -29,6 +31,23 @@ export default {
 </script>
 
 <style scoped>
+    .diablo-button {
+        font-family: 'Diablo Heavy', serif;
+        background-color:#BA2710;
+        border: 1px solid #beb8a2;
+        color: #FFFFFF;
+        -webkit-box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);
+        box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);
+        text-align: center;
+        margin-right: 0.25rem;
+        font-size: 1.2rem;
+    }
+
+    .diablo-button:hover {
+        cursor: pointer;
+    }
+
     .toolbar {
         color: #beb8a2;
         white-space: nowrap;
@@ -40,7 +59,7 @@ export default {
     }
 
     .toolbar .column.text-only{
-        padding: 0.75rem 0;
+        padding: 0.45rem 0;
     }
 
     .class-nav-button {

@@ -4,8 +4,8 @@
             <div class="columns is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
                     <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                        <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" class="skill-reset">Reset</div>
-                        <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
+                        <div v-if="!skill.isPlaceholder" @click="resetSkill(skill)" :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" class="skill-reset">Reset</div>
+                        <div v-if="!skill.isPlaceholder" class="skill-counter">{{ skill.points }}</div>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
 <script>
 export default {
     name:'skill-trees',
-    props: ['trees'],
+    props: ['trees', 'className'],
     data() {
         return {
             
@@ -24,57 +24,72 @@ export default {
     },
     methods: {
         increaseSkill(skill) {
-            skill.points += 1;
-            this.pointsSpent += 1;
+            if (!skill.isPlaceholder) {
+                skill.points += 1;
+                this.$parent.pointsSpent += 1;
+            }
         },
         decreaseSkill(skill) {
-            if (skill.points > 0) {
+            if (skill.points > 0 && !skill.isPlaceholder) {
                 skill.points -= 1;
-                this.pointsSpent -= 1;
+                this.$parent.pointsSpent -= 1;
             }
         },
         resetSkill(skill) {
-            this.pointsSpent = (this.pointsSpent - skill.points);
+            this.$parent.pointsSpent = (this.$parent.pointsSpent - skill.points);
             skill.points = 0;
         },
+    },
+    mounted() {
+        console.log(this.className);
     }
 }
 </script>
 
-<style scoped>
-    .toolbar {
+<style>
+    .tree {
+        height: 75vh;
+        width: 100%;
+        background-color: #333333;
+        border: 3px solid #beb8a2;
+        padding-top: .25rem;
+    }
+
+    .skill-reset {
+        background-color:rgb(186,39,16);
+        background-color:rgba(186,39,16, 0.3);
+        text-align: center;
+        display: inline-block;
         color: #beb8a2;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .toolbar .column {
-        padding: 0;
-    }
-
-    .toolbar .column.text-only{
-        padding: 0.75rem 0;
-    }
-
-    .class-nav-button {
-        width:100%;
-        height:100%;
+        position: relative;
+        top: 3.75rem;
+        width: 88%;
         font-family: 'Diablo Heavy', serif;
+    }
+
+    .skill-counter {
+        background-color: #000;
+        text-align: center;
+        display: inline-block;
         color: #beb8a2;
-        border:none;
-        font-size:1rem;
-        padding: 0.75rem 0;
+        position: relative;
+        left: 3.75rem;
+        width: 1.5rem;
+        top: 2.25rem;
     }
 
-    .class-nav-button:hover {
-        cursor: pointer;
+    .skill {
+        background-color: #614b34;
+        -webkit-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
+        box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
+        width: calc((73vh/6) - 1.5rem);
+        height: calc((73vh/6) - 1.5rem);
+        margin: 0 auto;
+        user-select: none;
     }
 
-    .class-nav-button.reset {
-        background-color:#BA2710;
-    }
-
-    .class-nav-button.save {
-        background-color: #084C61;
+    .skill.placeholder {
+        opacity: 0;
     }
 </style>

@@ -2,9 +2,15 @@
     <div class="container">
         <tree-tabs :trees="trees"></tree-tabs>
 
-        <class-nav-bar @resetAll="resetAll"></class-nav-bar>
+        <class-nav-bar 
+            @resetAll="resetAll" 
+            @plusAllSkills="plusAllSkills" 
+            @minusAllSkills="minusAllSkills" 
+            :points-spent="pointsSpent" 
+            :plus-all-skills-total="plusAllSkillsTotal"
+        ></class-nav-bar>
 
-        <skill-trees :trees="trees" :class="lowerClassName"></skill-trees>
+        <skill-trees :trees="trees" :class-name="lowerClassName"></skill-trees>
         
     </div>
 </template>
@@ -25,7 +31,7 @@ export default {
         return {
             class: 'Amazon',
             pointsSpent: 0,
-            plusAllSkills: 0,
+            plusAllSkillsTotal: 0,
             trees: [
                 {
                     name: 'Javelin and Spear',
@@ -442,6 +448,28 @@ export default {
                 });
             });
             this.pointsSpent = 0;
+        },
+        plusAllSkills() {
+            this.trees.forEach((tree) => {
+                tree.skills.forEach((skill) => {
+                    if (!skill.isPlaceholder) {
+                        skill.points += 1;
+                    }
+                });
+            });
+            this.plusAllSkillsTotal += 1;
+        },
+        minusAllSkills() {
+            if (this.plusAllSkillsTotal > 0) {
+                this.trees.forEach((tree) => {
+                    tree.skills.forEach((skill) => {
+                        if (!skill.isPlaceholder) {
+                            skill.points -= 1;
+                        }
+                    });
+                });
+                this.plusAllSkillsTotal -= 1;
+            }
         }
     },
     mounted() {
@@ -458,50 +486,8 @@ export default {
         visibility: visible;
     }
 
-    .tree {
-        height: 75vh;
-        width: 100%;
-        background-color: #333333;
-        border: 3px solid #beb8a2;
-        padding-top: .25rem;
-    }
-
-    .skill-reset {
-        background-color:rgb(186,39,16);
-        background-color:rgba(186,39,16, 0.3);
-        text-align: center;
-        display: inline-block;
-        color: #beb8a2;
-        position: relative;
-        top: 3.75rem;
-        width: 88%;
-        font-family: 'Diablo Heavy', serif;
-    }
-
-    .skill-counter {
-        background-color: #000;
-        text-align: center;
-        display: inline-block;
-        color: #beb8a2;
-        position: relative;
-        left: 3.75rem;
-        width: 1.5rem;
-        top: 2.25rem;
-    }
-
-    .skill {
-        background-color: #614b34;
-        -webkit-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
-        -moz-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
-        box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
-        width: calc((73vh/6) - 1.5rem);
-        height: calc((73vh/6) - 1.5rem);
-        margin: 0 auto;
-        user-select: none;
-    }
-
-    .skill.placeholder {
-        opacity: 0;
+    .skill.amazon {
+        cursor: pointer;
     }
 
     .skill.amazon {
@@ -509,8 +495,6 @@ export default {
         background-size: 1000%;
         display:block;
     }
-
-    
 
     .amazon.jab {
         background-position: 0 0;
