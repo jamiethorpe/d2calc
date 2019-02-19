@@ -2,41 +2,23 @@
     <div class="container">
         <tree-tabs :trees="trees"></tree-tabs>
 
-        <div class="columns is-centered is-mobile has-text-centered toolbar">
-            <div class="column text-only">Spent: {{ pointsSpent }}</div>
-            <div class="column">
-                <button class="class-nav-button plus-all-skills">+ All Skills: {{ plusAllSkills }}</button>
-            </div>
-            <div class="column">
-                <button class="class-nav-button save">Save</button>
-            </div>
-            <div class="column">
-                <button @click="resetAll" class="class-nav-button reset">Reset</button> 
-            </div>
-        </div>
+        <class-nav-bar @resetAll="resetAll"></class-nav-bar>
 
-        <div class="columns">
-            <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
-                <div class="columns is-multiline is-centered is-mobile">
-                    <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
-                        <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                            <div v-if="!skill.placeholder" @click="resetSkill(skill)" :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" class="skill-reset">Reset</div>
-                            <div v-if="!skill.placeholder" class="skill-counter">{{ skill.points }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <skill-trees :trees="trees" :class="lowerClassName"></skill-trees>
         
     </div>
 </template>
 
 <script>
 import treeTabs from '../components/TreeTabs.vue';
+import classNavBar from '../components/ClassNavBar.vue';
+import skillTrees from '../components/SkillTrees.vue';
 
 export default {
     components: {
         'tree-tabs':treeTabs,
+        'class-nav-bar':classNavBar,
+        'skill-trees':skillTrees,
     },
     name: 'Amazon',
     data() {
@@ -442,29 +424,16 @@ export default {
                     ]
                 },
             ],
-            dropdownActive: false,
+        }
+    },
+    computed: {
+        lowerClassName() {
+            return this.class.toLowerCase();
         }
     },
     methods: {
         selectClass() {
             this.$store.commit('selectClass', this.class);
-        },
-        toggleDropdown() {
-            this.dropdownActive = !this.dropdownActive;
-        },
-        increaseSkill(skill) {
-            skill.points += 1;
-            this.pointsSpent += 1;
-        },
-        decreaseSkill(skill) {
-            if (skill.points > 0) {
-                skill.points -= 1;
-                this.pointsSpent -= 1;
-            }
-        },
-        resetSkill(skill) {
-            this.pointsSpent = (this.pointsSpent - skill.points);
-            skill.points = 0;
         },
         resetAll() {
             this.trees.forEach((tree) => {
@@ -541,41 +510,7 @@ export default {
         display:block;
     }
 
-    .toolbar {
-        color: #beb8a2;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .toolbar .column {
-        padding: 0;
-    }
-
-    .toolbar .column.text-only{
-        padding: 0.75rem 0;
-    }
-
-    .class-nav-button {
-        width:100%;
-        height:100%;
-        font-family: 'Diablo Heavy', serif;
-        color: #beb8a2;
-        border:none;
-        font-size:1rem;
-        padding: 0.75rem 0;
-    }
-
-    .class-nav-button:hover {
-        cursor: pointer;
-    }
-
-    .class-nav-button.reset {
-        background-color:#BA2710;
-    }
-
-    .class-nav-button.save {
-        background-color: #084C61;
-    }
+    
 
     .amazon.jab {
         background-position: 0 0;
