@@ -4533,9 +4533,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'skill-trees',
-  props: ['trees', 'className'],
+  props: ['trees', 'className', 'plusAllSkillsTotal'],
   data: function data() {
     return {};
   },
@@ -4999,26 +5006,13 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
       this.pointsSpent = 0;
+      this.plusAllSkillsTotal = 0;
     },
     plusAllSkills: function plusAllSkills() {
-      this.trees.forEach(function (tree) {
-        tree.skills.forEach(function (skill) {
-          if (!skill.isPlaceholder) {
-            skill.points += 1;
-          }
-        });
-      });
       this.plusAllSkillsTotal += 1;
     },
     minusAllSkills: function minusAllSkills() {
       if (this.plusAllSkillsTotal > 0) {
-        this.trees.forEach(function (tree) {
-          tree.skills.forEach(function (skill) {
-            if (!skill.isPlaceholder) {
-              skill.points -= 1;
-            }
-          });
-        });
         this.plusAllSkillsTotal -= 1;
       }
     }
@@ -5129,7 +5123,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -25103,14 +25097,27 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Reset")]
+                          [
+                            _vm._v(
+                              "\n                        Reset\n                    "
+                            )
+                          ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
                     !skill.isPlaceholder
-                      ? _c("div", { staticClass: "skill-counter" }, [
-                          _vm._v(_vm._s(skill.points))
-                        ])
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "skill-counter",
+                            class: { "plus-skills": _vm.plusAllSkillsTotal > 0 }
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(skill.points + _vm.plusAllSkillsTotal)
+                            )
+                          ]
+                        )
                       : _vm._e()
                   ]
                 )
@@ -25209,7 +25216,11 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("skill-trees", {
-        attrs: { trees: _vm.trees, "class-name": _vm.lowerClassName }
+        attrs: {
+          trees: _vm.trees,
+          "class-name": _vm.lowerClassName,
+          "plus-all-skills-total": _vm.plusAllSkillsTotal
+        }
       })
     ],
     1

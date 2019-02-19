@@ -10,7 +10,7 @@
             :plus-all-skills-total="plusAllSkillsTotal"
         ></class-nav-bar>
 
-        <skill-trees :trees="trees" :class-name="lowerClassName"></skill-trees>
+        <skill-trees :trees="trees" :class-name="lowerClassName" :plus-all-skills-total="plusAllSkillsTotal"></skill-trees>
         
     </div>
 </template>
@@ -448,26 +448,13 @@ export default {
                 });
             });
             this.pointsSpent = 0;
+            this.plusAllSkillsTotal = 0;
         },
         plusAllSkills() {
-            this.trees.forEach((tree) => {
-                tree.skills.forEach((skill) => {
-                    if (!skill.isPlaceholder) {
-                        skill.points += 1;
-                    }
-                });
-            });
             this.plusAllSkillsTotal += 1;
         },
         minusAllSkills() {
             if (this.plusAllSkillsTotal > 0) {
-                this.trees.forEach((tree) => {
-                    tree.skills.forEach((skill) => {
-                        if (!skill.isPlaceholder) {
-                            skill.points -= 1;
-                        }
-                    });
-                });
                 this.plusAllSkillsTotal -= 1;
             }
         }

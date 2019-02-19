@@ -4,8 +4,15 @@
             <div class="columns is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
                     <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
-                        <div v-if="!skill.isPlaceholder" @click="resetSkill(skill)" :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" class="skill-reset">Reset</div>
-                        <div v-if="!skill.isPlaceholder" class="skill-counter">{{ skill.points }}</div>
+                        <div 
+                            v-if="!skill.isPlaceholder" 
+                            @click="resetSkill(skill)" 
+                            :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" 
+                            class="skill-reset"
+                        >
+                            Reset
+                        </div>
+                        <div v-if="!skill.isPlaceholder" class="skill-counter" :class="{'plus-skills' : plusAllSkillsTotal > 0}">{{ skill.points + plusAllSkillsTotal }}</div>
                     </div>
                 </div>
             </div>
@@ -16,7 +23,7 @@
 <script>
 export default {
     name:'skill-trees',
-    props: ['trees', 'className'],
+    props: ['trees', 'className', 'plusAllSkillsTotal'],
     data() {
         return {
             
@@ -47,6 +54,10 @@ export default {
 </script>
 
 <style>
+    .plus-skills {
+        color: #6A64D5 !important;
+    }
+
     .tree {
         height: 75vh;
         width: 100%;
