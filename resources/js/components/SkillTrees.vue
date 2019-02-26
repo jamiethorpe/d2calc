@@ -3,7 +3,7 @@
         <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
             <div class="columns is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
-                    <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{'amazon' : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                    <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{[className] : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
                         <div 
                             v-if="!skill.isPlaceholder" 
                             @click="resetSkill(skill)" 

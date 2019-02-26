@@ -25060,7 +25060,9 @@ var render = function() {
                   {
                     staticClass: "skill",
                     class: [
-                      { amazon: !skill.isPlaceholder },
+                      ((_obj = {}),
+                      (_obj[_vm.className] = !skill.isPlaceholder),
+                      _obj),
                       _vm.toKebabCase(skill.name)
                     ],
                     on: {
@@ -25122,6 +25124,7 @@ var render = function() {
                   ]
                 )
               ])
+              var _obj
             }),
             0
           )
