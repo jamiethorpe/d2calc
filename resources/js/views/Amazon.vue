@@ -43,6 +43,8 @@ export default {
                             name: 'Jab',
                             description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 2,
@@ -50,6 +52,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 3,
@@ -57,6 +61,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 4,
@@ -64,6 +70,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 5,
@@ -71,6 +79,8 @@ export default {
                             name: 'Power Strike',
                             description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
                             points: 0,
+                            prerequisites: ['Jab'],
+                            available: false,
                         },
                         {
                             id: 6,
@@ -78,6 +88,8 @@ export default {
                             name: 'Poison Javelin',
                             description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 7,
@@ -85,6 +97,8 @@ export default {
                             name: 'Impale',
                             description: 'A more powerful attack with an increased chance the weapon will lose durability.',
                             points: 0,
+                            prerequisites: ['Jab'],
+                            available: false,
                         },
                         {
                             id: 8,
@@ -92,6 +106,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 9,
@@ -99,6 +115,8 @@ export default {
                             name: 'Lightning Bolt',
                             description: 'Leaves a trail of lightning and does lightning damage.',
                             points: 0,
+                            prerequisites: ['Poison Javelin'],
+                            available: false,
                         },
                         {
                             id: 10,
@@ -106,6 +124,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 11,
@@ -113,6 +133,8 @@ export default {
                             name: 'Charged Strike',
                             description: 'A lightning attack that releases charged bolts.',
                             points: 0,
+                            prerequisites: ['Jab', 'Poison Javelin', 'Power Strike' ,'Lightning Bolt'],
+                            available: false,
                         },
                         {
                             id: 12,
@@ -120,6 +142,8 @@ export default {
                             name: 'Plague Javelin',
                             description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
                             points: 0,
+                            prerequisites: ['Poison Javelin', 'Lightning Bolt'],
+                            available: false,
                         },
                         {
                             id: 13,
@@ -127,6 +151,8 @@ export default {
                             name: 'Fend',
                             description: 'Rapidly strikes several close targets.',
                             points: 0,
+                            prerequisites: ['Jab', 'Impale'],
+                            available: false,
                         },
                         {
                             id: 14,
@@ -134,6 +160,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 15,
@@ -141,6 +169,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 16,
@@ -148,6 +178,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 17,
@@ -155,6 +187,8 @@ export default {
                             name: 'Lightning Strike',
                             description: 'Does lightning damage and releases chain lightning from target.',
                             points: 0,
+                            prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt', 'Charged Strike'],
+                            available: false,
                         },
                         {
                             id: 18,
@@ -162,6 +196,8 @@ export default {
                             name: 'Lightning Fury',
                             description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
                             points: 0,
+                            prerequisites: ['Poison Javelin', 'Lightning Bolt', 'Plague Javelin'],
+                            available: false,
                         },
                     ]
                 },
@@ -175,6 +211,8 @@ export default {
                             name: 'Inner Sight',
                             description: 'Illuminates monsters and decreases their ability to defend themselves.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 2,
@@ -182,6 +220,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 3,
@@ -189,6 +229,8 @@ export default {
                             name: 'Critical Strike',
                             description: 'Grants a chance to do double physical damage with your attacks.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 4,
@@ -196,6 +238,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 5,
@@ -203,6 +247,8 @@ export default {
                             name: 'Dodge',
                             description: 'Grants a chance to move out of the way of a melee attack while standing still.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 6,
@@ -210,6 +256,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 7,
@@ -217,6 +265,8 @@ export default {
                             name: 'Slow Missiles',
                             description: 'Slows down all missile and spell projectiles cast by enemies.',
                             points: 0,
+                            prerequisites: ['Inner Sight'],
+                            available: false,
                         },
                         {
                             id: 8,
@@ -224,6 +274,8 @@ export default {
                             name: 'Avoid',
                             description: 'Grants a chance to move out of the way of a missile attack while standing still.',
                             points: 0,
+                            prerequisites: ['Dodge'],
+                            available: false,
                         },
                         {
                             id: 9,
@@ -231,6 +283,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 10,
@@ -238,6 +292,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 11,
@@ -245,6 +301,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 12,
@@ -252,6 +310,8 @@ export default {
                             name: 'Penetrate',
                             description: 'Additional chance to hit.',
                             points: 0,
+                            prerequisites: ['Critical Strike'],
+                            available: false,
                         },
                         {
                             id: 13,
@@ -259,6 +319,8 @@ export default {
                             name: 'Decoy',
                             description: 'Creates a duplicate image to distract enemies.',
                             points: 0,
+                            prerequisites: ['Inner Sight', 'Slow Missiles'],
+                            available: false,
                         },
                         {
                             id: 14,
@@ -266,6 +328,8 @@ export default {
                             name: 'Evade',
                             description: 'Grants a chance to escape any attack while moving.',
                             points: 0,
+                            prerequisites: ['Dodge', 'Avoid'],
+                            available: false,
                         },
                         {
                             id: 15,
@@ -273,6 +337,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 16,
@@ -280,6 +346,8 @@ export default {
                             name: 'Valkyrie',
                             description: 'Summons a powerful Valkyrie warrior to fight by your side.',
                             points: 0,
+                            prerequisites: ['Inner Sight', 'Dodge', 'Slow Missiles', 'Avoid', 'Decoy', 'Evade'],
+                            available: false,
                         },
                         {
                             id: 17,
@@ -287,6 +355,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 18,
@@ -294,6 +364,8 @@ export default {
                             name: 'Pierce',
                             description: 'A chance that your missile will continue through its victim.',
                             points: 0,
+                            prerequisites: ['Critical Strike', 'Penetrate'],
+                            available: false,
                         },
                     ]
                 },
@@ -307,6 +379,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 2,
@@ -314,6 +388,8 @@ export default {
                             name: 'Magic Arrow',
                             description: 'Creates an arrow composed entirely from Mana. Damage starts at the same level as a normal arrow and increases with higher levels of training.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 3,
@@ -321,6 +397,8 @@ export default {
                             name: 'Fire Arrow',
                             description: 'Enchants an arrow with the additional damage of fire.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 4,
@@ -328,6 +406,8 @@ export default {
                             name: 'Cold Arrow',
                             description: 'Enchants an arrow, adding cold damage and slowing your enemy.',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 5,
@@ -335,6 +415,8 @@ export default {
                             name: 'Multiple Shot',
                             description: 'Splits one arrow into several. Only 3/4 of the Damage is taken from your weapon.',
                             points: 0,
+                            prerequisites: ['Magic Arrow'],
+                            available: false,
                         },
                         {
                             id: 6,
@@ -342,6 +424,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 7,
@@ -349,6 +433,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 8,
@@ -356,6 +442,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 9,
@@ -363,6 +451,8 @@ export default {
                             name: 'Exploding Arrow',
                             description: 'Adds fire damage to normal arrows and explodes on impact.',
                             points: 0,
+                            prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot'],
+                            available: false,
                         },
                         {
                             id: 10,
@@ -370,6 +460,8 @@ export default {
                             name: 'Ice Arrow',
                             description: 'Arrows have additional cold damage and momentarily freeze the target.',
                             points: 0,
+                            prerequisites: ['Cold Arrow'],
+                            available: false,
                         },
                         {
                             id: 11,
@@ -377,6 +469,8 @@ export default {
                             name: 'Guided Arrow',
                             description: 'Imbues an arrow with the ability to seek its nearest target.',
                             points: 0,
+                            prerequisites: ['Magic Arrow', 'Cold Arrow', 'Multiple Shot'],
+                            available: false,
                         },
                         {
                             id: 12,
@@ -384,6 +478,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 13,
@@ -391,6 +487,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 14,
@@ -398,6 +496,8 @@ export default {
                             name: 'Strafe',
                             description: 'Fires a volley of arrows at multiple nearby targets.',
                             points: 0,
+                            prerequisites: ['Magic Arrow', 'Multiple Shot', 'Cold Arrow', 'Guided Arrow'],
+                            available: false,
                         },
                         {
                             id: 15,
@@ -405,6 +505,8 @@ export default {
                             name: 'Immolation Arrow',
                             description: 'Enchants an arrow that does fire damage, and explodes into a patch of fire on the ground. Creatures passing through the flames take additional damage.',
                             points: 0,
+                            prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot', 'Exploding Arrow'],
+                            available: false,
                         },
                         {
                             id: 16,
@@ -412,6 +514,8 @@ export default {
                             name: 'Freezing Arrow',
                             description: 'Enchants an arrow to deliver cold damage that freezes any monsters near the point of impact.',
                             points: 0,
+                            prerequisites: ['Cold Arrow', 'Ice Arrow'],
+                            available: false,
                         },
                         {
                             id: 17,
@@ -419,6 +523,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                         {
                             id: 18,
@@ -426,6 +532,8 @@ export default {
                             name: 'Placeholder',
                             description: 'Placeholder',
                             points: 0,
+                            prerequisites: ['None'],
+                            available: true,
                         },
                     ]
                 },
@@ -445,6 +553,9 @@ export default {
             this.trees.forEach((tree) => {
                 tree.skills.forEach((skill) => {
                     skill.points = 0;
+                    if (skill.prerequisites[0] !== 'None') {
+                        skill.available = false;
+                    }
                 });
             });
             this.pointsSpent = 0;

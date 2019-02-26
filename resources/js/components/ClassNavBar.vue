@@ -44,7 +44,6 @@ export default {
         font-size: 1.2rem;
         height: 1.7rem;
         width: 1.7rem;
-        /* display: inline-block; */
         padding: 0;
         border-radius: 0;
     }

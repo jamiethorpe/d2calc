@@ -4540,6 +4540,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'skill-trees',
   props: ['trees', 'className', 'plusAllSkillsTotal'],
@@ -4547,10 +4559,11 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    increaseSkill: function increaseSkill(skill) {
-      if (!skill.isPlaceholder) {
+    increaseSkill: function increaseSkill(skill, tree) {
+      if (!skill.isPlaceholder && skill.available) {
         skill.points += 1;
         this.$parent.pointsSpent += 1;
+        this.checkForUnlockedSkills(skill, tree);
       }
     },
     decreaseSkill: function decreaseSkill(skill) {
@@ -4562,6 +4575,25 @@ __webpack_require__.r(__webpack_exports__);
     resetSkill: function resetSkill(skill) {
       this.$parent.pointsSpent = this.$parent.pointsSpent - skill.points;
       skill.points = 0;
+    },
+    checkForUnlockedSkills: function checkForUnlockedSkills(skill, tree) {
+      var possibleUnlocks = tree.skills.filter(function (possibleUnlock) {
+        return possibleUnlock.prerequisites.includes(skill.name);
+      });
+      possibleUnlocks.forEach(function (possibleUnlock) {
+        var total = 0;
+        possibleUnlock.prerequisites.forEach(function (prereq) {
+          tree.skills.forEach(function (s) {
+            if (s.name === prereq && s.points >= 1) {
+              total += 1;
+            }
+          });
+        });
+
+        if (total >= possibleUnlock.prerequisites.length) {
+          possibleUnlock.available = true;
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -4659,109 +4691,145 @@ __webpack_require__.r(__webpack_exports__);
           isPlaceholder: false,
           name: 'Jab',
           description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 2,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 3,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 4,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 5,
           isPlaceholder: false,
           name: 'Power Strike',
           description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
-          points: 0
+          points: 0,
+          prerequisites: ['Jab'],
+          available: false
         }, {
           id: 6,
           isPlaceholder: false,
           name: 'Poison Javelin',
           description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 7,
           isPlaceholder: false,
           name: 'Impale',
           description: 'A more powerful attack with an increased chance the weapon will lose durability.',
-          points: 0
+          points: 0,
+          prerequisites: ['Jab'],
+          available: false
         }, {
           id: 8,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 9,
           isPlaceholder: false,
           name: 'Lightning Bolt',
           description: 'Leaves a trail of lightning and does lightning damage.',
-          points: 0
+          points: 0,
+          prerequisites: ['Poison Javelin'],
+          available: false
         }, {
           id: 10,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 11,
           isPlaceholder: false,
           name: 'Charged Strike',
           description: 'A lightning attack that releases charged bolts.',
-          points: 0
+          points: 0,
+          prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt'],
+          available: false
         }, {
           id: 12,
           isPlaceholder: false,
           name: 'Plague Javelin',
           description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
-          points: 0
+          points: 0,
+          prerequisites: ['Poison Javelin', 'Lightning Bolt'],
+          available: false
         }, {
           id: 13,
           isPlaceholder: false,
           name: 'Fend',
           description: 'Rapidly strikes several close targets.',
-          points: 0
+          points: 0,
+          prerequisites: ['Jab', 'Impale'],
+          available: false
         }, {
           id: 14,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 15,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 16,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 17,
           isPlaceholder: false,
           name: 'Lightning Strike',
           description: 'Does lightning damage and releases chain lightning from target.',
-          points: 0
+          points: 0,
+          prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt', 'Charged Strike'],
+          available: false
         }, {
           id: 18,
           isPlaceholder: false,
           name: 'Lightning Fury',
           description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
-          points: 0
+          points: 0,
+          prerequisites: ['Poison Javelin', 'Lightning Bolt', 'Plague Javelin'],
+          available: false
         }]
       }, {
         name: 'Passive and Magic',
@@ -4771,109 +4839,145 @@ __webpack_require__.r(__webpack_exports__);
           isPlaceholder: false,
           name: 'Inner Sight',
           description: 'Illuminates monsters and decreases their ability to defend themselves.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 2,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 3,
           isPlaceholder: false,
           name: 'Critical Strike',
           description: 'Grants a chance to do double physical damage with your attacks.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 4,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 5,
           isPlaceholder: false,
           name: 'Dodge',
           description: 'Grants a chance to move out of the way of a melee attack while standing still.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 6,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 7,
           isPlaceholder: false,
           name: 'Slow Missiles',
           description: 'Slows down all missile and spell projectiles cast by enemies.',
-          points: 0
+          points: 0,
+          prerequisites: ['Inner Sight'],
+          available: false
         }, {
           id: 8,
           isPlaceholder: false,
           name: 'Avoid',
           description: 'Grants a chance to move out of the way of a missile attack while standing still.',
-          points: 0
+          points: 0,
+          prerequisites: ['Dodge'],
+          available: false
         }, {
           id: 9,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 10,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 11,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 12,
           isPlaceholder: false,
           name: 'Penetrate',
           description: 'Additional chance to hit.',
-          points: 0
+          points: 0,
+          prerequisites: ['Critical Strike'],
+          available: false
         }, {
           id: 13,
           isPlaceholder: false,
           name: 'Decoy',
           description: 'Creates a duplicate image to distract enemies.',
-          points: 0
+          points: 0,
+          prerequisites: ['Inner Sight', 'Slow Missiles'],
+          available: false
         }, {
           id: 14,
           isPlaceholder: false,
           name: 'Evade',
           description: 'Grants a chance to escape any attack while moving.',
-          points: 0
+          points: 0,
+          prerequisites: ['Dodge', 'Avoid'],
+          available: false
         }, {
           id: 15,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 16,
           isPlaceholder: false,
           name: 'Valkyrie',
           description: 'Summons a powerful Valkyrie warrior to fight by your side.',
-          points: 0
+          points: 0,
+          prerequisites: ['Inner Sight', 'Dodge', 'Slow Missiles', 'Avoid', 'Decoy', 'Evade'],
+          available: false
         }, {
           id: 17,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 18,
           isPlaceholder: false,
           name: 'Pierce',
           description: 'A chance that your missile will continue through its victim.',
-          points: 0
+          points: 0,
+          prerequisites: ['Critical Strike', 'Penetrate'],
+          available: false
         }]
       }, {
         name: 'Bow and Crossbow',
@@ -4883,109 +4987,145 @@ __webpack_require__.r(__webpack_exports__);
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 2,
           isPlaceholder: false,
           name: 'Magic Arrow',
           description: 'Creates an arrow composed entirely from Mana. Damage starts at the same level as a normal arrow and increases with higher levels of training.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 3,
           isPlaceholder: false,
           name: 'Fire Arrow',
           description: 'Enchants an arrow with the additional damage of fire.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 4,
           isPlaceholder: false,
           name: 'Cold Arrow',
           description: 'Enchants an arrow, adding cold damage and slowing your enemy.',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 5,
           isPlaceholder: false,
           name: 'Multiple Shot',
           description: 'Splits one arrow into several. Only 3/4 of the Damage is taken from your weapon.',
-          points: 0
+          points: 0,
+          prerequisites: ['Magic Arrow'],
+          available: false
         }, {
           id: 6,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 7,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 8,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 9,
           isPlaceholder: false,
           name: 'Exploding Arrow',
           description: 'Adds fire damage to normal arrows and explodes on impact.',
-          points: 0
+          points: 0,
+          prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot'],
+          available: false
         }, {
           id: 10,
           isPlaceholder: false,
           name: 'Ice Arrow',
           description: 'Arrows have additional cold damage and momentarily freeze the target.',
-          points: 0
+          points: 0,
+          prerequisites: ['Cold Arrow'],
+          available: false
         }, {
           id: 11,
           isPlaceholder: false,
           name: 'Guided Arrow',
           description: 'Imbues an arrow with the ability to seek its nearest target.',
-          points: 0
+          points: 0,
+          prerequisites: ['Magic Arrow', 'Cold Arrow', 'Multiple Shot'],
+          available: false
         }, {
           id: 12,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 13,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 14,
           isPlaceholder: false,
           name: 'Strafe',
           description: 'Fires a volley of arrows at multiple nearby targets.',
-          points: 0
+          points: 0,
+          prerequisites: ['Magic Arrow', 'Multiple Shot', 'Cold Arrow', 'Guided Arrow'],
+          available: false
         }, {
           id: 15,
           isPlaceholder: false,
           name: 'Immolation Arrow',
           description: 'Enchants an arrow that does fire damage, and explodes into a patch of fire on the ground. Creatures passing through the flames take additional damage.',
-          points: 0
+          points: 0,
+          prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot', 'Exploding Arrow'],
+          available: false
         }, {
           id: 16,
           isPlaceholder: false,
           name: 'Freezing Arrow',
           description: 'Enchants an arrow to deliver cold damage that freezes any monsters near the point of impact.',
-          points: 0
+          points: 0,
+          prerequisites: ['Cold Arrow', 'Ice Arrow'],
+          available: false
         }, {
           id: 17,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }, {
           id: 18,
           isPlaceholder: true,
           name: 'Placeholder',
           description: 'Placeholder',
-          points: 0
+          points: 0,
+          prerequisites: ['None'],
+          available: true
         }]
       }]
     };
@@ -5003,6 +5143,10 @@ __webpack_require__.r(__webpack_exports__);
       this.trees.forEach(function (tree) {
         tree.skills.forEach(function (skill) {
           skill.points = 0;
+
+          if (skill.prerequisites[0] !== 'None') {
+            skill.available = false;
+          }
         });
       });
       this.pointsSpent = 0;
@@ -5085,7 +5229,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.diablo-button[data-v-789e366d] {\n    font-family: 'Diablo Heavy', serif;\n    background-color:#BA2710;\n    border: 1px solid #beb8a2;\n    color: #FFFFFF;\n    box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);\n    text-align: center;\n    margin-right: 0.25rem;\n    font-size: 1.2rem;\n    height: 1.7rem;\n    width: 1.7rem;\n    /* display: inline-block; */\n    padding: 0;\n    border-radius: 0;\n}\n.diablo-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.toolbar[data-v-789e366d] {\n    color: #beb8a2;\n    white-space: nowrap;\n    overflow: hidden;\n    margin: -0.75rem 0 0 0;\n}\n.toolbar .column[data-v-789e366d] {\n    padding: 0;\n}\n.toolbar .column.text-only[data-v-789e366d]{\n    padding: 0.45rem 0;\n}\n.class-nav-button[data-v-789e366d] {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.class-nav-button.reset[data-v-789e366d] {\n    background-color:#BA2710;\n}\n.class-nav-button.save[data-v-789e366d] {\n    background-color: #084C61;\n}\n", ""]);
+exports.push([module.i, "\n.diablo-button[data-v-789e366d] {\n    font-family: 'Diablo Heavy', serif;\n    background-color:#BA2710;\n    border: 1px solid #beb8a2;\n    color: #FFFFFF;\n    box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);\n    text-align: center;\n    margin-right: 0.25rem;\n    font-size: 1.2rem;\n    height: 1.7rem;\n    width: 1.7rem;\n    padding: 0;\n    border-radius: 0;\n}\n.diablo-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.toolbar[data-v-789e366d] {\n    color: #beb8a2;\n    white-space: nowrap;\n    overflow: hidden;\n    margin: -0.75rem 0 0 0;\n}\n.toolbar .column[data-v-789e366d] {\n    padding: 0;\n}\n.toolbar .column.text-only[data-v-789e366d]{\n    padding: 0.45rem 0;\n}\n.class-nav-button[data-v-789e366d] {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.class-nav-button.reset[data-v-789e366d] {\n    background-color:#BA2710;\n}\n.class-nav-button.save[data-v-789e366d] {\n    background-color: #084C61;\n}\n", ""]);
 
 // exports
 
@@ -5123,7 +5267,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 70vmax;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 78%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((67vmax/6) - 1.5rem);\n    height: calc((67vmax/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.available {\n    opacity: 1;\n}\n.skill.unavailable {\n    opacity: .3;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -25069,14 +25213,16 @@ var render = function() {
                       ((_obj = {}),
                       (_obj[_vm.className] = !skill.isPlaceholder),
                       _obj),
-                      _vm.toKebabCase(skill.name)
+                      _vm.toKebabCase(skill.name),
+                      { available: skill.available },
+                      { unavailable: !skill.available }
                     ],
                     on: {
                       click: function($event) {
                         if ($event.target !== $event.currentTarget) {
                           return null
                         }
-                        _vm.increaseSkill(skill)
+                        _vm.increaseSkill(skill, tree)
                       },
                       contextmenu: function($event) {
                         if ($event.target !== $event.currentTarget) {

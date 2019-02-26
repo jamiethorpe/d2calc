@@ -3,11 +3,23 @@
         <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
             <div class="columns is-marginless is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
-                    <div @click.self="increaseSkill(skill)" @contextmenu.self.prevent="decreaseSkill(skill)" :class="[{[className] : !skill.isPlaceholder}, toKebabCase(skill.name)]" class="skill">
+                    <div 
+                        @click.self="increaseSkill(skill, tree)" 
+                        @contextmenu.self.prevent="decreaseSkill(skill)" 
+                        :class="[
+                            {[className] : !skill.isPlaceholder}, 
+                            toKebabCase(skill.name),
+                            {'available' : skill.available},
+                            {'unavailable' : !skill.available},
+                        ]" 
+                        class="skill">
                         <div 
                             v-if="!skill.isPlaceholder" 
                             @click="resetSkill(skill)" 
-                            :class="[{'hide' : skill.points <= 0, 'visible' : skill.points > 0}]" 
+                            :class="[{
+                                'hide' : skill.points <= 0, 
+                                'visible' : skill.points > 0, 
+                            }]" 
                             class="skill-reset"
                         >
                             Reset
@@ -30,10 +42,11 @@ export default {
         }
     },
     methods: {
-        increaseSkill(skill) {
-            if (!skill.isPlaceholder) {
+        increaseSkill(skill, tree) {
+            if (!skill.isPlaceholder && skill.available) {
                 skill.points += 1;
                 this.$parent.pointsSpent += 1;
+                this.checkForUnlockedSkills(skill, tree);
             }
         },
         decreaseSkill(skill) {
@@ -46,6 +59,25 @@ export default {
             this.$parent.pointsSpent = (this.$parent.pointsSpent - skill.points);
             skill.points = 0;
         },
+        checkForUnlockedSkills(skill, tree) {
+            var possibleUnlocks = tree.skills.filter(possibleUnlock => {
+                return possibleUnlock.prerequisites.includes(skill.name);
+            });
+
+            possibleUnlocks.forEach(possibleUnlock => {
+                var total = 0;
+                possibleUnlock.prerequisites.forEach(prereq => {
+                    tree.skills.forEach(s => {
+                        if(s.name === prereq && s.points >= 1) {
+                            total += 1;
+                        }
+                    });
+                });
+                if (total >= possibleUnlock.prerequisites.length) {
+                    possibleUnlock.available = true;
+                }
+            });
+        }
     },
     mounted() {
         console.log(this.className);
@@ -59,7 +91,7 @@ export default {
     }
 
     .tree {
-        height: 75vh;
+        height: 70vmax;
         width: 100%;
         background-color: #333333;
         border: 3px solid #beb8a2;
@@ -74,7 +106,7 @@ export default {
         color: #beb8a2;
         position: relative;
         top: 3.75rem;
-        width: 88%;
+        width: 78%;
         font-family: 'Diablo Heavy', serif;
     }
 
@@ -94,10 +126,18 @@ export default {
         -webkit-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         -moz-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
-        width: calc((73vh/6) - 1.5rem);
-        height: calc((73vh/6) - 1.5rem);
+        width: calc((67vmax/6) - 1.5rem);
+        height: calc((67vmax/6) - 1.5rem);
         margin: 0 auto;
         user-select: none;
+    }
+
+    .skill.available {
+        opacity: 1;
+    }
+
+    .skill.unavailable {
+        opacity: .3;
     }
 
     .skill.placeholder {
