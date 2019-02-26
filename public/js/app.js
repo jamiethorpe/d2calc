@@ -5085,7 +5085,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.diablo-button[data-v-789e366d] {\n    font-family: 'Diablo Heavy', serif;\n    background-color:#BA2710;\n    border: 1px solid #beb8a2;\n    color: #FFFFFF;\n    box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);\n    text-align: center;\n    margin-right: 0.25rem;\n    font-size: 1.2rem;\n}\n.diablo-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.toolbar[data-v-789e366d] {\n    color: #beb8a2;\n    white-space: nowrap;\n    overflow: hidden;\n}\n.toolbar .column[data-v-789e366d] {\n    padding: 0;\n}\n.toolbar .column.text-only[data-v-789e366d]{\n    padding: 0.45rem 0;\n}\n.class-nav-button[data-v-789e366d] {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.class-nav-button.reset[data-v-789e366d] {\n    background-color:#BA2710;\n}\n.class-nav-button.save[data-v-789e366d] {\n    background-color: #084C61;\n}\n", ""]);
+exports.push([module.i, "\n.diablo-button[data-v-789e366d] {\n    font-family: 'Diablo Heavy', serif;\n    background-color:#BA2710;\n    border: 1px solid #beb8a2;\n    color: #FFFFFF;\n    box-shadow: inset 3px -3px 17px 0px rgba(0,0,0,0.75);\n    text-align: center;\n    margin-right: 0.25rem;\n    font-size: 1.2rem;\n    height: 1.7rem;\n    width: 1.7rem;\n    /* display: inline-block; */\n    padding: 0;\n    border-radius: 0;\n}\n.diablo-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.toolbar[data-v-789e366d] {\n    color: #beb8a2;\n    white-space: nowrap;\n    overflow: hidden;\n    margin: -0.75rem 0 0 0;\n}\n.toolbar .column[data-v-789e366d] {\n    padding: 0;\n}\n.toolbar .column.text-only[data-v-789e366d]{\n    padding: 0.45rem 0;\n}\n.class-nav-button[data-v-789e366d] {\n    width:100%;\n    height:100%;\n    font-family: 'Diablo Heavy', serif;\n    color: #beb8a2;\n    border:none;\n    font-size:1rem;\n    padding: 0.75rem 0;\n}\n.class-nav-button[data-v-789e366d]:hover {\n    cursor: pointer;\n}\n.class-nav-button.reset[data-v-789e366d] {\n    background-color:#BA2710;\n}\n.class-nav-button.save[data-v-789e366d] {\n    background-color: #084C61;\n}\n", ""]);
 
 // exports
 
@@ -24832,13 +24832,16 @@ var render = function() {
     "div",
     { staticClass: "columns is-centered is-mobile has-text-centered toolbar" },
     [
-      _c("div", { staticClass: "column text-only" }, [
+      _c("div", { staticClass: "column is-one-fifth text-only" }, [
         _vm._v("Spent: " + _vm._s(_vm.pointsSpent))
       ]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "column text-only has-vertically-centered-content" },
+        {
+          staticClass:
+            "column is-two-fifths text-only has-vertically-centered-content"
+        },
         [
           _c(
             "button",
@@ -24871,7 +24874,7 @@ var render = function() {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "column is-one-fifth" }, [
         _c(
           "button",
           {
@@ -24893,7 +24896,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
+    return _c("div", { staticClass: "column is-one-fifth" }, [
       _c("button", { staticClass: "class-nav-button save" }, [_vm._v("Save")])
     ])
   }
@@ -25033,7 +25036,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "columns" },
+    { staticClass: "columns is-marginless" },
     _vm._l(_vm.trees, function(tree, index) {
       return _c(
         "div",
@@ -25052,7 +25055,10 @@ var render = function() {
         [
           _c(
             "div",
-            { staticClass: "columns is-multiline is-centered is-mobile" },
+            {
+              staticClass:
+                "columns is-marginless is-multiline is-centered is-mobile"
+            },
             _vm._l(tree.skills, function(skill, index) {
               return _c("div", { key: index, staticClass: "column is-4" }, [
                 _c(

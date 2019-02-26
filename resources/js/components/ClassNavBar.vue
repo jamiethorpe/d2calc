@@ -1,15 +1,15 @@
 <template>
     <div class="columns is-centered is-mobile has-text-centered toolbar">
-        <div class="column text-only">Spent: {{ pointsSpent }}</div>
-        <div class="column text-only has-vertically-centered-content">
+        <div class="column is-one-fifth text-only">Spent: {{ pointsSpent }}</div>
+        <div class="column is-two-fifths text-only has-vertically-centered-content">
             <button class="diablo-button" @click="$emit('minusAllSkills')">-</button>
             <button class="diablo-button" @click="$emit('plusAllSkills')">+</button>
             All: {{ plusAllSkillsTotal }}
         </div>
-        <div class="column">
+        <div class="column is-one-fifth">
             <button class="class-nav-button save">Save</button>
         </div>
-        <div class="column">
+        <div class="column is-one-fifth">
             <button @click="$emit('resetAll')" class="class-nav-button reset">Reset</button> 
         </div>
     </div>
@@ -42,6 +42,11 @@ export default {
         text-align: center;
         margin-right: 0.25rem;
         font-size: 1.2rem;
+        height: 1.7rem;
+        width: 1.7rem;
+        /* display: inline-block; */
+        padding: 0;
+        border-radius: 0;
     }
 
     .diablo-button:hover {
@@ -52,6 +57,7 @@ export default {
         color: #beb8a2;
         white-space: nowrap;
         overflow: hidden;
+        margin: -0.75rem 0 0 0;
     }
 
     .toolbar .column {
