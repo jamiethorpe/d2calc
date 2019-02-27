@@ -12,7 +12,9 @@
                             {'available' : skill.available},
                             {'unavailable' : !skill.available},
                         ]" 
-                        class="skill">
+                        class="skill"
+                        :ref="skill.name"
+                    >
                         <div 
                             v-if="!skill.isPlaceholder" 
                             @click="resetSkill(skill)" 
@@ -26,6 +28,7 @@
                         </div>
                         <div v-if="!skill.isPlaceholder" class="skill-counter" :class="{'plus-skills' : plusAllSkillsTotal > 0}">{{ skill.points + plusAllSkillsTotal }}</div>
                     </div>
+                    <svg><line class="skill-path" ref="{{ skill.name+'Line' }}"/></svg>
                 </div>
             </div>
         </div>
@@ -77,10 +80,22 @@ export default {
                     possibleUnlock.available = true;
                 }
             });
+        },
+        getSkillPosition(skill) {
+            const left = this.$refs[skill.name][0].getBoundingClientRect().left;
+            const top = this.$refs[skill.name][0].getBoundingClientRect().top;
+            console.log(skill, left, top);
+        },
+        positionSkillPaths() {
+            this.trees.forEach(tree => {
+                tree.skills.forEach(skill => {
+                    this.getSkillPosition(skill);
+                });
+            });
         }
     },
     mounted() {
-        console.log(this.className);
+        this.positionSkillPaths();
     }
 }
 </script>
@@ -91,11 +106,12 @@ export default {
     }
 
     .tree {
-        height: 70vmax;
+        height: 75vh;
         width: 100%;
         background-color: #333333;
         border: 3px solid #beb8a2;
         padding-top: .25rem;
+        min-height: 545px;
     }
 
     .skill-reset {
@@ -105,8 +121,9 @@ export default {
         display: inline-block;
         color: #beb8a2;
         position: relative;
-        top: 3.75rem;
-        width: 78%;
+        /* top: calc((70vh/6) - 2rem); */
+        top: 3.5rem;
+        width: 88%;
         font-family: 'Diablo Heavy', serif;
     }
 
@@ -116,9 +133,10 @@ export default {
         display: inline-block;
         color: #beb8a2;
         position: relative;
-        left: 3.75rem;
+        top: 2rem;
+        left: 3.5rem;
         width: 1.5rem;
-        top: 2.25rem;
+        /* top: calc((70vh/6) - 3.5rem); */
     }
 
     .skill {
@@ -126,8 +144,10 @@ export default {
         -webkit-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         -moz-box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
-        width: calc((67vmax/6) - 1.5rem);
-        height: calc((67vmax/6) - 1.5rem);
+        width: 4rem;
+        height: 4rem;
+        /* width: calc((73vh/6) - 1.5rem);
+        height: calc((73vh/6) - 1.5rem); */
         margin: 0 auto;
         user-select: none;
     }
@@ -142,5 +162,10 @@ export default {
 
     .skill.placeholder {
         opacity: 0;
+    }
+
+    .skill-path {
+        display: inline-block;
+        position: absolute;
     }
 </style>

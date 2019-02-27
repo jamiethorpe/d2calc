@@ -4552,6 +4552,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'skill-trees',
   props: ['trees', 'className', 'plusAllSkillsTotal'],
@@ -4594,10 +4597,24 @@ __webpack_require__.r(__webpack_exports__);
           possibleUnlock.available = true;
         }
       });
+    },
+    getSkillPosition: function getSkillPosition(skill) {
+      var left = this.$refs[skill.name][0].getBoundingClientRect().left;
+      var top = this.$refs[skill.name][0].getBoundingClientRect().top;
+      console.log(skill, left, top);
+    },
+    positionSkillPaths: function positionSkillPaths() {
+      var _this = this;
+
+      this.trees.forEach(function (tree) {
+        tree.skills.forEach(function (skill) {
+          _this.getSkillPosition(skill);
+        });
+      });
     }
   },
   mounted: function mounted() {
-    console.log(this.className);
+    this.positionSkillPaths();
   }
 });
 
@@ -5267,7 +5284,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 70vmax;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.75rem;\n    width: 78%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    left: 3.75rem;\n    width: 1.5rem;\n    top: 2.25rem;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: calc((67vmax/6) - 1.5rem);\n    height: calc((67vmax/6) - 1.5rem);\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.available {\n    opacity: 1;\n}\n.skill.unavailable {\n    opacity: .3;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    /* top: calc((70vh/6) - 2rem); */\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    /* top: calc((70vh/6) - 3.5rem); */\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    /* width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem); */\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.available {\n    opacity: 1;\n}\n.skill.unavailable {\n    opacity: .3;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-path {\n    display: inline-block;\n    position: absolute;\n}\n", ""]);
 
 // exports
 
@@ -25208,6 +25225,8 @@ var render = function() {
                 _c(
                   "div",
                   {
+                    ref: skill.name,
+                    refInFor: true,
                     staticClass: "skill",
                     class: [
                       ((_obj = {}),
@@ -25274,7 +25293,15 @@ var render = function() {
                         )
                       : _vm._e()
                   ]
-                )
+                ),
+                _vm._v(" "),
+                _c("svg", [
+                  _c("line", {
+                    ref: "{{ skill.name+'Line' }}",
+                    refInFor: true,
+                    staticClass: "skill-path"
+                  })
+                ])
               ])
               var _obj
             }),
