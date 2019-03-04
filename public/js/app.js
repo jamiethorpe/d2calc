@@ -4555,6 +4555,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'skill-trees',
   props: ['trees', 'className', 'plusAllSkillsTotal'],
@@ -4598,17 +4601,40 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    getSkillPosition: function getSkillPosition(skill) {
-      var left = this.$refs[skill.name][0].getBoundingClientRect().left;
-      var top = this.$refs[skill.name][0].getBoundingClientRect().top;
-      console.log(skill, left, top);
+    getSkillPosition: function getSkillPosition(skillName) {
+      var stats = this.$refs[skillName][0].getBoundingClientRect(); // console.log(skillName, stats);
+
+      return stats;
     },
     positionSkillPaths: function positionSkillPaths() {
       var _this = this;
 
-      this.trees.forEach(function (tree) {
+      var vm = this;
+      vm.trees.forEach(function (tree) {
         tree.skills.forEach(function (skill) {
-          _this.getSkillPosition(skill);
+          var prereqName = skill.prerequisites[skill.prerequisites.length - 1];
+
+          if (prereqName !== 'None' && skill.name !== 'Placeholder') {
+            // console.log(skill.name + ' last prereq = ' + prereqName);
+            var preStats = _this.getSkillPosition(prereqName);
+
+            vm.$refs[prereqName + 'Box'][0].style.left = 'calc(' + preStats.left + 'px + 4rem)';
+            vm.$refs[prereqName + 'Box'][0].style.top = 'calc(' + preStats.top + 'px + 0.75rem)';
+
+            var skillStats = _this.getSkillPosition(skill.name);
+
+            vm.$refs[prereqName + 'Line'][0].setAttribute('x2', skillStats.left - preStats.left);
+            vm.$refs[prereqName + 'Line'][0].setAttribute('y2', skillStats.top - preStats.top);
+            console.log(prereqName + ' line start: ' + (skillStats.left - preStats.left));
+            console.log(prereqName + ' line end: ' + (skillStats.top - preStats.top)); //This isn't working because we actually need to create a line for each time
+            //the prereq is the last skill in an array of prerequisite skills
+            //ie - Jab needs 2 lines.
+            // vm.$refs[skill.name+'Box'][0].style.left = 'calc(' + (skillStats.left + 'px + 4rem)';
+            // vm.$refs[skill.name+'Box'][0].style.top = 'calc(' + skillStats.top + 'px + 0.75rem)';
+          } // this.$refs[skill.name+'Box'].style.left = 'calc(2rem + ' + coords.x + ')';
+          // this.$refs[skill.name+'Box'].style.top = 'calc(2rem + ' + coords.y + ')';
+          // skill-path left:calc(2rem + 333.656px);
+
         });
       });
     }
@@ -5284,7 +5310,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    /* top: calc((70vh/6) - 2rem); */\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    /* top: calc((70vh/6) - 3.5rem); */\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    /* width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem); */\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n.skill.available {\n    opacity: 1;\n}\n.skill.unavailable {\n    opacity: .3;\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-path {\n    display: inline-block;\n    position: absolute;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    /* top: calc((70vh/6) - 2rem); */\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n    /* top: calc((70vh/6) - 3.5rem); */\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    /* width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem); */\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: 0;\n    top: 0;\n    /* left: 333.656px;\n    top: 148px; */\n    width: 190px;\n}\n.skill-path line {\n    stroke: pink;\n    stroke-width: 6px;\n    z-index: 2;\n}\n", ""]);
 
 // exports
 
@@ -25223,6 +25249,23 @@ var render = function() {
             _vm._l(tree.skills, function(skill, index) {
               return _c("div", { key: index, staticClass: "column is-4" }, [
                 _c(
+                  "svg",
+                  {
+                    ref: skill.name + "Box",
+                    refInFor: true,
+                    staticClass: "skill-path",
+                    attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                  },
+                  [
+                    _c("line", {
+                      ref: skill.name + "Line",
+                      refInFor: true,
+                      attrs: { x1: "0", y1: "0", x2: "0", y2: "0" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
                   "div",
                   {
                     ref: skill.name,
@@ -25293,15 +25336,7 @@ var render = function() {
                         )
                       : _vm._e()
                   ]
-                ),
-                _vm._v(" "),
-                _c("svg", [
-                  _c("line", {
-                    ref: "{{ skill.name+'Line' }}",
-                    refInFor: true,
-                    staticClass: "skill-path"
-                  })
-                ])
+                )
               ])
               var _obj
             }),

@@ -3,6 +3,9 @@
         <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
             <div class="columns is-marginless is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
+                    <svg :ref="skill.name+'Box'" xmlns="http://www.w3.org/2000/svg" class="skill-path">
+                        <line :ref="skill.name+'Line'" x1="0" y1="0" x2="0" y2="0"/>
+                    </svg>
                     <div 
                         @click.self="increaseSkill(skill, tree)" 
                         @contextmenu.self.prevent="decreaseSkill(skill)" 
@@ -28,7 +31,7 @@
                         </div>
                         <div v-if="!skill.isPlaceholder" class="skill-counter" :class="{'plus-skills' : plusAllSkillsTotal > 0}">{{ skill.points + plusAllSkillsTotal }}</div>
                     </div>
-                    <svg><line class="skill-path" ref="{{ skill.name+'Line' }}"/></svg>
+                    
                 </div>
             </div>
         </div>
@@ -81,15 +84,40 @@ export default {
                 }
             });
         },
-        getSkillPosition(skill) {
-            const left = this.$refs[skill.name][0].getBoundingClientRect().left;
-            const top = this.$refs[skill.name][0].getBoundingClientRect().top;
-            console.log(skill, left, top);
+        getSkillPosition(skillName) {
+            var stats = this.$refs[skillName][0].getBoundingClientRect();
+            // console.log(skillName, stats);
+            return stats;
         },
         positionSkillPaths() {
-            this.trees.forEach(tree => {
+            var vm = this;
+            vm.trees.forEach(tree => {
                 tree.skills.forEach(skill => {
-                    this.getSkillPosition(skill);
+                    var prereqName =  skill.prerequisites[skill.prerequisites.length - 1];
+                    if (prereqName !== 'None' && skill.name !== 'Placeholder') {
+                        // console.log(skill.name + ' last prereq = ' + prereqName);
+                        var preStats = this.getSkillPosition(prereqName);
+                        vm.$refs[prereqName+'Box'][0].style.left = 'calc(' + preStats.left + 'px + 4rem)';
+                        vm.$refs[prereqName+'Box'][0].style.top = 'calc(' + preStats.top + 'px + 0.75rem)';
+
+                        
+                        var skillStats = this.getSkillPosition(skill.name);
+                        vm.$refs[prereqName+'Line'][0].setAttribute('x2', (skillStats.left - preStats.left));
+                        vm.$refs[prereqName+'Line'][0].setAttribute('y2', (skillStats.top - preStats.top));
+                        console.log(prereqName + ' line start: ' + (skillStats.left - preStats.left));
+                        console.log(prereqName + ' line end: ' + (skillStats.top - preStats.top));
+
+                        //This isn't working because we actually need to create a line for each time
+                        //the prereq is the last skill in an array of prerequisite skills
+                        //ie - Jab needs 2 lines.
+
+                        // vm.$refs[skill.name+'Box'][0].style.left = 'calc(' + (skillStats.left + 'px + 4rem)';
+                        // vm.$refs[skill.name+'Box'][0].style.top = 'calc(' + skillStats.top + 'px + 0.75rem)';
+                    }
+                    
+                    // this.$refs[skill.name+'Box'].style.left = 'calc(2rem + ' + coords.x + ')';
+                    // this.$refs[skill.name+'Box'].style.top = 'calc(2rem + ' + coords.y + ')';
+                    // skill-path left:calc(2rem + 333.656px);
                 });
             });
         }
@@ -112,6 +140,7 @@ export default {
         border: 3px solid #beb8a2;
         padding-top: .25rem;
         min-height: 545px;
+        z-index: 1;
     }
 
     .skill-reset {
@@ -125,6 +154,7 @@ export default {
         top: 3.5rem;
         width: 88%;
         font-family: 'Diablo Heavy', serif;
+        z-index: 4;
     }
 
     .skill-counter {
@@ -136,6 +166,7 @@ export default {
         top: 2rem;
         left: 3.5rem;
         width: 1.5rem;
+        z-index: 4;
         /* top: calc((70vh/6) - 3.5rem); */
     }
 
@@ -150,14 +181,15 @@ export default {
         height: calc((73vh/6) - 1.5rem); */
         margin: 0 auto;
         user-select: none;
+        z-index: 3;
     }
 
     .skill.available {
-        opacity: 1;
+        filter:grayscale(0%);
     }
 
     .skill.unavailable {
-        opacity: .3;
+        filter:grayscale(100%);
     }
 
     .skill.placeholder {
@@ -167,5 +199,17 @@ export default {
     .skill-path {
         display: inline-block;
         position: absolute;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        /* left: 333.656px;
+        top: 148px; */
+        width: 190px;
+    }
+
+    .skill-path line {
+        stroke: pink;
+        stroke-width: 6px;
+        z-index: 2;
     }
 </style>
