@@ -64,7 +64,7 @@ export default {
                 }
             }
         },
-        resetSkill(skill) {
+        resetSkill(skill, tree) {
             this.$parent.pointsSpent = (this.$parent.pointsSpent - skill.points);
             skill.points = 0;
             this.checkForLockedSkills(skill, tree);
@@ -93,10 +93,8 @@ export default {
                 return lock.prerequisites.includes(skill.name);
             });
 
-            console.log(locks);
-
             locks.forEach(lock => {
-                this.pointsSpent -= lock.points;
+                this.$parent.pointsSpent -= lock.points;
                 lock.points = 0;
                 lock.available = false;
             });
