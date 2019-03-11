@@ -4572,15 +4572,20 @@ __webpack_require__.r(__webpack_exports__);
         this.checkForUnlockedSkills(skill, tree);
       }
     },
-    decreaseSkill: function decreaseSkill(skill) {
+    decreaseSkill: function decreaseSkill(skill, tree) {
       if (skill.points > 0 && !skill.isPlaceholder) {
         skill.points -= 1;
         this.$parent.pointsSpent -= 1;
+
+        if (skill.points <= 0) {
+          this.checkForLockedSkills(skill, tree);
+        }
       }
     },
     resetSkill: function resetSkill(skill) {
       this.$parent.pointsSpent = this.$parent.pointsSpent - skill.points;
       skill.points = 0;
+      this.checkForLockedSkills(skill, tree);
     },
     checkForUnlockedSkills: function checkForUnlockedSkills(skill, tree) {
       var possibleUnlocks = tree.skills.filter(function (possibleUnlock) {
@@ -4601,13 +4606,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    checkForLockedSkills: function checkForLockedSkills(skill, tree) {
+      var _this = this;
+
+      var locks = tree.skills.filter(function (lock) {
+        return lock.prerequisites.includes(skill.name);
+      });
+      console.log(locks);
+      locks.forEach(function (lock) {
+        _this.pointsSpent -= lock.points;
+        lock.points = 0;
+        lock.available = false;
+      });
+    },
     getSkillPosition: function getSkillPosition(skillName) {
       var stats = this.$refs[skillName][0].getBoundingClientRect(); // console.log(skillName, stats);
 
       return stats;
     },
     positionSkillPaths: function positionSkillPaths() {
-      var _this = this;
+      var _this2 = this;
 
       var vm = this;
       vm.trees.forEach(function (tree) {
@@ -4616,12 +4634,12 @@ __webpack_require__.r(__webpack_exports__);
 
           if (prereqName !== 'None' && skill.name !== 'Placeholder') {
             // console.log(skill.name + ' last prereq = ' + prereqName);
-            var preStats = _this.getSkillPosition(prereqName);
+            var preStats = _this2.getSkillPosition(prereqName);
 
             vm.$refs[prereqName + 'Box'][0].style.left = 'calc(' + preStats.left + 'px + 4rem)';
             vm.$refs[prereqName + 'Box'][0].style.top = 'calc(' + preStats.top + 'px + 0.75rem)';
 
-            var skillStats = _this.getSkillPosition(skill.name);
+            var skillStats = _this2.getSkillPosition(skill.name);
 
             vm.$refs[prereqName + 'Line'][0].setAttribute('x2', skillStats.left - preStats.left);
             vm.$refs[prereqName + 'Line'][0].setAttribute('y2', skillStats.top - preStats.top);
@@ -25291,7 +25309,7 @@ var render = function() {
                           return null
                         }
                         $event.preventDefault()
-                        _vm.decreaseSkill(skill)
+                        _vm.decreaseSkill(skill, tree)
                       }
                     }
                   },
@@ -25309,7 +25327,7 @@ var render = function() {
                             ],
                             on: {
                               click: function($event) {
-                                _vm.resetSkill(skill)
+                                _vm.resetSkill(skill, tree)
                               }
                             }
                           },

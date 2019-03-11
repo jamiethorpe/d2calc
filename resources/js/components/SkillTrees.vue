@@ -8,7 +8,7 @@
                     </svg>
                     <div 
                         @click.self="increaseSkill(skill, tree)" 
-                        @contextmenu.self.prevent="decreaseSkill(skill)" 
+                        @contextmenu.self.prevent="decreaseSkill(skill, tree)" 
                         :class="[
                             {[className] : !skill.isPlaceholder}, 
                             toKebabCase(skill.name),
@@ -20,7 +20,7 @@
                     >
                         <div 
                             v-if="!skill.isPlaceholder" 
-                            @click="resetSkill(skill)" 
+                            @click="resetSkill(skill, tree)" 
                             :class="[{
                                 'hide' : skill.points <= 0, 
                                 'visible' : skill.points > 0, 
@@ -55,15 +55,19 @@ export default {
                 this.checkForUnlockedSkills(skill, tree);
             }
         },
-        decreaseSkill(skill) {
+        decreaseSkill(skill, tree) {
             if (skill.points > 0 && !skill.isPlaceholder) {
                 skill.points -= 1;
                 this.$parent.pointsSpent -= 1;
+                if (skill.points <= 0) {
+                    this.checkForLockedSkills(skill, tree);
+                }
             }
         },
         resetSkill(skill) {
             this.$parent.pointsSpent = (this.$parent.pointsSpent - skill.points);
             skill.points = 0;
+            this.checkForLockedSkills(skill, tree);
         },
         checkForUnlockedSkills(skill, tree) {
             var possibleUnlocks = tree.skills.filter(possibleUnlock => {
@@ -82,6 +86,19 @@ export default {
                 if (total >= possibleUnlock.prerequisites.length) {
                     possibleUnlock.available = true;
                 }
+            });
+        },
+        checkForLockedSkills(skill, tree) {
+            var locks = tree.skills.filter(lock => {
+                return lock.prerequisites.includes(skill.name);
+            });
+
+            console.log(locks);
+
+            locks.forEach(lock => {
+                this.pointsSpent -= lock.points;
+                lock.points = 0;
+                lock.available = false;
             });
         },
         getSkillPosition(skillName) {
