@@ -1,7 +1,7 @@
 <template>
     <div class="tabs tree-tabs is-centered">
         <ul>
-            <li @click="setTab(tree)" :class="{'is-active' : tree.isActive}" v-for="(tree, index) in trees" :key="index">
+            <li @click="setTab(tree,index)" :class="{'is-active' : tree.isActive}" v-for="(tree, index) in trees" :key="index">
                 <a>{{ tree.name }}</a>
             </li>
         </ul>
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
     name:'tree-tabs',
     props: ['trees'],
@@ -18,9 +20,16 @@ export default {
         }
     },
     methods: {
-        setTab(selectedTree) {
+        setTab(selectedTree, index) {
+            // this.trees.forEach((tree) => {
+            //     tree.isActive = (tree.name === selectedTree.name);
+            // });
             this.trees.forEach((tree) => {
-                tree.isActive = (tree.name === selectedTree.name);
+                if(tree.name === selectedTree.name) {
+                    Vue.set(tree, 'isActive', true);
+                }else{
+                    Vue.set(tree, 'isActive', false);
+                }
             });
         },
     }

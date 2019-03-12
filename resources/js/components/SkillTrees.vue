@@ -1,11 +1,16 @@
 <template>
     <div class="columns is-marginless">
         <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
+            <skill-tree-path 
+                v-for="(line, index) in lines" 
+                :key="index" 
+                :skill="line.skill"
+                :pre-stats="line.preStats" 
+                :skill-stats="line.skillStats"
+            >
+            </skill-tree-path>
             <div class="columns is-marginless is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
-                    <svg :ref="skill.name+'Box'" xmlns="http://www.w3.org/2000/svg" class="skill-path">
-                        <line :ref="skill.name+'Line'" x1="0" y1="0" x2="0" y2="0"/>
-                    </svg>
                     <div 
                         @click.self="increaseSkill(skill, tree)" 
                         @contextmenu.self.prevent="decreaseSkill(skill, tree)" 
@@ -39,12 +44,27 @@
 </template>
 
 <script>
+import skillTreePath from './SkillTreePath.vue';
+import Vue from 'vue';
+
 export default {
     name:'skill-trees',
     props: ['trees', 'className', 'plusAllSkillsTotal'],
+    components: {
+        skillTreePath,
+    },
     data() {
         return {
-            
+            lines: [],
+        }
+    },
+    watch: {
+        trees: {
+            handler: function (after, before) {
+                // Changes to isActive are not being detected.
+                this.positionSkillPaths();
+            },
+            deep: true,
         }
     },
     methods: {
@@ -105,35 +125,34 @@ export default {
             return stats;
         },
         positionSkillPaths() {
-            var vm = this;
-            vm.trees.forEach(tree => {
-                tree.skills.forEach(skill => {
-                    var prereqName =  skill.prerequisites[skill.prerequisites.length - 1];
-                    if (prereqName !== 'None' && skill.name !== 'Placeholder') {
-                        // console.log(skill.name + ' last prereq = ' + prereqName);
-                        var preStats = this.getSkillPosition(prereqName);
-                        vm.$refs[prereqName+'Box'][0].style.left = 'calc(' + preStats.left + 'px + 4rem)';
-                        vm.$refs[prereqName+'Box'][0].style.top = 'calc(' + preStats.top + 'px + 0.75rem)';
+            this.lines = [];
+            this.trees.forEach(tree => {
+                if (tree.isActive) {
+                    tree.skills.forEach(skill => {
+                        var prereqName =  skill.prerequisites[skill.prerequisites.length - 1];
+                        if (prereqName !== 'None' && skill.name !== 'Placeholder') {
 
-                        
-                        var skillStats = this.getSkillPosition(skill.name);
-                        vm.$refs[prereqName+'Line'][0].setAttribute('x2', (skillStats.left - preStats.left));
-                        vm.$refs[prereqName+'Line'][0].setAttribute('y2', (skillStats.top - preStats.top));
-                        console.log(prereqName + ' line start: ' + (skillStats.left - preStats.left));
-                        console.log(prereqName + ' line end: ' + (skillStats.top - preStats.top));
+                            var preStats = this.getSkillPosition(prereqName);
+                            var skillStats = this.getSkillPosition(skill.name);
 
-                        //This isn't working because we actually need to create a line for each time
-                        //the prereq is the last skill in an array of prerequisite skills
-                        //ie - Jab needs 2 lines.
+                            //If a skill has multiple pre-requisites, no lines are being drawn.
+                            //Charged Strike is a good example.
+                            //Possibly add unlockedBy[] to each skill to determine which skills to
+                            //draw a path from.
+                            console.log(
+                                'From: ' + prereqName,
+                                'To: ' + skill.name,
+                            );
+                            var lineData = { 
+                                skill: skill,
+                                preStats: preStats,
+                                skillStats: skillStats,
+                            };
 
-                        // vm.$refs[skill.name+'Box'][0].style.left = 'calc(' + (skillStats.left + 'px + 4rem)';
-                        // vm.$refs[skill.name+'Box'][0].style.top = 'calc(' + skillStats.top + 'px + 0.75rem)';
-                    }
-                    
-                    // this.$refs[skill.name+'Box'].style.left = 'calc(2rem + ' + coords.x + ')';
-                    // this.$refs[skill.name+'Box'].style.top = 'calc(2rem + ' + coords.y + ')';
-                    // skill-path left:calc(2rem + 333.656px);
-                });
+                            this.lines.push(lineData);
+                        }
+                    });
+                }
             });
         }
     },
@@ -209,22 +228,5 @@ export default {
 
     .skill.placeholder {
         opacity: 0;
-    }
-
-    .skill-path {
-        display: inline-block;
-        position: absolute;
-        z-index: -1;
-        left: 0;
-        top: 0;
-        /* left: 333.656px;
-        top: 148px; */
-        width: 190px;
-    }
-
-    .skill-path line {
-        stroke: pink;
-        stroke-width: 6px;
-        z-index: 2;
     }
 </style>

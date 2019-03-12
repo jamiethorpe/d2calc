@@ -4509,10 +4509,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTrees.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTrees.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTreePath.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4524,6 +4524,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'skill-tree-path',
+  props: ['skill', 'preStats', 'skillStats'],
+  data: function data() {
+    return {};
+  },
+  computed: {
+    boxStyle: function boxStyle() {
+      return {
+        left: 'calc(' + this.preStats.left + 'px + 4rem)',
+        top: 'calc(' + this.preStats.top + 'px + 0.75rem)'
+      };
+    },
+    // boxRef() {
+    //     return skill + 'Box';
+    // },
+    // lineRef() {
+    //     return skill + 'Line';
+    // },
+    x2: function x2() {
+      return this.skillStats.left - this.preStats.left;
+    },
+    y2: function y2() {
+      return this.skillStats.top - this.preStats.top;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTrees.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTrees.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SkillTreePath_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SkillTreePath.vue */ "./resources/js/components/SkillTreePath.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -4558,11 +4600,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'skill-trees',
   props: ['trees', 'className', 'plusAllSkillsTotal'],
+  components: {
+    skillTreePath: _SkillTreePath_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
-    return {};
+    return {
+      lines: []
+    };
+  },
+  watch: {
+    trees: {
+      handler: function handler(after, before) {
+        // Changes to isActive are not being detected.
+        this.positionSkillPaths();
+      },
+      deep: true
+    }
   },
   methods: {
     increaseSkill: function increaseSkill(skill, tree) {
@@ -4626,33 +4695,32 @@ __webpack_require__.r(__webpack_exports__);
     positionSkillPaths: function positionSkillPaths() {
       var _this2 = this;
 
-      var vm = this;
-      vm.trees.forEach(function (tree) {
-        tree.skills.forEach(function (skill) {
-          var prereqName = skill.prerequisites[skill.prerequisites.length - 1];
+      this.lines = [];
+      this.trees.forEach(function (tree) {
+        if (tree.isActive) {
+          tree.skills.forEach(function (skill) {
+            var prereqName = skill.prerequisites[skill.prerequisites.length - 1];
 
-          if (prereqName !== 'None' && skill.name !== 'Placeholder') {
-            // console.log(skill.name + ' last prereq = ' + prereqName);
-            var preStats = _this2.getSkillPosition(prereqName);
+            if (prereqName !== 'None' && skill.name !== 'Placeholder') {
+              var preStats = _this2.getSkillPosition(prereqName);
 
-            vm.$refs[prereqName + 'Box'][0].style.left = 'calc(' + preStats.left + 'px + 4rem)';
-            vm.$refs[prereqName + 'Box'][0].style.top = 'calc(' + preStats.top + 'px + 0.75rem)';
+              var skillStats = _this2.getSkillPosition(skill.name); //If a skill has multiple pre-requisites, no lines are being drawn.
+              //Charged Strike is a good example.
+              //Possibly add unlockedBy[] to each skill to determine which skills to
+              //draw a path from.
 
-            var skillStats = _this2.getSkillPosition(skill.name);
 
-            vm.$refs[prereqName + 'Line'][0].setAttribute('x2', skillStats.left - preStats.left);
-            vm.$refs[prereqName + 'Line'][0].setAttribute('y2', skillStats.top - preStats.top);
-            console.log(prereqName + ' line start: ' + (skillStats.left - preStats.left));
-            console.log(prereqName + ' line end: ' + (skillStats.top - preStats.top)); //This isn't working because we actually need to create a line for each time
-            //the prereq is the last skill in an array of prerequisite skills
-            //ie - Jab needs 2 lines.
-            // vm.$refs[skill.name+'Box'][0].style.left = 'calc(' + (skillStats.left + 'px + 4rem)';
-            // vm.$refs[skill.name+'Box'][0].style.top = 'calc(' + skillStats.top + 'px + 0.75rem)';
-          } // this.$refs[skill.name+'Box'].style.left = 'calc(2rem + ' + coords.x + ')';
-          // this.$refs[skill.name+'Box'].style.top = 'calc(2rem + ' + coords.y + ')';
-          // skill-path left:calc(2rem + 333.656px);
+              console.log('From: ' + prereqName, 'To: ' + skill.name);
+              var lineData = {
+                skill: skill,
+                preStats: preStats,
+                skillStats: skillStats
+              };
 
-        });
+              _this2.lines.push(lineData);
+            }
+          });
+        }
       });
     }
   },
@@ -4672,6 +4740,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -4682,6 +4752,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'tree-tabs',
   props: ['trees'],
@@ -4689,9 +4760,16 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    setTab: function setTab(selectedTree) {
+    setTab: function setTab(selectedTree, index) {
+      // this.trees.forEach((tree) => {
+      //     tree.isActive = (tree.name === selectedTree.name);
+      // });
       this.trees.forEach(function (tree) {
-        tree.isActive = tree.name === selectedTree.name;
+        if (tree.name === selectedTree.name) {
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(tree, 'isActive', true);
+        } else {
+          vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(tree, 'isActive', false);
+        }
       });
     }
   }
@@ -5315,6 +5393,25 @@ exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'D
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: 0;\n    top: 0;\n    /* left: 333.656px;\n    top: 148px; */\n    width: 190px;\n}\n.skill-path line {\n    stroke: pink;\n    stroke-width: 6px;\n    z-index: 2;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTrees.vue?vue&type=style&index=0&lang=css&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTrees.vue?vue&type=style&index=0&lang=css& ***!
@@ -5327,7 +5424,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    /* top: calc((70vh/6) - 2rem); */\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n    /* top: calc((70vh/6) - 3.5rem); */\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    /* width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem); */\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: 0;\n    top: 0;\n    /* left: 333.656px;\n    top: 148px; */\n    width: 190px;\n}\n.skill-path line {\n    stroke: pink;\n    stroke-width: 6px;\n    z-index: 2;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    /* top: calc((70vh/6) - 2rem); */\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n    /* top: calc((70vh/6) - 3.5rem); */\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    /* width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem); */\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -24249,6 +24346,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SkillTreePath.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTrees.vue?vue&type=style&index=0&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTrees.vue?vue&type=style&index=0&lang=css& ***!
@@ -25223,6 +25350,38 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=template&id=3a506bf9&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTreePath.vue?vue&type=template&id=3a506bf9& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "svg",
+    {
+      staticClass: "skill-path",
+      style: _vm.boxStyle,
+      attrs: { xmlns: "http://www.w3.org/2000/svg" }
+    },
+    [_c("line", { attrs: { x1: "0", y1: "0", x2: _vm.x2, y2: _vm.y2 } })]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTrees.vue?vue&type=template&id=34c0bb6f&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SkillTrees.vue?vue&type=template&id=34c0bb6f& ***!
@@ -25257,6 +25416,17 @@ var render = function() {
           staticClass: "tree column is-6 is-offset-3"
         },
         [
+          _vm._l(_vm.lines, function(line, index) {
+            return _c("skill-tree-path", {
+              key: index,
+              attrs: {
+                skill: line.skill,
+                "pre-stats": line.preStats,
+                "skill-stats": line.skillStats
+              }
+            })
+          }),
+          _vm._v(" "),
           _c(
             "div",
             {
@@ -25265,23 +25435,6 @@ var render = function() {
             },
             _vm._l(tree.skills, function(skill, index) {
               return _c("div", { key: index, staticClass: "column is-4" }, [
-                _c(
-                  "svg",
-                  {
-                    ref: skill.name + "Box",
-                    refInFor: true,
-                    staticClass: "skill-path",
-                    attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                  },
-                  [
-                    _c("line", {
-                      ref: skill.name + "Line",
-                      refInFor: true,
-                      attrs: { x1: "0", y1: "0", x2: "0", y2: "0" }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
                 _c(
                   "div",
                   {
@@ -25359,7 +25512,8 @@ var render = function() {
             }),
             0
           )
-        ]
+        ],
+        2
       )
     }),
     0
@@ -25398,7 +25552,7 @@ var render = function() {
             class: { "is-active": tree.isActive },
             on: {
               click: function($event) {
-                _vm.setTab(tree)
+                _vm.setTab(tree, index)
               }
             }
           },
@@ -38112,6 +38266,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainNavBar_vue_vue_type_template_id_0640a734_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MainNavBar_vue_vue_type_template_id_0640a734_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SkillTreePath.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/SkillTreePath.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SkillTreePath_vue_vue_type_template_id_3a506bf9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SkillTreePath.vue?vue&type=template&id=3a506bf9& */ "./resources/js/components/SkillTreePath.vue?vue&type=template&id=3a506bf9&");
+/* harmony import */ var _SkillTreePath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SkillTreePath.vue?vue&type=script&lang=js& */ "./resources/js/components/SkillTreePath.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SkillTreePath.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _SkillTreePath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SkillTreePath_vue_vue_type_template_id_3a506bf9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SkillTreePath_vue_vue_type_template_id_3a506bf9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SkillTreePath.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SkillTreePath.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/SkillTreePath.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SkillTreePath.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SkillTreePath.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SkillTreePath.vue?vue&type=template&id=3a506bf9&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/SkillTreePath.vue?vue&type=template&id=3a506bf9& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_template_id_3a506bf9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SkillTreePath.vue?vue&type=template&id=3a506bf9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SkillTreePath.vue?vue&type=template&id=3a506bf9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_template_id_3a506bf9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SkillTreePath_vue_vue_type_template_id_3a506bf9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
