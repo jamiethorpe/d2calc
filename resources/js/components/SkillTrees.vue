@@ -162,6 +162,12 @@ export default {
             });
         }
     },
+    created() {
+        window.addEventListener("resize", this.positionSkillPaths);
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.positionSkillPaths);
+    },
     mounted() {
         this.positionSkillPaths();
     }

@@ -4538,8 +4538,8 @@ __webpack_require__.r(__webpack_exports__);
     boxStyle: function boxStyle() {
       if (this.goesDownLeft) {
         return {
-          left: 'calc(' + this.preStats.left + 'px - 8rem)',
-          top: 'calc(' + this.preStats.top + 'px)'
+          left: 'calc(' + this.preStats.left + 'px - 6rem)',
+          top: 'calc(' + this.preStats.top + 'px - 1rem)'
         };
       } else if (this.goesDownStraight) {
         return {
@@ -4548,8 +4548,8 @@ __webpack_require__.r(__webpack_exports__);
         };
       } else {
         return {
-          left: 'calc(' + this.preStats.left + 'px + 4rem)',
-          top: 'calc(' + this.preStats.top + 'px + 0.75rem)'
+          left: 'calc(' + this.preStats.left + 'px + 2rem)',
+          top: 'calc(' + this.preStats.top + 'px - 0.75rem)'
         };
       }
     },
@@ -4780,6 +4780,12 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
+  },
+  created: function created() {
+    window.addEventListener("resize", this.positionSkillPaths);
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener("resize", this.positionSkillPaths);
   },
   mounted: function mounted() {
     this.positionSkillPaths();

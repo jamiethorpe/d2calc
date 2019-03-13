@@ -19,8 +19,8 @@ export default {
         boxStyle() {
             if (this.goesDownLeft) {
                 return {
-                    left: 'calc(' + this.preStats.left + 'px - 8rem)',
-                    top: 'calc(' + this.preStats.top + 'px)',
+                    left: 'calc(' + this.preStats.left + 'px - 6rem)',
+                    top: 'calc(' + this.preStats.top + 'px - 1rem)',
                 }  
             } else if (this.goesDownStraight) {
                 return {
@@ -29,8 +29,8 @@ export default {
                 }
             } else {
                 return {
-                    left: 'calc(' + this.preStats.left + 'px + 4rem)',
-                    top: 'calc(' + this.preStats.top + 'px + 0.75rem)',
+                    left: 'calc(' + this.preStats.left + 'px + 2rem)',
+                    top: 'calc(' + this.preStats.top + 'px - 0.75rem)',
                 }
             }
             
