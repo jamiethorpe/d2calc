@@ -4529,7 +4529,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ['skill', 'prereq', 'preStats', 'skillStats'],
   data: function data() {
     return {
-      goesDownLeft: false
+      goesDownLeft: false,
+      goesDownRight: false,
+      goesDownStraight: false
     };
   },
   computed: {
@@ -4538,6 +4540,11 @@ __webpack_require__.r(__webpack_exports__);
         return {
           left: 'calc(' + this.preStats.left + 'px - 8rem)',
           top: 'calc(' + this.preStats.top + 'px)'
+        };
+      } else if (this.goesDownStraight) {
+        return {
+          left: 'calc(' + this.preStats.left + 'px + 2rem)',
+          top: 'calc(' + this.preStats.top + 'px + 0.75rem)'
         };
       } else {
         return {
@@ -4566,13 +4573,32 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return 0;
       }
+    },
+    lineStyle: function lineStyle() {
+      if (this.goesDownStraight) {
+        return {
+          strokeWidth: '12px'
+        };
+      } else {
+        return {
+          strokeWidth: '6px'
+        };
+      }
+    }
+  },
+  methods: {
+    determineDirection: function determineDirection() {
+      if (this.skillStats.left - this.preStats.left < 0) {
+        this.goesDownLeft = true;
+      } else if (this.x2 === 0) {
+        this.goesDownStraight = true;
+      } else {
+        this.goesDownRight = true;
+      }
     }
   },
   mounted: function mounted() {
-    if (this.skillStats.left - this.preStats.left < 0) {
-      this.goesDownLeft = true;
-    }
-
+    this.determineDirection();
     console.log(this.prereq + ' to ' + this.skill.name, this.skillStats.top - this.preStats.top);
   }
 });
@@ -5454,7 +5480,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: -1;\n    left: 0;\n    top: 0;\n    /* left: 333.656px;\n    top: 148px; */\n    width: 190px;\n}\n.skill-path line {\n    stroke: pink;\n    stroke-width: 6px;\n    z-index: 2;\n}\n\n", ""]);
+exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    /* width: 190px; */\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n}\n\n", ""]);
 
 // exports
 
@@ -25424,7 +25450,12 @@ var render = function() {
         xmlns: "http://www.w3.org/2000/svg"
       }
     },
-    [_c("line", { attrs: { x1: "0", y1: _vm.y1, x2: _vm.x2, y2: _vm.y2 } })]
+    [
+      _c("line", {
+        style: _vm.lineStyle,
+        attrs: { x1: "0", y1: _vm.y1, x2: _vm.x2, y2: _vm.y2 }
+      })
+    ]
   )
 }
 var staticRenderFns = []
