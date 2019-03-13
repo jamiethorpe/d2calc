@@ -3,7 +3,8 @@
         <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
             <skill-tree-path 
                 v-for="(line, index) in lines" 
-                :key="index" 
+                :key="index"
+                :prereq="line.prereq"
                 :skill="line.skill"
                 :pre-stats="line.preStats" 
                 :skill-stats="line.skillStats"
@@ -129,28 +130,33 @@ export default {
             this.trees.forEach(tree => {
                 if (tree.isActive) {
                     tree.skills.forEach(skill => {
-                        var prereqName =  skill.prerequisites[skill.prerequisites.length - 1];
-                        if (prereqName !== 'None' && skill.name !== 'Placeholder') {
+                        skill.unlockedBy.forEach(prereq => {
+                            // var prereqName =  skill.unlockedBy[skill.prerequisites.length - 1];
+                            if (prereq !== 'None' && skill.name !== 'Placeholder') {
 
-                            var preStats = this.getSkillPosition(prereqName);
-                            var skillStats = this.getSkillPosition(skill.name);
+                                var preStats = this.getSkillPosition(prereq);
+                                var skillStats = this.getSkillPosition(skill.name);
 
-                            //If a skill has multiple pre-requisites, no lines are being drawn.
-                            //Charged Strike is a good example.
-                            //Possibly add unlockedBy[] to each skill to determine which skills to
-                            //draw a path from.
-                            console.log(
-                                'From: ' + prereqName,
-                                'To: ' + skill.name,
-                            );
-                            var lineData = { 
-                                skill: skill,
-                                preStats: preStats,
-                                skillStats: skillStats,
-                            };
+                                //If a skill has multiple pre-requisites, no lines are being drawn.
+                                //Charged Strike is a good example.
+                                //Possibly add unlockedBy[] to each skill to determine which skills to
+                                //draw a path from.
+                                // console.log(
+                                //     'From: ' + prereq,
+                                //     'To: ' + skill.name,
+                                // );
+                                var lineData = { 
+                                    skill: skill,
+                                    prereq: prereq,
+                                    preStats: preStats,
+                                    skillStats: skillStats,
+                                };
 
-                            this.lines.push(lineData);
-                        }
+                                this.lines.push(lineData);
+                            }
+                        })
+
+                        
                     });
                 }
             });

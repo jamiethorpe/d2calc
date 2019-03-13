@@ -1,38 +1,63 @@
 <template>
-    <svg :style="boxStyle" xmlns="http://www.w3.org/2000/svg" class="skill-path">
-        <line x1="0" y1="0" :x2="x2" :y2="y2"/>
+    <svg :id="prereq + '-to-' + skill.name" :style="boxStyle" xmlns="http://www.w3.org/2000/svg" class="skill-path">
+        <line x1="0" :y1="y1" :x2="x2" :y2="y2"/>
     </svg>
 </template>
 
 <script>
 export default {
     name: 'skill-tree-path',
-    props: ['skill', 'preStats', 'skillStats'],
+    props: ['skill', 'prereq', 'preStats', 'skillStats'],
     data() {
         return {
-
+            goesDownLeft: false,
         }
     },
     computed: {
         boxStyle() {
-            return {
-                left: 'calc(' + this.preStats.left + 'px + 4rem)',
-                top: 'calc(' + this.preStats.top + 'px + 0.75rem)',
+            if (this.goesDownLeft) {
+                return {
+                    left: 'calc(' + this.preStats.left + 'px - 8rem)',
+                    top: 'calc(' + this.preStats.top + 'px)',
+                }  
+            } else {
+                return {
+                    left: 'calc(' + this.preStats.left + 'px + 4rem)',
+                    top: 'calc(' + this.preStats.top + 'px + 0.75rem)',
+                }
+            }
+            
+        },
+        y1() {
+            if (this.goesDownLeft) {
+               return (this.skillStats.top - this.preStats.top); 
+            }else{
+                return 0;
             }
         },
-        // boxRef() {
-        //     return skill + 'Box';
-        // },
-        // lineRef() {
-        //     return skill + 'Line';
-        // },
         x2() {
-            return (this.skillStats.left - this.preStats.left);
+            if (!this.goesDownLeft) {
+                return (this.skillStats.left - this.preStats.left);
+            } else {
+                return Math.abs(this.skillStats.left - this.preStats.left);
+            }
+            
         },
         y2() {
-            return (this.skillStats.top - this.preStats.top);
+            if (!this.goesDownLeft) {
+                return (this.skillStats.top - this.preStats.top);
+            } else {
+                return 0;
+            }
+            
         }
     },
+    mounted() {
+        if ((this.skillStats.left - this.preStats.left) < 0) {
+            this.goesDownLeft = true;
+        }
+        console.log(this.prereq + ' to ' + this.skill.name, (this.skillStats.top - this.preStats.top));
+    }
 }
 </script>
 

@@ -4526,29 +4526,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'skill-tree-path',
-  props: ['skill', 'preStats', 'skillStats'],
+  props: ['skill', 'prereq', 'preStats', 'skillStats'],
   data: function data() {
-    return {};
+    return {
+      goesDownLeft: false
+    };
   },
   computed: {
     boxStyle: function boxStyle() {
-      return {
-        left: 'calc(' + this.preStats.left + 'px + 4rem)',
-        top: 'calc(' + this.preStats.top + 'px + 0.75rem)'
-      };
+      if (this.goesDownLeft) {
+        return {
+          left: 'calc(' + this.preStats.left + 'px - 8rem)',
+          top: 'calc(' + this.preStats.top + 'px)'
+        };
+      } else {
+        return {
+          left: 'calc(' + this.preStats.left + 'px + 4rem)',
+          top: 'calc(' + this.preStats.top + 'px + 0.75rem)'
+        };
+      }
     },
-    // boxRef() {
-    //     return skill + 'Box';
-    // },
-    // lineRef() {
-    //     return skill + 'Line';
-    // },
+    y1: function y1() {
+      if (this.goesDownLeft) {
+        return this.skillStats.top - this.preStats.top;
+      } else {
+        return 0;
+      }
+    },
     x2: function x2() {
-      return this.skillStats.left - this.preStats.left;
+      if (!this.goesDownLeft) {
+        return this.skillStats.left - this.preStats.left;
+      } else {
+        return Math.abs(this.skillStats.left - this.preStats.left);
+      }
     },
     y2: function y2() {
-      return this.skillStats.top - this.preStats.top;
+      if (!this.goesDownLeft) {
+        return this.skillStats.top - this.preStats.top;
+      } else {
+        return 0;
+      }
     }
+  },
+  mounted: function mounted() {
+    if (this.skillStats.left - this.preStats.left < 0) {
+      this.goesDownLeft = true;
+    }
+
+    console.log(this.prereq + ' to ' + this.skill.name, this.skillStats.top - this.preStats.top);
   }
 });
 
@@ -4566,6 +4591,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SkillTreePath_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SkillTreePath.vue */ "./resources/js/components/SkillTreePath.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+//
 //
 //
 //
@@ -4699,26 +4725,31 @@ __webpack_require__.r(__webpack_exports__);
       this.trees.forEach(function (tree) {
         if (tree.isActive) {
           tree.skills.forEach(function (skill) {
-            var prereqName = skill.prerequisites[skill.prerequisites.length - 1];
+            skill.unlockedBy.forEach(function (prereq) {
+              // var prereqName =  skill.unlockedBy[skill.prerequisites.length - 1];
+              if (prereq !== 'None' && skill.name !== 'Placeholder') {
+                var preStats = _this2.getSkillPosition(prereq);
 
-            if (prereqName !== 'None' && skill.name !== 'Placeholder') {
-              var preStats = _this2.getSkillPosition(prereqName);
+                var skillStats = _this2.getSkillPosition(skill.name); //If a skill has multiple pre-requisites, no lines are being drawn.
+                //Charged Strike is a good example.
+                //Possibly add unlockedBy[] to each skill to determine which skills to
+                //draw a path from.
+                // console.log(
+                //     'From: ' + prereq,
+                //     'To: ' + skill.name,
+                // );
 
-              var skillStats = _this2.getSkillPosition(skill.name); //If a skill has multiple pre-requisites, no lines are being drawn.
-              //Charged Strike is a good example.
-              //Possibly add unlockedBy[] to each skill to determine which skills to
-              //draw a path from.
 
+                var lineData = {
+                  skill: skill,
+                  prereq: prereq,
+                  preStats: preStats,
+                  skillStats: skillStats
+                };
 
-              console.log('From: ' + prereqName, 'To: ' + skill.name);
-              var lineData = {
-                skill: skill,
-                preStats: preStats,
-                skillStats: skillStats
-              };
-
-              _this2.lines.push(lineData);
-            }
+                _this2.lines.push(lineData);
+              }
+            });
           });
         }
       });
@@ -4831,6 +4862,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 2,
@@ -4839,6 +4871,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 3,
@@ -4847,6 +4880,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 4,
@@ -4855,6 +4889,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 5,
@@ -4863,6 +4898,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
           points: 0,
           prerequisites: ['Jab'],
+          unlockedBy: ['Jab'],
           available: false
         }, {
           id: 6,
@@ -4871,6 +4907,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 7,
@@ -4879,6 +4916,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'A more powerful attack with an increased chance the weapon will lose durability.',
           points: 0,
           prerequisites: ['Jab'],
+          unlockedBy: ['Jab'],
           available: false
         }, {
           id: 8,
@@ -4887,6 +4925,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 9,
@@ -4895,6 +4934,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Leaves a trail of lightning and does lightning damage.',
           points: 0,
           prerequisites: ['Poison Javelin'],
+          unlockedBy: ['Poison Javelin'],
           available: false
         }, {
           id: 10,
@@ -4903,6 +4943,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 11,
@@ -4911,6 +4952,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'A lightning attack that releases charged bolts.',
           points: 0,
           prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt'],
+          unlockedBy: ['Power Strike', 'Lightning Bolt'],
           available: false
         }, {
           id: 12,
@@ -4919,6 +4961,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
           points: 0,
           prerequisites: ['Poison Javelin', 'Lightning Bolt'],
+          unlockedBy: ['Lightning Bolt'],
           available: false
         }, {
           id: 13,
@@ -4927,6 +4970,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Rapidly strikes several close targets.',
           points: 0,
           prerequisites: ['Jab', 'Impale'],
+          unlockedBy: ['Impale'],
           available: false
         }, {
           id: 14,
@@ -4935,6 +4979,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 15,
@@ -4943,6 +4988,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 16,
@@ -4951,6 +4997,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 17,
@@ -4959,6 +5006,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Does lightning damage and releases chain lightning from target.',
           points: 0,
           prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt', 'Charged Strike'],
+          unlockedBy: ['Charged Strike'],
           available: false
         }, {
           id: 18,
@@ -4967,6 +5015,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
           points: 0,
           prerequisites: ['Poison Javelin', 'Lightning Bolt', 'Plague Javelin'],
+          unlockedBy: ['Plague Javelin'],
           available: false
         }]
       }, {
@@ -25370,9 +25419,12 @@ var render = function() {
     {
       staticClass: "skill-path",
       style: _vm.boxStyle,
-      attrs: { xmlns: "http://www.w3.org/2000/svg" }
+      attrs: {
+        id: _vm.prereq + "-to-" + _vm.skill.name,
+        xmlns: "http://www.w3.org/2000/svg"
+      }
     },
-    [_c("line", { attrs: { x1: "0", y1: "0", x2: _vm.x2, y2: _vm.y2 } })]
+    [_c("line", { attrs: { x1: "0", y1: _vm.y1, x2: _vm.x2, y2: _vm.y2 } })]
   )
 }
 var staticRenderFns = []
@@ -25420,6 +25472,7 @@ var render = function() {
             return _c("skill-tree-path", {
               key: index,
               attrs: {
+                prereq: line.prereq,
                 skill: line.skill,
                 "pre-stats": line.preStats,
                 "skill-stats": line.skillStats

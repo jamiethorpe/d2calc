@@ -44,6 +44,7 @@ export default {
                             description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -53,6 +54,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -62,6 +64,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -71,6 +74,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -80,6 +84,7 @@ export default {
                             description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
                             points: 0,
                             prerequisites: ['Jab'],
+                            unlockedBy: ['Jab'],
                             available: false,
                         },
                         {
@@ -89,6 +94,7 @@ export default {
                             description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -98,6 +104,7 @@ export default {
                             description: 'A more powerful attack with an increased chance the weapon will lose durability.',
                             points: 0,
                             prerequisites: ['Jab'],
+                            unlockedBy: ['Jab'],
                             available: false,
                         },
                         {
@@ -107,6 +114,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -116,6 +124,7 @@ export default {
                             description: 'Leaves a trail of lightning and does lightning damage.',
                             points: 0,
                             prerequisites: ['Poison Javelin'],
+                            unlockedBy: ['Poison Javelin'],
                             available: false,
                         },
                         {
@@ -125,6 +134,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -134,6 +144,7 @@ export default {
                             description: 'A lightning attack that releases charged bolts.',
                             points: 0,
                             prerequisites: ['Jab', 'Poison Javelin', 'Power Strike' ,'Lightning Bolt'],
+                            unlockedBy: ['Power Strike' ,'Lightning Bolt'],
                             available: false,
                         },
                         {
@@ -143,6 +154,7 @@ export default {
                             description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
                             points: 0,
                             prerequisites: ['Poison Javelin', 'Lightning Bolt'],
+                            unlockedBy: ['Lightning Bolt'],
                             available: false,
                         },
                         {
@@ -152,6 +164,7 @@ export default {
                             description: 'Rapidly strikes several close targets.',
                             points: 0,
                             prerequisites: ['Jab', 'Impale'],
+                            unlockedBy: ['Impale'],
                             available: false,
                         },
                         {
@@ -161,6 +174,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -170,6 +184,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -179,6 +194,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -188,6 +204,7 @@ export default {
                             description: 'Does lightning damage and releases chain lightning from target.',
                             points: 0,
                             prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt', 'Charged Strike'],
+                            unlockedBy: ['Charged Strike'],
                             available: false,
                         },
                         {
@@ -197,6 +214,7 @@ export default {
                             description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
                             points: 0,
                             prerequisites: ['Poison Javelin', 'Lightning Bolt', 'Plague Javelin'],
+                            unlockedBy: ['Plague Javelin'],
                             available: false,
                         },
                     ]
