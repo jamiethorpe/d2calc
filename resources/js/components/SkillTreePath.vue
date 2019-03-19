@@ -19,7 +19,7 @@ export default {
         boxStyle() {
             if (this.goesDownLeft) {
                 return {
-                    left: 'calc(' + this.preStats.left + 'px - 6rem)',
+                    left: 'calc(' + this.skillStats.left + 'px + 2rem)',
                     top: 'calc(' + this.preStats.top + 'px - 1rem)',
                 }  
             } else if (this.goesDownStraight) {
@@ -75,11 +75,16 @@ export default {
             } else {
                 this.goesDownRight = true;
             }
+            console.log(this.prereq + ' to ' + this.skill.name, (this.skillStats.top - this.preStats.top));
         }
     },
     mounted() {
         this.determineDirection();
-        console.log(this.prereq + ' to ' + this.skill.name, (this.skillStats.top - this.preStats.top));
+    },
+    updated() {
+        this.$nextTick(function () {
+            this.determineDirection();
+        });
     }
 }
 </script>
@@ -92,7 +97,7 @@ export default {
     z-index: 0;
     left: 0;
     top: 0;
-    /* width: 190px; */
+    height: 100%;
 }
 
 .skill-path line {

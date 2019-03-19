@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container is-fullhd">
         <tree-tabs :trees="trees"></tree-tabs>
 
         <class-nav-bar 
@@ -230,6 +230,7 @@ export default {
                             description: 'Illuminates monsters and decreases their ability to defend themselves.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -239,6 +240,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -248,6 +250,7 @@ export default {
                             description: 'Grants a chance to do double physical damage with your attacks.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -257,6 +260,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -266,6 +270,7 @@ export default {
                             description: 'Grants a chance to move out of the way of a melee attack while standing still.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -275,6 +280,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -284,6 +290,7 @@ export default {
                             description: 'Slows down all missile and spell projectiles cast by enemies.',
                             points: 0,
                             prerequisites: ['Inner Sight'],
+                            unlockedBy: ['Inner Sight'],
                             available: false,
                         },
                         {
@@ -293,6 +300,7 @@ export default {
                             description: 'Grants a chance to move out of the way of a missile attack while standing still.',
                             points: 0,
                             prerequisites: ['Dodge'],
+                            unlockedBy: ['Dodge'],
                             available: false,
                         },
                         {
@@ -302,6 +310,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -311,6 +320,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -320,6 +330,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -329,6 +340,7 @@ export default {
                             description: 'Additional chance to hit.',
                             points: 0,
                             prerequisites: ['Critical Strike'],
+                            unlockedBy: ['Critical Strike'],
                             available: false,
                         },
                         {
@@ -338,6 +350,7 @@ export default {
                             description: 'Creates a duplicate image to distract enemies.',
                             points: 0,
                             prerequisites: ['Inner Sight', 'Slow Missiles'],
+                            unlockedBy: ['Slow Missiles'],
                             available: false,
                         },
                         {
@@ -347,6 +360,7 @@ export default {
                             description: 'Grants a chance to escape any attack while moving.',
                             points: 0,
                             prerequisites: ['Dodge', 'Avoid'],
+                            unlockedBy: ['Avoid'],
                             available: false,
                         },
                         {
@@ -356,6 +370,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -365,6 +380,7 @@ export default {
                             description: 'Summons a powerful Valkyrie warrior to fight by your side.',
                             points: 0,
                             prerequisites: ['Inner Sight', 'Dodge', 'Slow Missiles', 'Avoid', 'Decoy', 'Evade'],
+                            unlockedBy: ['Decoy', 'Evade'],
                             available: false,
                         },
                         {
@@ -374,6 +390,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -383,6 +400,7 @@ export default {
                             description: 'A chance that your missile will continue through its victim.',
                             points: 0,
                             prerequisites: ['Critical Strike', 'Penetrate'],
+                            unlockedBy: ['Penetrate'],
                             available: false,
                         },
                     ]

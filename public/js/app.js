@@ -4538,7 +4538,7 @@ __webpack_require__.r(__webpack_exports__);
     boxStyle: function boxStyle() {
       if (this.goesDownLeft) {
         return {
-          left: 'calc(' + this.preStats.left + 'px - 6rem)',
+          left: 'calc(' + this.skillStats.left + 'px + 2rem)',
           top: 'calc(' + this.preStats.top + 'px - 1rem)'
         };
       } else if (this.goesDownStraight) {
@@ -4595,11 +4595,17 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.goesDownRight = true;
       }
+
+      console.log(this.prereq + ' to ' + this.skill.name, this.skillStats.top - this.preStats.top);
     }
   },
   mounted: function mounted() {
     this.determineDirection();
-    console.log(this.prereq + ' to ' + this.skill.name, this.skillStats.top - this.preStats.top);
+  },
+  updated: function updated() {
+    this.$nextTick(function () {
+      this.determineDirection();
+    });
   }
 });
 
@@ -5060,6 +5066,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Illuminates monsters and decreases their ability to defend themselves.',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 2,
@@ -5068,6 +5075,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 3,
@@ -5076,6 +5084,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Grants a chance to do double physical damage with your attacks.',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 4,
@@ -5084,6 +5093,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 5,
@@ -5092,6 +5102,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Grants a chance to move out of the way of a melee attack while standing still.',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 6,
@@ -5100,6 +5111,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 7,
@@ -5108,6 +5120,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Slows down all missile and spell projectiles cast by enemies.',
           points: 0,
           prerequisites: ['Inner Sight'],
+          unlockedBy: ['Inner Sight'],
           available: false
         }, {
           id: 8,
@@ -5116,6 +5129,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Grants a chance to move out of the way of a missile attack while standing still.',
           points: 0,
           prerequisites: ['Dodge'],
+          unlockedBy: ['Dodge'],
           available: false
         }, {
           id: 9,
@@ -5124,6 +5138,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 10,
@@ -5132,6 +5147,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 11,
@@ -5140,6 +5156,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 12,
@@ -5148,6 +5165,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Additional chance to hit.',
           points: 0,
           prerequisites: ['Critical Strike'],
+          unlockedBy: ['Critical Strike'],
           available: false
         }, {
           id: 13,
@@ -5156,6 +5174,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Creates a duplicate image to distract enemies.',
           points: 0,
           prerequisites: ['Inner Sight', 'Slow Missiles'],
+          unlockedBy: ['Slow Missiles'],
           available: false
         }, {
           id: 14,
@@ -5164,6 +5183,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Grants a chance to escape any attack while moving.',
           points: 0,
           prerequisites: ['Dodge', 'Avoid'],
+          unlockedBy: ['Avoid'],
           available: false
         }, {
           id: 15,
@@ -5172,6 +5192,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 16,
@@ -5180,6 +5201,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Summons a powerful Valkyrie warrior to fight by your side.',
           points: 0,
           prerequisites: ['Inner Sight', 'Dodge', 'Slow Missiles', 'Avoid', 'Decoy', 'Evade'],
+          unlockedBy: ['Decoy', 'Evade'],
           available: false
         }, {
           id: 17,
@@ -5188,6 +5210,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'Placeholder',
           points: 0,
           prerequisites: ['None'],
+          unlockedBy: ['None'],
           available: true
         }, {
           id: 18,
@@ -5196,6 +5219,7 @@ __webpack_require__.r(__webpack_exports__);
           description: 'A chance that your missile will continue through its victim.',
           points: 0,
           prerequisites: ['Critical Strike', 'Penetrate'],
+          unlockedBy: ['Penetrate'],
           available: false
         }]
       }, {
@@ -5486,7 +5510,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    /* width: 190px; */\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n}\n\n", ""]);
+exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    height: 100%;\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n}\n\n", ""]);
 
 // exports
 
@@ -25677,7 +25701,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container is-fullhd" },
     [
       _c("tree-tabs", { attrs: { trees: _vm.trees } }),
       _vm._v(" "),
