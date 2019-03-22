@@ -3,27 +3,16 @@
         <div class="container">
             <div class="navbar-brand">
                 <router-link class="navbar-item" :to="{ name: 'home' }">{{ appName }}</router-link>
-<!-- 
-                <div class="navbar-burger burger character-select" data-target="navMenu">
-                    <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
-                    <a v-else class="navbar-link" href="#">Character</a>
-                </div> -->
             </div>
-            
-
-
             
             <div class="navbar-menu" id="navMenu">
                 <div class="navbar-start">
                     
                 </div>
-
                 <div class="navbar-end">
-                        
                     <div v-on-clickaway="notActive" @click="toggleActive" class="navbar-item has-dropdown character-select">
                         <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
                         <a v-else class="navbar-link" href="#">Character</a>
-
 
                         <div class="navbar-dropdown" :class="{'is-active' : isActive, 'is-not-active' : !isActive}">
                             <router-link 

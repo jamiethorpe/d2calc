@@ -21,9 +21,6 @@ export default {
     },
     methods: {
         setTab(selectedTree, index) {
-            // this.trees.forEach((tree) => {
-            //     tree.isActive = (tree.name === selectedTree.name);
-            // });
             this.trees.forEach((tree) => {
                 if(tree.name === selectedTree.name) {
                     Vue.set(tree, 'isActive', true);

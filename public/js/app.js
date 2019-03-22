@@ -4468,16 +4468,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mixins: [vue_clickaway__WEBPACK_IMPORTED_MODULE_0__["mixin"]],
@@ -4582,8 +4572,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.goesDownRight = true;
       }
-
-      console.log(this.prereq + ' to ' + this.skill.name, this.skillStats.top - this.preStats.top);
     }
   },
   mounted: function mounted() {
@@ -4612,7 +4600,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! debounce */ "./node_modules/debounce/index.js");
 /* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(debounce__WEBPACK_IMPORTED_MODULE_2__);
-//
 //
 //
 //
@@ -4727,14 +4714,12 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getSkillPosition: function getSkillPosition(skillName) {
-      var stats = this.$refs[skillName][0].getBoundingClientRect(); // console.log(skillName, stats);
-
+      var stats = this.$refs[skillName][0].getBoundingClientRect();
       return stats;
     },
     positionSkillPaths: function positionSkillPaths() {
       var _this2 = this;
 
-      console.log('positioning');
       this.lines = [];
       this.trees.forEach(function (tree) {
         if (tree.isActive) {
@@ -4812,9 +4797,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setTab: function setTab(selectedTree, index) {
-      // this.trees.forEach((tree) => {
-      //     tree.isActive = (tree.name === selectedTree.name);
-      // });
       this.trees.forEach(function (tree) {
         if (tree.name === selectedTree.name) {
           vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(tree, 'isActive', true);
@@ -5512,7 +5494,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    /* top: calc((70vh/6) - 2rem); */\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n    /* top: calc((70vh/6) - 3.5rem); */\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    /* width: calc((73vh/6) - 1.5rem);\n    height: calc((73vh/6) - 1.5rem); */\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -25496,9 +25478,9 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                                " +
+                        "\n                            " +
                           _vm._s(name) +
-                          "\n                            "
+                          "\n                        "
                       )
                     ]
                   )

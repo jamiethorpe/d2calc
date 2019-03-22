@@ -33,7 +33,6 @@ export default {
                     top: 'calc(' + this.preStats.top + 'px - 0.75rem)',
                 }
             }
-            
         },
         y1() {
             if (this.goesDownLeft) {
@@ -48,7 +47,6 @@ export default {
             } else {
                 return Math.abs(this.skillStats.left - this.preStats.left);
             }
-            
         },
         y2() {
             if (!this.goesDownLeft) {
@@ -56,8 +54,8 @@ export default {
             } else {
                 return 0;
             }
-            
         },
+        //Might use this later once I figure out what's up with the stroke width
         // lineStyle() {
         //     if (this.goesDownStraight) {
         //         return {strokeWidth: '12px'};
@@ -75,7 +73,6 @@ export default {
             } else {
                 this.goesDownRight = true;
             }
-            console.log(this.prereq + ' to ' + this.skill.name, (this.skillStats.top - this.preStats.top));
         }
     },
     mounted() {

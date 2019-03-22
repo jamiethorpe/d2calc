@@ -37,7 +37,6 @@
                         </div>
                         <div v-if="!skill.isPlaceholder" class="skill-counter" :class="{'plus-skills' : plusAllSkillsTotal > 0}">{{ skill.points + plusAllSkillsTotal }}</div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -114,11 +113,9 @@ export default {
         },
         getSkillPosition(skillName) {
             var stats = this.$refs[skillName][0].getBoundingClientRect();
-            // console.log(skillName, stats);
             return stats;
         },
         positionSkillPaths() {
-            console.log('positioning');
             this.lines = [];
             this.trees.forEach(tree => {
                 if (tree.isActive) {
@@ -156,7 +153,7 @@ export default {
                 this.positionSkillPaths();
             },
             { deep: true }
-        )
+        );
     }
 }
 </script>
@@ -183,7 +180,6 @@ export default {
         display: inline-block;
         color: #beb8a2;
         position: relative;
-        /* top: calc((70vh/6) - 2rem); */
         top: 3.5rem;
         width: 88%;
         font-family: 'Diablo Heavy', serif;
@@ -200,7 +196,6 @@ export default {
         left: 3.5rem;
         width: 1.5rem;
         z-index: 4;
-        /* top: calc((70vh/6) - 3.5rem); */
     }
 
     .skill {
@@ -210,8 +205,6 @@ export default {
         box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);
         width: 4rem;
         height: 4rem;
-        /* width: calc((73vh/6) - 1.5rem);
-        height: calc((73vh/6) - 1.5rem); */
         margin: 0 auto;
         user-select: none;
         z-index: 3;
