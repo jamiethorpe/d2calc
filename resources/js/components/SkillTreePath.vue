@@ -19,18 +19,18 @@ export default {
         boxStyle() {
             if (this.goesDownLeft) {
                 return {
-                    left: 'calc(' + this.skillStats.left + 'px + 2rem)',
+                    left: 'calc(' + this.skillStats.left + 'px + 1.75rem)',
                     top: 'calc(' + this.preStats.top + 'px - 1rem)',
                 }  
             } else if (this.goesDownStraight) {
                 return {
                     left: 'calc(' + this.preStats.left + 'px + 2rem)',
-                    top: 'calc(' + this.preStats.top + 'px + 0.75rem)',
+                    top: 'calc(' + this.preStats.top + 'px + 0.5rem)',
                 }
             } else {
                 return {
                     left: 'calc(' + this.preStats.left + 'px + 2rem)',
-                    top: 'calc(' + this.preStats.top + 'px - 0.75rem)',
+                    top: 'calc(' + this.preStats.top + 'px - 0.5rem)',
                 }
             }
         },
@@ -73,6 +73,11 @@ export default {
             } else {
                 this.goesDownRight = true;
             }
+            console.log('From: ' + this.prereq + 'To: ' + this.skill.name);
+            console.log(this.skillStats.left - this.preStats.left);
+            console.log('Goes down left? ' + this.goesDownLeft);
+            console.log('Goes down straight? ' + this.goesDownStraight);
+            console.log('Goes down right? ' + this.goesDownRight);
         }
     },
     mounted() {

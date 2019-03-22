@@ -416,6 +416,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -425,6 +426,7 @@ export default {
                             description: 'Creates an arrow composed entirely from Mana. Damage starts at the same level as a normal arrow and increases with higher levels of training.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -434,6 +436,7 @@ export default {
                             description: 'Enchants an arrow with the additional damage of fire.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -443,6 +446,7 @@ export default {
                             description: 'Enchants an arrow, adding cold damage and slowing your enemy.',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -452,6 +456,7 @@ export default {
                             description: 'Splits one arrow into several. Only 3/4 of the Damage is taken from your weapon.',
                             points: 0,
                             prerequisites: ['Magic Arrow'],
+                            unlockedBy: ['Magic Arrow'],
                             available: false,
                         },
                         {
@@ -461,6 +466,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -470,6 +476,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -479,6 +486,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -488,6 +496,7 @@ export default {
                             description: 'Adds fire damage to normal arrows and explodes on impact.',
                             points: 0,
                             prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot'],
+                            unlockedBy: ['Fire Arrow', 'Multiple Shot'],
                             available: false,
                         },
                         {
@@ -497,6 +506,7 @@ export default {
                             description: 'Arrows have additional cold damage and momentarily freeze the target.',
                             points: 0,
                             prerequisites: ['Cold Arrow'],
+                            unlockedBy: ['Cold Arrow'],
                             available: false,
                         },
                         {
@@ -506,6 +516,7 @@ export default {
                             description: 'Imbues an arrow with the ability to seek its nearest target.',
                             points: 0,
                             prerequisites: ['Magic Arrow', 'Cold Arrow', 'Multiple Shot'],
+                            unlockedBy: ['Multiple Shot', 'Cold Arrow'],
                             available: false,
                         },
                         {
@@ -515,6 +526,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -524,6 +536,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -533,6 +546,7 @@ export default {
                             description: 'Fires a volley of arrows at multiple nearby targets.',
                             points: 0,
                             prerequisites: ['Magic Arrow', 'Multiple Shot', 'Cold Arrow', 'Guided Arrow'],
+                            unlockedBy: ['Guided Arrow'],
                             available: false,
                         },
                         {
@@ -542,6 +556,7 @@ export default {
                             description: 'Enchants an arrow that does fire damage, and explodes into a patch of fire on the ground. Creatures passing through the flames take additional damage.',
                             points: 0,
                             prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot', 'Exploding Arrow'],
+                            unlockedBy: ['Exploding Arrow'],
                             available: false,
                         },
                         {
@@ -551,6 +566,7 @@ export default {
                             description: 'Enchants an arrow to deliver cold damage that freezes any monsters near the point of impact.',
                             points: 0,
                             prerequisites: ['Cold Arrow', 'Ice Arrow'],
+                            unlockedBy: ['Ice Arrow'],
                             available: false,
                         },
                         {
@@ -560,6 +576,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                         {
@@ -569,6 +586,7 @@ export default {
                             description: 'Placeholder',
                             points: 0,
                             prerequisites: ['None'],
+                            unlockedBy: ['None'],
                             available: true,
                         },
                     ]
