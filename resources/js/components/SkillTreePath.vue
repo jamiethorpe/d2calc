@@ -1,6 +1,6 @@
 <template>
     <svg :id="prereq + '-to-' + skill.name" :style="boxStyle" xmlns="http://www.w3.org/2000/svg" class="skill-path">
-        <line x1="0" :y1="y1" :x2="x2" :y2="y2" :style="lineStyle"/>
+        <line x1="0" :y1="y1" :x2="x2" :y2="y2"/>
     </svg>
 </template>
 

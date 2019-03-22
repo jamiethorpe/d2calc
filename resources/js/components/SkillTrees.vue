@@ -47,6 +47,7 @@
 <script>
 import skillTreePath from './SkillTreePath.vue';
 import Vue from 'vue';
+import debounce from 'debounce';
 
 export default {
     name:'skill-trees',
@@ -117,6 +118,7 @@ export default {
             return stats;
         },
         positionSkillPaths() {
+            console.log('positioning');
             this.lines = [];
             this.trees.forEach(tree => {
                 if (tree.isActive) {
@@ -140,10 +142,10 @@ export default {
         }
     },
     created() {
-        window.addEventListener("resize", this.positionSkillPaths);
+        window.addEventListener("resize", debounce(this.positionSkillPaths,500));
     },
     destroyed() {
-        window.removeEventListener("resize", this.positionSkillPaths);
+        window.removeEventListener("resize", debounce(this.positionSkillPaths,500));
     },
     mounted() {
         this.positionSkillPaths();

@@ -4610,6 +4610,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SkillTreePath_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SkillTreePath.vue */ "./resources/js/components/SkillTreePath.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! debounce */ "./node_modules/debounce/index.js");
+/* harmony import */ var debounce__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(debounce__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -4656,6 +4658,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4731,6 +4734,7 @@ __webpack_require__.r(__webpack_exports__);
     positionSkillPaths: function positionSkillPaths() {
       var _this2 = this;
 
+      console.log('positioning');
       this.lines = [];
       this.trees.forEach(function (tree) {
         if (tree.isActive) {
@@ -4757,10 +4761,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    window.addEventListener("resize", this.positionSkillPaths);
+    window.addEventListener("resize", debounce__WEBPACK_IMPORTED_MODULE_2___default()(this.positionSkillPaths, 500));
   },
   destroyed: function destroyed() {
-    window.removeEventListener("resize", this.positionSkillPaths);
+    window.removeEventListener("resize", debounce__WEBPACK_IMPORTED_MODULE_2___default()(this.positionSkillPaths, 500));
   },
   mounted: function mounted() {
     var _this3 = this;
@@ -5636,6 +5640,87 @@ function toComment(sourceMap) {
 
 	return '/*# ' + data + ' */';
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/debounce/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/debounce/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing. The function also has a property 'clear' 
+ * that is a function which will clear the timer to prevent previously scheduled executions. 
+ *
+ * @source underscore.js
+ * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+ * @param {Function} function to wrap
+ * @param {Number} timeout in ms (`100`)
+ * @param {Boolean} whether to execute at the beginning (`false`)
+ * @api public
+ */
+function debounce(func, wait, immediate){
+  var timeout, args, context, timestamp, result;
+  if (null == wait) wait = 100;
+
+  function later() {
+    var last = Date.now() - timestamp;
+
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last);
+    } else {
+      timeout = null;
+      if (!immediate) {
+        result = func.apply(context, args);
+        context = args = null;
+      }
+    }
+  };
+
+  var debounced = function(){
+    context = this;
+    args = arguments;
+    timestamp = Date.now();
+    var callNow = immediate && !timeout;
+    if (!timeout) timeout = setTimeout(later, wait);
+    if (callNow) {
+      result = func.apply(context, args);
+      context = args = null;
+    }
+
+    return result;
+  };
+
+  debounced.clear = function() {
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+  
+  debounced.flush = function() {
+    if (timeout) {
+      result = func.apply(context, args);
+      context = args = null;
+      
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+
+  return debounced;
+};
+
+// Adds compatibility for ES modules
+debounce.debounce = debounce;
+
+module.exports = debounce;
 
 
 /***/ }),
@@ -25459,12 +25544,7 @@ var render = function() {
         xmlns: "http://www.w3.org/2000/svg"
       }
     },
-    [
-      _c("line", {
-        style: _vm.lineStyle,
-        attrs: { x1: "0", y1: _vm.y1, x2: _vm.x2, y2: _vm.y2 }
-      })
-    ]
+    [_c("line", { attrs: { x1: "0", y1: _vm.y1, x2: _vm.x2, y2: _vm.y2 } })]
   )
 }
 var staticRenderFns = []
