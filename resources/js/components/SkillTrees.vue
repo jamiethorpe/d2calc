@@ -59,15 +59,6 @@ export default {
             lines: [],
         }
     },
-    watch: {
-        trees: {
-            handler: function (after, before) {
-                // Changes to isActive are not being detected.
-                this.positionSkillPaths();
-            },
-            deep: true,
-        }
-    },
     methods: {
         increaseSkill(skill, tree) {
             if (!skill.isPlaceholder && skill.available) {
@@ -131,32 +122,18 @@ export default {
                 if (tree.isActive) {
                     tree.skills.forEach(skill => {
                         skill.unlockedBy.forEach(prereq => {
-                            // var prereqName =  skill.unlockedBy[skill.prerequisites.length - 1];
                             if (prereq !== 'None' && skill.name !== 'Placeholder') {
-
                                 var preStats = this.getSkillPosition(prereq);
                                 var skillStats = this.getSkillPosition(skill.name);
-
-                                //If a skill has multiple pre-requisites, no lines are being drawn.
-                                //Charged Strike is a good example.
-                                //Possibly add unlockedBy[] to each skill to determine which skills to
-                                //draw a path from.
-                                // console.log(
-                                //     'From: ' + prereq,
-                                //     'To: ' + skill.name,
-                                // );
                                 var lineData = { 
                                     skill: skill,
                                     prereq: prereq,
                                     preStats: preStats,
                                     skillStats: skillStats,
                                 };
-
                                 this.lines.push(lineData);
                             }
                         })
-
-                        
                     });
                 }
             });
@@ -170,6 +147,14 @@ export default {
     },
     mounted() {
         this.positionSkillPaths();
+        this.$store.watch(function(state) {
+                state.tree
+            },
+            () => {
+                this.positionSkillPaths();
+            },
+            { deep: true }
+        )
     }
 }
 </script>

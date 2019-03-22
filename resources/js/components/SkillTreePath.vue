@@ -58,13 +58,13 @@ export default {
             }
             
         },
-        lineStyle() {
-            if (this.goesDownStraight) {
-                return {strokeWidth: '12px'};
-            }else{
-                return {strokeWidth: '6px'};
-            }
-        }
+        // lineStyle() {
+        //     if (this.goesDownStraight) {
+        //         return {strokeWidth: '12px'};
+        //     }else{
+        //         return {strokeWidth: '6px'};
+        //     }
+        // }
     },
     methods: {
         determineDirection() {
@@ -103,6 +103,7 @@ export default {
 .skill-path line {
     stroke: #6b6b6b;
     z-index: 2;
+    stroke-width: 6px;
 }
 
 </style>

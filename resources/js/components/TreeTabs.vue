@@ -31,6 +31,7 @@ export default {
                     Vue.set(tree, 'isActive', false);
                 }
             });
+            this.$store.commit('setTree', selectedTree.name);
         },
     }
 }

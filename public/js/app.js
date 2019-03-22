@@ -4502,9 +4502,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isActive = false;
     }
   },
-  mounted: function mounted() {
-    console.log('NavBar mounted..');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -4572,17 +4570,6 @@ __webpack_require__.r(__webpack_exports__);
         return this.skillStats.top - this.preStats.top;
       } else {
         return 0;
-      }
-    },
-    lineStyle: function lineStyle() {
-      if (this.goesDownStraight) {
-        return {
-          strokeWidth: '12px'
-        };
-      } else {
-        return {
-          strokeWidth: '6px'
-        };
       }
     }
   },
@@ -4682,15 +4669,6 @@ __webpack_require__.r(__webpack_exports__);
       lines: []
     };
   },
-  watch: {
-    trees: {
-      handler: function handler(after, before) {
-        // Changes to isActive are not being detected.
-        this.positionSkillPaths();
-      },
-      deep: true
-    }
-  },
   methods: {
     increaseSkill: function increaseSkill(skill, tree) {
       if (!skill.isPlaceholder && skill.available) {
@@ -4758,19 +4736,10 @@ __webpack_require__.r(__webpack_exports__);
         if (tree.isActive) {
           tree.skills.forEach(function (skill) {
             skill.unlockedBy.forEach(function (prereq) {
-              // var prereqName =  skill.unlockedBy[skill.prerequisites.length - 1];
               if (prereq !== 'None' && skill.name !== 'Placeholder') {
                 var preStats = _this2.getSkillPosition(prereq);
 
-                var skillStats = _this2.getSkillPosition(skill.name); //If a skill has multiple pre-requisites, no lines are being drawn.
-                //Charged Strike is a good example.
-                //Possibly add unlockedBy[] to each skill to determine which skills to
-                //draw a path from.
-                // console.log(
-                //     'From: ' + prereq,
-                //     'To: ' + skill.name,
-                // );
-
+                var skillStats = _this2.getSkillPosition(skill.name);
 
                 var lineData = {
                   skill: skill,
@@ -4794,7 +4763,16 @@ __webpack_require__.r(__webpack_exports__);
     window.removeEventListener("resize", this.positionSkillPaths);
   },
   mounted: function mounted() {
+    var _this3 = this;
+
     this.positionSkillPaths();
+    this.$store.watch(function (state) {
+      state.tree;
+    }, function () {
+      _this3.positionSkillPaths();
+    }, {
+      deep: true
+    });
   }
 });
 
@@ -4840,6 +4818,7 @@ __webpack_require__.r(__webpack_exports__);
           vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(tree, 'isActive', false);
         }
       });
+      this.$store.commit('setTree', selectedTree.name);
     }
   }
 });
@@ -5491,7 +5470,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    /* margin-left: auto; */\n    font-family: 'Roboto', sans-serif;\n}\n.navbar-dropdown.is-not-active[data-v-0640a734] {\n    display: none;\n}\n.navbar-dropdown.is-active[data-v-0640a734] {\n    display: block;\n}\n", ""]);
+exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    font-family: 'Roboto', sans-serif;\n}\n.navbar-dropdown.is-not-active[data-v-0640a734] {\n    display: none;\n}\n.navbar-dropdown.is-active[data-v-0640a734] {\n    display: block;\n}\n", ""]);
 
 // exports
 
@@ -5510,7 +5489,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    height: 100%;\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n}\n\n", ""]);
+exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    height: 100%;\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n    stroke-width: 6px;\n}\n\n", ""]);
 
 // exports
 
@@ -25701,7 +25680,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container is-fullhd" },
+    { staticClass: "container is-main" },
     [
       _c("tree-tabs", { attrs: { trees: _vm.trees } }),
       _vm._v(" "),
@@ -38678,16 +38657,23 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     character: {
       classes: ['Amazon', 'Assasin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
       selected: ''
-    }
+    },
+    tree: ''
   },
   mutations: {
     selectClass: function selectClass(state, character) {
       state.character.selected = character;
+    },
+    setTree: function setTree(state, tree) {
+      state.tree = tree;
     }
   },
   getters: {
     character: function character(state) {
       return state.character;
+    },
+    tree: function tree(state) {
+      return state.tree;
     }
   }
 });

@@ -71,7 +71,6 @@
             }
         },
         mounted() {
-            console.log('NavBar mounted..');
         }
     }
 </script>
@@ -83,7 +82,6 @@
 }
 
 .character-select {
-    /* margin-left: auto; */
     font-family: 'Roboto', sans-serif;
 }
 

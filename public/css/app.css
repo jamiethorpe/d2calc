@@ -11220,3 +11220,8 @@ button:focus {
   padding-right: 0;
 }
 
+.container.is-main {
+  max-width: none;
+  width: auto;
+}
+

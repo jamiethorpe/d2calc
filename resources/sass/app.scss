@@ -57,3 +57,8 @@ button:focus {
 .navbar-dropdown a.navbar-item {
     padding-right: 0;
 }
+
+.container.is-main{
+	max-width: none;
+	width: auto;
+}

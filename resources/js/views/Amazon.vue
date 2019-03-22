@@ -1,5 +1,5 @@
 <template>
-    <div class="container is-fullhd">
+    <div class="container is-main">
         <tree-tabs :trees="trees"></tree-tabs>
 
         <class-nav-bar 
