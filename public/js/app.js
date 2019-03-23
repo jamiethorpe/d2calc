@@ -4658,6 +4658,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25673,6 +25681,14 @@ var render = function() {
   return _c(
     "svg",
     {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.x2 + _vm.y1 + _vm.y2 > 0,
+          expression: "x2+y1+y2 > 0"
+        }
+      ],
       staticClass: "skill-path",
       style: _vm.boxStyle,
       attrs: {
@@ -25750,16 +25766,40 @@ var render = function() {
                   _c(
                     "popper",
                     {
-                      attrs: { trigger: "hover", options: { placement: "top" } }
+                      attrs: {
+                        trigger: "hover",
+                        options: {
+                          placement: "top-end",
+                          modifiers: {
+                            preventOverflow: {
+                              enabled: true
+                            }
+                          }
+                        }
+                      }
                     },
                     [
-                      _c("div", { staticClass: "popper" }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(skill.description) +
-                            "\n                    "
-                        )
-                      ]),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !skill.isPlaceholder,
+                              expression: "!skill.isPlaceholder"
+                            }
+                          ],
+                          staticClass: "popper"
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(skill.description) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
                       _c(
                         "div",

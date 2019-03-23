@@ -12,8 +12,16 @@
             </skill-tree-path>
             <div class="columns is-marginless is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
-                    <popper trigger="hover" :options="{placement: 'top'}">
-                        <div class="popper">
+                    <popper 
+                        trigger="hover" 
+                        :options="{
+                            placement: 'top-end', 
+                            modifiers: {
+                                preventOverflow: {
+                                    enabled: true,
+                                },
+                            },}">
+                        <div v-show="!skill.isPlaceholder" class="popper">
                             {{ skill.description }}
                         </div>
                         <div 
