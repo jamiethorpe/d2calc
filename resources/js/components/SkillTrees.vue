@@ -12,31 +12,37 @@
             </skill-tree-path>
             <div class="columns is-marginless is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
-                    <div 
-                        @click.self="increaseSkill(skill, tree)" 
-                        @contextmenu.self.prevent="decreaseSkill(skill, tree)" 
-                        :class="[
-                            {[className] : !skill.isPlaceholder}, 
-                            toKebabCase(skill.name),
-                            {'available' : skill.available},
-                            {'unavailable' : !skill.available},
-                        ]" 
-                        class="skill"
-                        :ref="skill.name"
-                    >
-                        <div 
-                            v-if="!skill.isPlaceholder" 
-                            @click="resetSkill(skill, tree)" 
-                            :class="[{
-                                'hide' : skill.points <= 0, 
-                                'visible' : skill.points > 0, 
-                            }]" 
-                            class="skill-reset"
-                        >
-                            Reset
+                    <popper trigger="hover" :options="{placement: 'top'}">
+                        <div class="popper">
+                            {{ skill.description }}
                         </div>
-                        <div v-if="!skill.isPlaceholder" class="skill-counter" :class="{'plus-skills' : plusAllSkillsTotal > 0}">{{ skill.points + plusAllSkillsTotal }}</div>
-                    </div>
+                        <div 
+                            slot="reference"
+                            @click.self="increaseSkill(skill, tree)" 
+                            @contextmenu.self.prevent="decreaseSkill(skill, tree)" 
+                            :class="[
+                                {[className] : !skill.isPlaceholder}, 
+                                toKebabCase(skill.name),
+                                {'available' : skill.available},
+                                {'unavailable' : !skill.available},
+                            ]" 
+                            class="skill"
+                            :ref="skill.name"
+                        >
+                            <div 
+                                v-if="!skill.isPlaceholder" 
+                                @click="resetSkill(skill, tree)" 
+                                :class="[{
+                                    'hide' : skill.points <= 0, 
+                                    'visible' : skill.points > 0, 
+                                }]" 
+                                class="skill-reset"
+                            >
+                                Reset
+                            </div>
+                            <div v-if="!skill.isPlaceholder" class="skill-counter" :class="{'plus-skills' : plusAllSkillsTotal > 0}">{{ skill.points + plusAllSkillsTotal }}</div>
+                        </div>
+                    </popper>
                 </div>
             </div>
         </div>
@@ -47,12 +53,15 @@
 import skillTreePath from './SkillTreePath.vue';
 import Vue from 'vue';
 import debounce from 'debounce';
+import Popper from 'vue-popperjs';
+import 'vue-popperjs/dist/vue-popper.css';
 
 export default {
     name:'skill-trees',
     props: ['trees', 'className', 'plusAllSkillsTotal'],
     components: {
         skillTreePath,
+        'popper': Popper,
     },
     data() {
         return {
