@@ -30,8 +30,6 @@ export default {
     data() {
         return {
             class: 'Amazon',
-            pointsSpent: 0,
-            plusAllSkillsTotal: 0,
             trees: [
                 {
                     name: 'Javelin and Spear',
@@ -597,7 +595,13 @@ export default {
     computed: {
         lowerClassName() {
             return this.class.toLowerCase();
-        }
+        },
+        pointsSpent() {
+            return this.$store.getters.pointsSpent;
+        },
+        plusAllSkillsTotal() {
+            return this.$store.getters.plusAllSkillsTotal;
+        } 
     },
     methods: {
         selectClass() {
@@ -612,15 +616,14 @@ export default {
                     }
                 });
             });
-            this.pointsSpent = 0;
-            this.plusAllSkillsTotal = 0;
+            this.$store.commit('resetAllSkills');
         },
         plusAllSkills() {
-            this.plusAllSkillsTotal += 1;
+            this.$store.commit('plusAllSkills');
         },
         minusAllSkills() {
             if (this.plusAllSkillsTotal > 0) {
-                this.plusAllSkillsTotal -= 1;
+                this.$store.commit('minusAllSkills');
             }
         }
     },

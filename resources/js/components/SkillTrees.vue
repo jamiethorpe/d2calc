@@ -63,21 +63,21 @@ export default {
         increaseSkill(skill, tree) {
             if (!skill.isPlaceholder && skill.available) {
                 skill.points += 1;
-                this.$parent.pointsSpent += 1;
+                this.$store.commit('increasePoints');
                 this.checkForUnlockedSkills(skill, tree);
             }
         },
         decreaseSkill(skill, tree) {
             if (skill.points > 0 && !skill.isPlaceholder) {
                 skill.points -= 1;
-                this.$parent.pointsSpent -= 1;
+                this.$store.commit('decreasePoints', 1);
                 if (skill.points <= 0) {
                     this.checkForLockedSkills(skill, tree);
                 }
             }
         },
         resetSkill(skill, tree) {
-            this.$parent.pointsSpent = (this.$parent.pointsSpent - skill.points);
+            this.$store.commit('decreasePoints', skill.points);
             skill.points = 0;
             this.checkForLockedSkills(skill, tree);
         },
@@ -106,7 +106,7 @@ export default {
             });
 
             locks.forEach(lock => {
-                this.$parent.pointsSpent -= lock.points;
+                this.$store.commit('decreasePoints', lock.points);
                 lock.points = 0;
                 lock.available = false;
             });

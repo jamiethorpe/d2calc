@@ -43,6 +43,7 @@ import Helpers from './helpers';
 import App from './views/App';
 import Home from './views/Home';
 import Amazon from './views/Amazon';
+import Build from './views/Build';
 // import Assassin from './views/Assassin';
 // import Barbarian from './views/Barbarian';
 // import Druid from './views/Druid';
@@ -61,7 +62,36 @@ const router = new VueRouter({
         {
             path: '/amazon',
             name: 'Amazon',
-            component: Amazon
+            component: Build
+        },
+        {
+            path: '/assassin',
+            name: 'Assassin',
+            component: Build
+        },
+        {
+            path: '/barbarian',
+            name: 'Barbarian',
+            component: Build
+        },
+        {
+            path: '/druid',
+            name: 'Druid',
+            component: Build
+        },
+        {
+            path: '/paladin',
+            name: 'Paladin',
+            component: Build
+        },
+        {
+            path: '/necromancer',
+            name: 'Necromancer',
+            component: Build
+        }, {
+            path: '/sorceress',
+            name: 'Sorceress',
+            component: Build
         },
     ],
 });

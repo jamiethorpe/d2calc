@@ -4476,13 +4476,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    character: function character() {
-      return this.$store.getters.character;
+    classes: function classes() {
+      return this.$store.getters.classes;
+    },
+    selectedClass: function selectedClass() {
+      return this.$store.getters.selectedClass;
     }
   },
   methods: {
-    link: function link(character) {
-      return '/' + character;
+    selectClass: function selectClass(character) {
+      this.$store.commit('selectClass', character);
+      this.$router.push('/' + character);
     },
     toggleActive: function toggleActive() {
       this.isActive = !this.isActive;
@@ -4571,12 +4575,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.goesDownRight = true;
       }
-
-      console.log('From: ' + this.prereq + 'To: ' + this.skill.name);
-      console.log(this.skillStats.left - this.preStats.left);
-      console.log('Goes down left? ' + this.goesDownLeft);
-      console.log('Goes down straight? ' + this.goesDownStraight);
-      console.log('Goes down right? ' + this.goesDownRight);
     }
   },
   mounted: function mounted() {
@@ -4668,14 +4666,14 @@ __webpack_require__.r(__webpack_exports__);
     increaseSkill: function increaseSkill(skill, tree) {
       if (!skill.isPlaceholder && skill.available) {
         skill.points += 1;
-        this.$parent.pointsSpent += 1;
+        this.$store.commit('increasePoints');
         this.checkForUnlockedSkills(skill, tree);
       }
     },
     decreaseSkill: function decreaseSkill(skill, tree) {
       if (skill.points > 0 && !skill.isPlaceholder) {
         skill.points -= 1;
-        this.$parent.pointsSpent -= 1;
+        this.$store.commit('decreasePoints', 1);
 
         if (skill.points <= 0) {
           this.checkForLockedSkills(skill, tree);
@@ -4683,7 +4681,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     resetSkill: function resetSkill(skill, tree) {
-      this.$parent.pointsSpent = this.$parent.pointsSpent - skill.points;
+      this.$store.commit('decreasePoints', skill.points);
       skill.points = 0;
       this.checkForLockedSkills(skill, tree);
     },
@@ -4713,7 +4711,8 @@ __webpack_require__.r(__webpack_exports__);
         return lock.prerequisites.includes(skill.name);
       });
       locks.forEach(function (lock) {
-        _this.$parent.pointsSpent -= lock.points;
+        _this.$store.commit('decreasePoints', lock.points);
+
         lock.points = 0;
         lock.available = false;
       });
@@ -4858,8 +4857,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       class: 'Amazon',
-      pointsSpent: 0,
-      plusAllSkillsTotal: 0,
       trees: [{
         name: 'Javelin and Spear',
         isActive: true,
@@ -5364,6 +5361,12 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     lowerClassName: function lowerClassName() {
       return this.class.toLowerCase();
+    },
+    pointsSpent: function pointsSpent() {
+      return this.$store.getters.pointsSpent;
+    },
+    plusAllSkillsTotal: function plusAllSkillsTotal() {
+      return this.$store.getters.plusAllSkillsTotal;
     }
   },
   methods: {
@@ -5380,15 +5383,14 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       });
-      this.pointsSpent = 0;
-      this.plusAllSkillsTotal = 0;
+      this.$store.commit('resetAllSkills');
     },
     plusAllSkills: function plusAllSkills() {
-      this.plusAllSkillsTotal += 1;
+      this.$store.commit('plusAllSkills');
     },
     minusAllSkills: function minusAllSkills() {
       if (this.plusAllSkillsTotal > 0) {
-        this.plusAllSkillsTotal -= 1;
+        this.$store.commit('minusAllSkills');
       }
     }
   },
@@ -5424,6 +5426,99 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Build.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Build.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_TreeTabs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TreeTabs.vue */ "./resources/js/components/TreeTabs.vue");
+/* harmony import */ var _components_ClassNavBar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ClassNavBar.vue */ "./resources/js/components/ClassNavBar.vue");
+/* harmony import */ var _components_SkillTrees_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SkillTrees.vue */ "./resources/js/components/SkillTrees.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'tree-tabs': _components_TreeTabs_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    'class-nav-bar': _components_ClassNavBar_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    'skill-trees': _components_SkillTrees_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  name: 'Build',
+  data: function data() {
+    return {};
+  },
+  computed: {
+    class: function _class() {
+      return this.$store.getters.selectedClass;
+    },
+    trees: function trees() {
+      return this.$store.getters.trees;
+    },
+    lowerClassName: function lowerClassName() {
+      return this.class.toLowerCase();
+    },
+    pointsSpent: function pointsSpent() {
+      return this.$store.getters.pointsSpent;
+    },
+    plusAllSkillsTotal: function plusAllSkillsTotal() {
+      return this.$store.getters.plusAllSkillsTotal;
+    }
+  },
+  methods: {
+    selectClass: function selectClass(character) {
+      this.$store.commit('selectClass', character);
+    },
+    resetAll: function resetAll() {
+      this.trees.forEach(function (tree) {
+        tree.skills.forEach(function (skill) {
+          skill.points = 0;
+
+          if (skill.prerequisites[0] !== 'None') {
+            skill.available = false;
+          }
+        });
+      });
+      this.$store.commit('resetAllSkills');
+    },
+    plusAllSkills: function plusAllSkills() {
+      this.$store.commit('plusAllSkills');
+    },
+    minusAllSkills: function minusAllSkills() {
+      if (this.plusAllSkillsTotal > 0) {
+        this.$store.commit('minusAllSkills');
+      }
+    }
+  },
+  created: function created() {
+    if (!this.$store.getters.selectedClass) {
+      this.selectClass(this.$route.name);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Home.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Home.vue?vue&type=script&lang=js& ***!
@@ -5442,7 +5537,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   mounted: function mounted() {
-    console.log('Home mounted.');
+    this.$store.commit('selectClass', '');
   }
 });
 
@@ -5479,7 +5574,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    font-family: 'Roboto', sans-serif;\n}\n.navbar-dropdown.is-not-active[data-v-0640a734] {\n    display: none;\n}\n.navbar-dropdown.is-active[data-v-0640a734] {\n    display: block;\n}\n", ""]);
+exports.push([module.i, "\n.navbar-brand[data-v-0640a734] {\n    font-family: 'Diablo Heavy', serif;\n}\n.character-select[data-v-0640a734] {\n    font-family: 'Roboto', sans-serif;\n    padding: 0 0.75rem;\n}\n.navbar-dropdown.is-not-active[data-v-0640a734] {\n    display: none;\n}\n.navbar-dropdown.is-active[data-v-0640a734] {\n    display: block;\n}\n", ""]);
 
 // exports
 
@@ -25461,11 +25556,11 @@ var render = function() {
               on: { click: _vm.toggleActive }
             },
             [
-              _vm.character.selected
+              _vm.selectedClass
                 ? _c(
                     "a",
                     { staticClass: "navbar-link", attrs: { href: "#" } },
-                    [_vm._v(_vm._s(_vm.character.selected))]
+                    [_vm._v(_vm._s(_vm.selectedClass))]
                   )
                 : _c(
                     "a",
@@ -25482,22 +25577,26 @@ var render = function() {
                     "is-not-active": !_vm.isActive
                   }
                 },
-                _vm._l(_vm.character.classes, function(name, index) {
+                _vm._l(_vm.classes, function(name, index) {
                   return _c(
-                    "router-link",
+                    "a",
                     {
                       directives: [
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.character.selected != name,
-                          expression: "character.selected != name"
+                          value: _vm.selectedClass != name,
+                          expression: "selectedClass != name"
                         }
                       ],
                       key: index,
                       staticClass: "navbar-item",
-                      attrs: { to: _vm.link(name) },
-                      on: { click: _vm.toggleActive }
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.selectClass(name)
+                        }
+                      }
                     },
                     [
                       _vm._v(
@@ -25508,7 +25607,7 @@ var render = function() {
                     ]
                   )
                 }),
-                1
+                0
               )
             ]
           )
@@ -25815,6 +25914,57 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [_c("main-nav-bar"), _vm._v(" "), _c("router-view")], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Build.vue?vue&type=template&id=25ee05df&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Build.vue?vue&type=template&id=25ee05df& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container is-main" },
+    [
+      _c("tree-tabs", { attrs: { trees: _vm.trees } }),
+      _vm._v(" "),
+      _c("class-nav-bar", {
+        attrs: {
+          "points-spent": _vm.pointsSpent,
+          "plus-all-skills-total": _vm.plusAllSkillsTotal
+        },
+        on: {
+          resetAll: _vm.resetAll,
+          plusAllSkills: _vm.plusAllSkills,
+          minusAllSkills: _vm.minusAllSkills
+        }
+      }),
+      _vm._v(" "),
+      _c("skill-trees", {
+        attrs: {
+          trees: _vm.trees,
+          "class-name": _vm.lowerClassName,
+          "plus-all-skills-total": _vm.plusAllSkillsTotal
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38138,7 +38288,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
 /* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
 /* harmony import */ var _views_Amazon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Amazon */ "./resources/js/views/Amazon.vue");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
+/* harmony import */ var _views_Build__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Build */ "./resources/js/views/Build.vue");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -38178,6 +38329,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
 
 
 
+
  // import Assassin from './views/Assassin';
 // import Barbarian from './views/Barbarian';
 // import Druid from './views/Druid';
@@ -38194,7 +38346,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/amazon',
     name: 'Amazon',
-    component: _views_Amazon__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/assassin',
+    name: 'Assassin',
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/barbarian',
+    name: 'Barbarian',
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/druid',
+    name: 'Druid',
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/paladin',
+    name: 'Paladin',
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/necromancer',
+    name: 'Necromancer',
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }, {
+    path: '/sorceress',
+    name: 'Sorceress',
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 }); //Vuex store
 
@@ -38205,7 +38381,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   components: {
     App: _views_App__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  store: _store_store__WEBPACK_IMPORTED_MODULE_6__["store"],
+  store: _store_store__WEBPACK_IMPORTED_MODULE_7__["store"],
   router: router
 }); // Bulma NavBar Burger Script
 
@@ -38721,6 +38897,520 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/characters/amazon.js":
+/*!*************************************************!*\
+  !*** ./resources/js/store/characters/amazon.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  class: 'Amazon',
+  trees: [{
+    name: 'Javelin and Spear',
+    isActive: true,
+    skills: [{
+      id: 1,
+      isPlaceholder: false,
+      name: 'Jab',
+      description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: false,
+      name: 'Power Strike',
+      description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
+      points: 0,
+      prerequisites: ['Jab'],
+      unlockedBy: ['Jab'],
+      available: false
+    }, {
+      id: 6,
+      isPlaceholder: false,
+      name: 'Poison Javelin',
+      description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: false,
+      name: 'Impale',
+      description: 'A more powerful attack with an increased chance the weapon will lose durability.',
+      points: 0,
+      prerequisites: ['Jab'],
+      unlockedBy: ['Jab'],
+      available: false
+    }, {
+      id: 8,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 9,
+      isPlaceholder: false,
+      name: 'Lightning Bolt',
+      description: 'Leaves a trail of lightning and does lightning damage.',
+      points: 0,
+      prerequisites: ['Poison Javelin'],
+      unlockedBy: ['Poison Javelin'],
+      available: false
+    }, {
+      id: 10,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 11,
+      isPlaceholder: false,
+      name: 'Charged Strike',
+      description: 'A lightning attack that releases charged bolts.',
+      points: 0,
+      prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt'],
+      unlockedBy: ['Power Strike', 'Lightning Bolt'],
+      available: false
+    }, {
+      id: 12,
+      isPlaceholder: false,
+      name: 'Plague Javelin',
+      description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
+      points: 0,
+      prerequisites: ['Poison Javelin', 'Lightning Bolt'],
+      unlockedBy: ['Lightning Bolt'],
+      available: false
+    }, {
+      id: 13,
+      isPlaceholder: false,
+      name: 'Fend',
+      description: 'Rapidly strikes several close targets.',
+      points: 0,
+      prerequisites: ['Jab', 'Impale'],
+      unlockedBy: ['Impale'],
+      available: false
+    }, {
+      id: 14,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 15,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 16,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 17,
+      isPlaceholder: false,
+      name: 'Lightning Strike',
+      description: 'Does lightning damage and releases chain lightning from target.',
+      points: 0,
+      prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt', 'Charged Strike'],
+      unlockedBy: ['Charged Strike'],
+      available: false
+    }, {
+      id: 18,
+      isPlaceholder: false,
+      name: 'Lightning Fury',
+      description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
+      points: 0,
+      prerequisites: ['Poison Javelin', 'Lightning Bolt', 'Plague Javelin'],
+      unlockedBy: ['Plague Javelin'],
+      available: false
+    }]
+  }, {
+    name: 'Passive and Magic',
+    isActive: false,
+    skills: [{
+      id: 1,
+      isPlaceholder: false,
+      name: 'Inner Sight',
+      description: 'Illuminates monsters and decreases their ability to defend themselves.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: false,
+      name: 'Critical Strike',
+      description: 'Grants a chance to do double physical damage with your attacks.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: false,
+      name: 'Dodge',
+      description: 'Grants a chance to move out of the way of a melee attack while standing still.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 6,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: false,
+      name: 'Slow Missiles',
+      description: 'Slows down all missile and spell projectiles cast by enemies.',
+      points: 0,
+      prerequisites: ['Inner Sight'],
+      unlockedBy: ['Inner Sight'],
+      available: false
+    }, {
+      id: 8,
+      isPlaceholder: false,
+      name: 'Avoid',
+      description: 'Grants a chance to move out of the way of a missile attack while standing still.',
+      points: 0,
+      prerequisites: ['Dodge'],
+      unlockedBy: ['Dodge'],
+      available: false
+    }, {
+      id: 9,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 10,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 11,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 12,
+      isPlaceholder: false,
+      name: 'Penetrate',
+      description: 'Additional chance to hit.',
+      points: 0,
+      prerequisites: ['Critical Strike'],
+      unlockedBy: ['Critical Strike'],
+      available: false
+    }, {
+      id: 13,
+      isPlaceholder: false,
+      name: 'Decoy',
+      description: 'Creates a duplicate image to distract enemies.',
+      points: 0,
+      prerequisites: ['Inner Sight', 'Slow Missiles'],
+      unlockedBy: ['Slow Missiles'],
+      available: false
+    }, {
+      id: 14,
+      isPlaceholder: false,
+      name: 'Evade',
+      description: 'Grants a chance to escape any attack while moving.',
+      points: 0,
+      prerequisites: ['Dodge', 'Avoid'],
+      unlockedBy: ['Avoid'],
+      available: false
+    }, {
+      id: 15,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 16,
+      isPlaceholder: false,
+      name: 'Valkyrie',
+      description: 'Summons a powerful Valkyrie warrior to fight by your side.',
+      points: 0,
+      prerequisites: ['Inner Sight', 'Dodge', 'Slow Missiles', 'Avoid', 'Decoy', 'Evade'],
+      unlockedBy: ['Decoy', 'Evade'],
+      available: false
+    }, {
+      id: 17,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 18,
+      isPlaceholder: false,
+      name: 'Pierce',
+      description: 'A chance that your missile will continue through its victim.',
+      points: 0,
+      prerequisites: ['Critical Strike', 'Penetrate'],
+      unlockedBy: ['Penetrate'],
+      available: false
+    }]
+  }, {
+    name: 'Bow and Crossbow',
+    isActive: false,
+    skills: [{
+      id: 1,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: false,
+      name: 'Magic Arrow',
+      description: 'Creates an arrow composed entirely from Mana. Damage starts at the same level as a normal arrow and increases with higher levels of training.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: false,
+      name: 'Fire Arrow',
+      description: 'Enchants an arrow with the additional damage of fire.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Cold Arrow',
+      description: 'Enchants an arrow, adding cold damage and slowing your enemy.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: false,
+      name: 'Multiple Shot',
+      description: 'Splits one arrow into several. Only 3/4 of the Damage is taken from your weapon.',
+      points: 0,
+      prerequisites: ['Magic Arrow'],
+      unlockedBy: ['Magic Arrow'],
+      available: false
+    }, {
+      id: 6,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 8,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 9,
+      isPlaceholder: false,
+      name: 'Exploding Arrow',
+      description: 'Adds fire damage to normal arrows and explodes on impact.',
+      points: 0,
+      prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot'],
+      unlockedBy: ['Fire Arrow', 'Multiple Shot'],
+      available: false
+    }, {
+      id: 10,
+      isPlaceholder: false,
+      name: 'Ice Arrow',
+      description: 'Arrows have additional cold damage and momentarily freeze the target.',
+      points: 0,
+      prerequisites: ['Cold Arrow'],
+      unlockedBy: ['Cold Arrow'],
+      available: false
+    }, {
+      id: 11,
+      isPlaceholder: false,
+      name: 'Guided Arrow',
+      description: 'Imbues an arrow with the ability to seek its nearest target.',
+      points: 0,
+      prerequisites: ['Magic Arrow', 'Cold Arrow', 'Multiple Shot'],
+      unlockedBy: ['Multiple Shot', 'Cold Arrow'],
+      available: false
+    }, {
+      id: 12,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 13,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 14,
+      isPlaceholder: false,
+      name: 'Strafe',
+      description: 'Fires a volley of arrows at multiple nearby targets.',
+      points: 0,
+      prerequisites: ['Magic Arrow', 'Multiple Shot', 'Cold Arrow', 'Guided Arrow'],
+      unlockedBy: ['Guided Arrow'],
+      available: false
+    }, {
+      id: 15,
+      isPlaceholder: false,
+      name: 'Immolation Arrow',
+      description: 'Enchants an arrow that does fire damage, and explodes into a patch of fire on the ground. Creatures passing through the flames take additional damage.',
+      points: 0,
+      prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot', 'Exploding Arrow'],
+      unlockedBy: ['Exploding Arrow'],
+      available: false
+    }, {
+      id: 16,
+      isPlaceholder: false,
+      name: 'Freezing Arrow',
+      description: 'Enchants an arrow to deliver cold damage that freezes any monsters near the point of impact.',
+      points: 0,
+      prerequisites: ['Cold Arrow', 'Ice Arrow'],
+      unlockedBy: ['Ice Arrow'],
+      available: false
+    }, {
+      id: 17,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 18,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }]
+  }]
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/store.js":
 /*!*************************************!*\
   !*** ./resources/js/store/store.js ***!
@@ -38734,31 +39424,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _characters_amazon_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characters/amazon.js */ "./resources/js/store/characters/amazon.js");
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    character: {
-      classes: ['Amazon', 'Assasin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
-      selected: ''
-    },
-    tree: ''
+    classes: ['Amazon', 'Assasin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
+    selectedClass: '',
+    characters: [_characters_amazon_js__WEBPACK_IMPORTED_MODULE_2__["default"]],
+    tree: '',
+    pointsSpent: 0,
+    plusAllSkillsTotal: 0
   },
   mutations: {
     selectClass: function selectClass(state, character) {
-      state.character.selected = character;
+      state.selectedClass = character;
     },
     setTree: function setTree(state, tree) {
       state.tree = tree;
+    },
+    increasePoints: function increasePoints(state) {
+      state.pointsSpent += 1;
+    },
+    decreasePoints: function decreasePoints(state, value) {
+      state.pointsSpent -= value;
+    },
+    plusAllSkills: function plusAllSkills(state) {
+      state.plusAllSkillsTotal += 1;
+    },
+    minusAllSkills: function minusAllSkills(state) {
+      state.plusAllSkillsTotal -= 1;
+    },
+    resetAllSkills: function resetAllSkills(state) {
+      state.pointsSpent = 0;
+      state.plusAllSkillsTotal = 0;
     }
   },
   getters: {
-    character: function character(state) {
-      return state.character;
+    classes: function classes(state) {
+      return state.classes;
+    },
+    selectedClass: function selectedClass(state) {
+      return state.selectedClass;
     },
     tree: function tree(state) {
       return state.tree;
+    },
+    pointsSpent: function pointsSpent(state) {
+      return state.pointsSpent;
+    },
+    plusAllSkillsTotal: function plusAllSkillsTotal(state) {
+      return state.plusAllSkillsTotal;
+    },
+    trees: function trees(state) {
+      if (state.selectedClass) {
+        return state.characters.find(function (character) {
+          return character.class === state.selectedClass;
+        }).trees;
+      }
     }
   }
 });
@@ -38916,6 +39641,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_91ac6b5c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_91ac6b5c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Build.vue":
+/*!**************************************!*\
+  !*** ./resources/js/views/Build.vue ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Build_vue_vue_type_template_id_25ee05df___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Build.vue?vue&type=template&id=25ee05df& */ "./resources/js/views/Build.vue?vue&type=template&id=25ee05df&");
+/* harmony import */ var _Build_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Build.vue?vue&type=script&lang=js& */ "./resources/js/views/Build.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Build_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Build_vue_vue_type_template_id_25ee05df___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Build_vue_vue_type_template_id_25ee05df___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/Build.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/Build.vue?vue&type=script&lang=js&":
+/*!***************************************************************!*\
+  !*** ./resources/js/views/Build.vue?vue&type=script&lang=js& ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Build_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Build.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Build.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Build_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/Build.vue?vue&type=template&id=25ee05df&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/views/Build.vue?vue&type=template&id=25ee05df& ***!
+  \*********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Build_vue_vue_type_template_id_25ee05df___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Build.vue?vue&type=template&id=25ee05df& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Build.vue?vue&type=template&id=25ee05df&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Build_vue_vue_type_template_id_25ee05df___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Build_vue_vue_type_template_id_25ee05df___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

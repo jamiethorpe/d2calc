@@ -11,19 +11,19 @@
                 </div>
                 <div class="navbar-end">
                     <div v-on-clickaway="notActive" @click="toggleActive" class="navbar-item has-dropdown character-select">
-                        <a v-if="character.selected" class="navbar-link" href="#">{{ character.selected }}</a>
+                        <a v-if="selectedClass" class="navbar-link" href="#">{{ selectedClass }}</a>
                         <a v-else class="navbar-link" href="#">Character</a>
 
                         <div class="navbar-dropdown" :class="{'is-active' : isActive, 'is-not-active' : !isActive}">
-                            <router-link 
-                            @click="toggleActive"
+                            <a
+                            href="#"
+                            @click="selectClass(name)"
                             class="navbar-item"
-                            v-show="character.selected != name"
-                            v-for="(name, index) in character.classes"
-                            :key="index"
-                            :to="link(name)">
+                            v-show="selectedClass != name"
+                            v-for="(name, index) in classes"
+                            :key="index">
                                 {{ name }}
-                            </router-link>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -43,13 +43,17 @@
             }
         },
         computed: {
-            character() {
-                return this.$store.getters.character;
+            classes() {
+                return this.$store.getters.classes;
             },
+            selectedClass() {
+                return this.$store.getters.selectedClass;
+            }
         },
         methods: {
-            link(character) {
-                return '/' + character;
+            selectClass(character) {
+                this.$store.commit('selectClass', character);
+                this.$router.push('/' + character);
             },
             toggleActive() {
                 this.isActive = !this.isActive;
@@ -72,6 +76,7 @@
 
 .character-select {
     font-family: 'Roboto', sans-serif;
+    padding: 0 0.75rem;
 }
 
 .navbar-dropdown.is-not-active {

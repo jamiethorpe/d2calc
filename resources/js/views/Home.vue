@@ -9,7 +9,7 @@
         components: {
         },
         mounted() {
-            console.log('Home mounted.');
+            this.$store.commit('selectClass', '');
         }
     }
 </script>

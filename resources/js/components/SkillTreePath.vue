@@ -73,11 +73,6 @@ export default {
             } else {
                 this.goesDownRight = true;
             }
-            console.log('From: ' + this.prereq + 'To: ' + this.skill.name);
-            console.log(this.skillStats.left - this.preStats.left);
-            console.log('Goes down left? ' + this.goesDownLeft);
-            console.log('Goes down straight? ' + this.goesDownStraight);
-            console.log('Goes down right? ' + this.goesDownRight);
         }
     },
     mounted() {
