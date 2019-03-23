@@ -21,6 +21,17 @@ export const store = new Vuex.Store({
     },
     mutations: {
         selectClass(state, character) {
+            state.characters.forEach(character => {
+                character.trees.forEach(tree => {
+                    tree.skills.forEach(skill => {
+                        skill.points = 0;
+                    });
+                });
+            });
+            // let tree = state.characters.find(character => character.class === state.selectedClass).trees[0].name;
+            // this.$store.commit('setTree', tree);
+            state.pointsSpent = 0;
+            state.plusAllSkillsTotal = 0;
             state.selectedClass = character;
         },
         setTree(state, tree) {
@@ -65,4 +76,7 @@ export const store = new Vuex.Store({
             }
         },
     },
+    actions: {
+
+    }
 });

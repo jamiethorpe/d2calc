@@ -22,7 +22,7 @@
                                 },
                             },}">
                         <div v-show="!skill.isPlaceholder" class="popper">
-                            {{ skill.description }}
+                            <span class="skill-name">{{ skill.name }}</span> - {{ skill.description }}
                         </div>
                         <div 
                             slot="reference"
@@ -171,6 +171,14 @@ export default {
             },
             { deep: true }
         );
+        this.$store.watch(function(state) {
+                state.selectedClass;
+            },
+            () => {
+                this.positionSkillPaths();
+            },
+            { deep: true }
+        );
     }
 }
 </script>
@@ -237,5 +245,9 @@ export default {
 
     .skill.placeholder {
         opacity: 0;
+    }
+
+    .skill-name {
+        font-weight: bold;
     }
 </style>

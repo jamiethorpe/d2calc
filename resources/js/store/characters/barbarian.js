@@ -313,7 +313,7 @@ export default {
                 },
                 {
                     id: 13,
-                    isPlaceholder: true,
+                    isPlaceholder: false,
                     name: 'Increased Speed',
                     description: 'Increases your walk and run speeds.',
                     points: 0,

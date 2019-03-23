@@ -4582,9 +4582,8 @@ __webpack_require__.r(__webpack_exports__);
     this.determineDirection();
   },
   updated: function updated() {
-    this.$nextTick(function () {
-      this.determineDirection();
-    });
+    // this.$nextTick(function () {
+    this.determineDirection(); // });
   }
 });
 
@@ -4783,6 +4782,13 @@ __webpack_require__.r(__webpack_exports__);
     this.positionSkillPaths();
     this.$store.watch(function (state) {
       state.tree;
+    }, function () {
+      _this3.positionSkillPaths();
+    }, {
+      deep: true
+    });
+    this.$store.watch(function (state) {
+      state.selectedClass;
     }, function () {
       _this3.positionSkillPaths();
     }, {
@@ -5048,7 +5054,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    /* height: 100%; */\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n    stroke-width: 6px;\n}\n\n", ""]);
+exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n    stroke-width: 6px;\n}\n\n", ""]);
 
 // exports
 
@@ -5067,7 +5073,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-name {\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -25159,8 +25165,11 @@ var render = function() {
                           staticClass: "popper"
                         },
                         [
+                          _c("span", { staticClass: "skill-name" }, [
+                            _vm._v(_vm._s(skill.name))
+                          ]),
                           _vm._v(
-                            "\n                        " +
+                            " - " +
                               _vm._s(skill.description) +
                               "\n                    "
                           )
@@ -42238,7 +42247,7 @@ __webpack_require__.r(__webpack_exports__);
       available: true
     }, {
       id: 13,
-      isPlaceholder: true,
+      isPlaceholder: false,
       name: 'Increased Speed',
       description: 'Increases your walk and run speeds.',
       points: 0,
@@ -42495,6 +42504,17 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   },
   mutations: {
     selectClass: function selectClass(state, character) {
+      state.characters.forEach(function (character) {
+        character.trees.forEach(function (tree) {
+          tree.skills.forEach(function (skill) {
+            skill.points = 0;
+          });
+        });
+      }); // let tree = state.characters.find(character => character.class === state.selectedClass).trees[0].name;
+      // this.$store.commit('setTree', tree);
+
+      state.pointsSpent = 0;
+      state.plusAllSkillsTotal = 0;
       state.selectedClass = character;
     },
     setTree: function setTree(state, tree) {
@@ -42540,7 +42560,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         }).trees;
       }
     }
-  }
+  },
+  actions: {}
 });
 
 /***/ }),

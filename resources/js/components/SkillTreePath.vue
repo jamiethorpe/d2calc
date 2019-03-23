@@ -80,9 +80,9 @@ export default {
         this.determineDirection();
     },
     updated() {
-        this.$nextTick(function () {
+        // this.$nextTick(function () {
             this.determineDirection();
-        });
+        // });
     }
 }
 </script>
@@ -95,7 +95,6 @@ export default {
     z-index: 0;
     left: 0;
     top: 0;
-    /* height: 100%; */
 }
 
 .skill-path line {
