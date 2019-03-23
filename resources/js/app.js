@@ -1,10 +1,4 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 //Promise polyfill
@@ -37,19 +31,9 @@ Vue.mixin({
     }
 });
 
-//Helpers
-import Helpers from './helpers';
-
 import App from './views/App';
 import Home from './views/Home';
-import Amazon from './views/Amazon';
 import Build from './views/Build';
-// import Assassin from './views/Assassin';
-// import Barbarian from './views/Barbarian';
-// import Druid from './views/Druid';
-// import Paladin from './views/Paladin';
-// import Necromancer from './views/Necromancer';
-// import Sorceress from './views/Sorceress';
 
 const router = new VueRouter({
     mode: 'history',

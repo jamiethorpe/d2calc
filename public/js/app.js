@@ -4535,7 +4535,8 @@ __webpack_require__.r(__webpack_exports__);
       } else if (this.goesDownStraight) {
         return {
           left: 'calc(' + this.preStats.left + 'px + 2rem)',
-          top: 'calc(' + this.preStats.top + 'px + 0.5rem)'
+          top: 'calc(' + this.preStats.top + 'px + 0.5rem)',
+          height: this.y2
         };
       } else {
         return {
@@ -4836,592 +4837,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_TreeTabs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TreeTabs.vue */ "./resources/js/components/TreeTabs.vue");
-/* harmony import */ var _components_ClassNavBar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ClassNavBar.vue */ "./resources/js/components/ClassNavBar.vue");
-/* harmony import */ var _components_SkillTrees_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/SkillTrees.vue */ "./resources/js/components/SkillTrees.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    'tree-tabs': _components_TreeTabs_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    'class-nav-bar': _components_ClassNavBar_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    'skill-trees': _components_SkillTrees_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  name: 'Amazon',
-  data: function data() {
-    return {
-      class: 'Amazon',
-      trees: [{
-        name: 'Javelin and Spear',
-        isActive: true,
-        skills: [{
-          id: 1,
-          isPlaceholder: false,
-          name: 'Jab',
-          description: 'Multiple attacks within the time span of a normal attack, each jab a bit less powerful than the last up until level 6.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 2,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 3,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 4,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 5,
-          isPlaceholder: false,
-          name: 'Power Strike',
-          description: 'Adds lightning damage and increases normal damage to thrusting attacks.',
-          points: 0,
-          prerequisites: ['Jab'],
-          unlockedBy: ['Jab'],
-          available: false
-        }, {
-          id: 6,
-          isPlaceholder: false,
-          name: 'Poison Javelin',
-          description: 'Thrown javelin causes poison damage and leaves a trail of poison clouds.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 7,
-          isPlaceholder: false,
-          name: 'Impale',
-          description: 'A more powerful attack with an increased chance the weapon will lose durability.',
-          points: 0,
-          prerequisites: ['Jab'],
-          unlockedBy: ['Jab'],
-          available: false
-        }, {
-          id: 8,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 9,
-          isPlaceholder: false,
-          name: 'Lightning Bolt',
-          description: 'Leaves a trail of lightning and does lightning damage.',
-          points: 0,
-          prerequisites: ['Poison Javelin'],
-          unlockedBy: ['Poison Javelin'],
-          available: false
-        }, {
-          id: 10,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 11,
-          isPlaceholder: false,
-          name: 'Charged Strike',
-          description: 'A lightning attack that releases charged bolts.',
-          points: 0,
-          prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt'],
-          unlockedBy: ['Power Strike', 'Lightning Bolt'],
-          available: false
-        }, {
-          id: 12,
-          isPlaceholder: false,
-          name: 'Plague Javelin',
-          description: 'Similar to Poison Javelin with an additional cloud of expanding poison at the point of impact.',
-          points: 0,
-          prerequisites: ['Poison Javelin', 'Lightning Bolt'],
-          unlockedBy: ['Lightning Bolt'],
-          available: false
-        }, {
-          id: 13,
-          isPlaceholder: false,
-          name: 'Fend',
-          description: 'Rapidly strikes several close targets.',
-          points: 0,
-          prerequisites: ['Jab', 'Impale'],
-          unlockedBy: ['Impale'],
-          available: false
-        }, {
-          id: 14,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 15,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 16,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 17,
-          isPlaceholder: false,
-          name: 'Lightning Strike',
-          description: 'Does lightning damage and releases chain lightning from target.',
-          points: 0,
-          prerequisites: ['Jab', 'Poison Javelin', 'Power Strike', 'Lightning Bolt', 'Charged Strike'],
-          unlockedBy: ['Charged Strike'],
-          available: false
-        }, {
-          id: 18,
-          isPlaceholder: false,
-          name: 'Lightning Fury',
-          description: 'Creates a powerful lightning bolt that releases multiple lightning bolts from target.',
-          points: 0,
-          prerequisites: ['Poison Javelin', 'Lightning Bolt', 'Plague Javelin'],
-          unlockedBy: ['Plague Javelin'],
-          available: false
-        }]
-      }, {
-        name: 'Passive and Magic',
-        isActive: false,
-        skills: [{
-          id: 1,
-          isPlaceholder: false,
-          name: 'Inner Sight',
-          description: 'Illuminates monsters and decreases their ability to defend themselves.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 2,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 3,
-          isPlaceholder: false,
-          name: 'Critical Strike',
-          description: 'Grants a chance to do double physical damage with your attacks.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 4,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 5,
-          isPlaceholder: false,
-          name: 'Dodge',
-          description: 'Grants a chance to move out of the way of a melee attack while standing still.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 6,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 7,
-          isPlaceholder: false,
-          name: 'Slow Missiles',
-          description: 'Slows down all missile and spell projectiles cast by enemies.',
-          points: 0,
-          prerequisites: ['Inner Sight'],
-          unlockedBy: ['Inner Sight'],
-          available: false
-        }, {
-          id: 8,
-          isPlaceholder: false,
-          name: 'Avoid',
-          description: 'Grants a chance to move out of the way of a missile attack while standing still.',
-          points: 0,
-          prerequisites: ['Dodge'],
-          unlockedBy: ['Dodge'],
-          available: false
-        }, {
-          id: 9,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 10,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 11,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 12,
-          isPlaceholder: false,
-          name: 'Penetrate',
-          description: 'Additional chance to hit.',
-          points: 0,
-          prerequisites: ['Critical Strike'],
-          unlockedBy: ['Critical Strike'],
-          available: false
-        }, {
-          id: 13,
-          isPlaceholder: false,
-          name: 'Decoy',
-          description: 'Creates a duplicate image to distract enemies.',
-          points: 0,
-          prerequisites: ['Inner Sight', 'Slow Missiles'],
-          unlockedBy: ['Slow Missiles'],
-          available: false
-        }, {
-          id: 14,
-          isPlaceholder: false,
-          name: 'Evade',
-          description: 'Grants a chance to escape any attack while moving.',
-          points: 0,
-          prerequisites: ['Dodge', 'Avoid'],
-          unlockedBy: ['Avoid'],
-          available: false
-        }, {
-          id: 15,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 16,
-          isPlaceholder: false,
-          name: 'Valkyrie',
-          description: 'Summons a powerful Valkyrie warrior to fight by your side.',
-          points: 0,
-          prerequisites: ['Inner Sight', 'Dodge', 'Slow Missiles', 'Avoid', 'Decoy', 'Evade'],
-          unlockedBy: ['Decoy', 'Evade'],
-          available: false
-        }, {
-          id: 17,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 18,
-          isPlaceholder: false,
-          name: 'Pierce',
-          description: 'A chance that your missile will continue through its victim.',
-          points: 0,
-          prerequisites: ['Critical Strike', 'Penetrate'],
-          unlockedBy: ['Penetrate'],
-          available: false
-        }]
-      }, {
-        name: 'Bow and Crossbow',
-        isActive: false,
-        skills: [{
-          id: 1,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 2,
-          isPlaceholder: false,
-          name: 'Magic Arrow',
-          description: 'Creates an arrow composed entirely from Mana. Damage starts at the same level as a normal arrow and increases with higher levels of training.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 3,
-          isPlaceholder: false,
-          name: 'Fire Arrow',
-          description: 'Enchants an arrow with the additional damage of fire.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 4,
-          isPlaceholder: false,
-          name: 'Cold Arrow',
-          description: 'Enchants an arrow, adding cold damage and slowing your enemy.',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 5,
-          isPlaceholder: false,
-          name: 'Multiple Shot',
-          description: 'Splits one arrow into several. Only 3/4 of the Damage is taken from your weapon.',
-          points: 0,
-          prerequisites: ['Magic Arrow'],
-          unlockedBy: ['Magic Arrow'],
-          available: false
-        }, {
-          id: 6,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 7,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 8,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 9,
-          isPlaceholder: false,
-          name: 'Exploding Arrow',
-          description: 'Adds fire damage to normal arrows and explodes on impact.',
-          points: 0,
-          prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot'],
-          unlockedBy: ['Fire Arrow', 'Multiple Shot'],
-          available: false
-        }, {
-          id: 10,
-          isPlaceholder: false,
-          name: 'Ice Arrow',
-          description: 'Arrows have additional cold damage and momentarily freeze the target.',
-          points: 0,
-          prerequisites: ['Cold Arrow'],
-          unlockedBy: ['Cold Arrow'],
-          available: false
-        }, {
-          id: 11,
-          isPlaceholder: false,
-          name: 'Guided Arrow',
-          description: 'Imbues an arrow with the ability to seek its nearest target.',
-          points: 0,
-          prerequisites: ['Magic Arrow', 'Cold Arrow', 'Multiple Shot'],
-          unlockedBy: ['Multiple Shot', 'Cold Arrow'],
-          available: false
-        }, {
-          id: 12,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 13,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 14,
-          isPlaceholder: false,
-          name: 'Strafe',
-          description: 'Fires a volley of arrows at multiple nearby targets.',
-          points: 0,
-          prerequisites: ['Magic Arrow', 'Multiple Shot', 'Cold Arrow', 'Guided Arrow'],
-          unlockedBy: ['Guided Arrow'],
-          available: false
-        }, {
-          id: 15,
-          isPlaceholder: false,
-          name: 'Immolation Arrow',
-          description: 'Enchants an arrow that does fire damage, and explodes into a patch of fire on the ground. Creatures passing through the flames take additional damage.',
-          points: 0,
-          prerequisites: ['Magic Arrow', 'Fire Arrow', 'Multiple Shot', 'Exploding Arrow'],
-          unlockedBy: ['Exploding Arrow'],
-          available: false
-        }, {
-          id: 16,
-          isPlaceholder: false,
-          name: 'Freezing Arrow',
-          description: 'Enchants an arrow to deliver cold damage that freezes any monsters near the point of impact.',
-          points: 0,
-          prerequisites: ['Cold Arrow', 'Ice Arrow'],
-          unlockedBy: ['Ice Arrow'],
-          available: false
-        }, {
-          id: 17,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }, {
-          id: 18,
-          isPlaceholder: true,
-          name: 'Placeholder',
-          description: 'Placeholder',
-          points: 0,
-          prerequisites: ['None'],
-          unlockedBy: ['None'],
-          available: true
-        }]
-      }]
-    };
-  },
-  computed: {
-    lowerClassName: function lowerClassName() {
-      return this.class.toLowerCase();
-    },
-    pointsSpent: function pointsSpent() {
-      return this.$store.getters.pointsSpent;
-    },
-    plusAllSkillsTotal: function plusAllSkillsTotal() {
-      return this.$store.getters.plusAllSkillsTotal;
-    }
-  },
-  methods: {
-    selectClass: function selectClass() {
-      this.$store.commit('selectClass', this.class);
-    },
-    resetAll: function resetAll() {
-      this.trees.forEach(function (tree) {
-        tree.skills.forEach(function (skill) {
-          skill.points = 0;
-
-          if (skill.prerequisites[0] !== 'None') {
-            skill.available = false;
-          }
-        });
-      });
-      this.$store.commit('resetAllSkills');
-    },
-    plusAllSkills: function plusAllSkills() {
-      this.$store.commit('plusAllSkills');
-    },
-    minusAllSkills: function minusAllSkills() {
-      if (this.plusAllSkillsTotal > 0) {
-        this.$store.commit('minusAllSkills');
-      }
-    }
-  },
-  mounted: function mounted() {
-    this.selectClass();
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/App.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/App.vue?vue&type=script&lang=js& ***!
@@ -5633,7 +5048,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    height: 100%;\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n    stroke-width: 6px;\n}\n\n", ""]);
+exports.push([module.i, "\n.skill-path {\n    display: inline-block;\n    position: absolute;\n    z-index: 0;\n    left: 0;\n    top: 0;\n    /* height: 100%; */\n}\n.skill-path line {\n    stroke: #6b6b6b;\n    z-index: 2;\n    stroke-width: 6px;\n}\n\n", ""]);
 
 // exports
 
@@ -5672,25 +5087,6 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.tabs a[data-v-d95498b2] {\n    color: #5f5f5f;\n}\n.tabs.tree-tabs ul[data-v-d95498b2] {\n    border-bottom: none;\n}\n.tabs li.is-active a[data-v-d95498b2] {\n    border-bottom-color: #beb8a2;\n    color: #beb8a2;\n}\n.tabs[data-v-d95498b2]:not(:last-child) {\n    margin-bottom: 0.75rem;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.hide {\n    visibility: hidden;\n}\n.visible {\n    visibility: visible;\n}\n.skill.amazon {\n    cursor: pointer;\n}\n.skill.amazon {\n    background-image: url(\"/img/amazon_skills.png\");\n    background-size: 1000%;\n    display:block;\n}\n.amazon.jab {\n    background-position: 0 0;\n}\n.amazon.power-strike {\n    background-position: 11.1111% 0;\n}\n.amazon.poison-javelin {\n    background-position: 22.2222% 0;\n}\n.amazon.impale {\n    background-position: 33.3333% 0;\n}\n.amazon.lightning-bolt {\n    background-position: 44.4444% 0;\n}\n.amazon.charged-strike {\n    background-position: 55.5555% 0;\n}\n.amazon.plague-javelin {\n    background-position: 66.6666% 0;\n}\n.amazon.fend {\n    background-position: 77.7777% 0;\n}\n.amazon.lightning-strike {\n    background-position: 88.8888% 0;\n}\n.amazon.lightning-fury {\n    background-position: 100% 0;\n}\n.amazon.inner-sight {\n    background-position: 0 50%;\n}\n.amazon.critical-strike {\n    background-position: 11.1111% 50%;\n}\n.amazon.dodge {\n    background-position: 22.2222% 50%;\n}\n.amazon.slow-missiles {\n    background-position: 33.3333% 50%;\n}\n.amazon.avoid {\n    background-position: 44.4444% 50%;\n}\n.amazon.penetrate {\n    background-position: 55.5555% 50%;\n}\n.amazon.decoy {\n    background-position: 66.6666% 50%;\n}\n.amazon.evade {\n    background-position: 77.7777% 50%;\n}\n.amazon.valkyrie {\n    background-position: 88.8888% 50%;\n}\n.amazon.pierce {\n    background-position: 100% 50%;\n}\n.amazon.magic-arrow {\n    background-position: 0 100%;\n}\n.amazon.fire-arrow {\n    background-position: 11.1111% 100%;\n}\n.amazon.cold-arrow {\n    background-position: 22.2222% 100%;\n}\n.amazon.multiple-shot {\n    background-position: 33.3333% 100%;\n}\n.amazon.exploding-arrow {\n    background-position: 44.4444% 100%;\n}\n.amazon.ice-arrow {\n    background-position: 55.5555% 100%;\n}\n.amazon.guided-arrow {\n    background-position: 66.6666% 100%;\n}\n.amazon.strafe {\n    background-position: 77.7777% 100%;\n}\n.amazon.immolation-arrow {\n    background-position: 88.8888% 100%;\n}\n.amazon.freezing-arrow {\n    background-position: 100% 100%;\n}\n", ""]);
 
 // exports
 
@@ -24745,36 +24141,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Amazon.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -25938,57 +25304,6 @@ var render = function() {
       0
     )
   ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a&":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a& ***!
-  \****************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container is-main" },
-    [
-      _c("tree-tabs", { attrs: { trees: _vm.trees } }),
-      _vm._v(" "),
-      _c("class-nav-bar", {
-        attrs: {
-          "points-spent": _vm.pointsSpent,
-          "plus-all-skills-total": _vm.plusAllSkillsTotal
-        },
-        on: {
-          resetAll: _vm.resetAll,
-          plusAllSkills: _vm.plusAllSkills,
-          minusAllSkills: _vm.minusAllSkills
-        }
-      }),
-      _vm._v(" "),
-      _c("skill-trees", {
-        attrs: {
-          trees: _vm.trees,
-          "class-name": _vm.lowerClassName,
-          "plus-all-skills-total": _vm.plusAllSkillsTotal
-        }
-      })
-    ],
-    1
-  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41019,18 +40334,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "../node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers */ "./resources/js/helpers.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
-/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
-/* harmony import */ var _views_Amazon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Amazon */ "./resources/js/views/Amazon.vue");
-/* harmony import */ var _views_Build__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Build */ "./resources/js/views/Build.vue");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
+/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
+/* harmony import */ var _views_Build__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Build */ "./resources/js/views/Build.vue");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //Promise polyfill
 
 
@@ -41060,53 +40367,44 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
       return string.replace(/\s+/g, '-').toLowerCase();
     }
   }
-}); //Helpers
+});
 
 
-
-
-
- // import Assassin from './views/Assassin';
-// import Barbarian from './views/Barbarian';
-// import Druid from './views/Druid';
-// import Paladin from './views/Paladin';
-// import Necromancer from './views/Necromancer';
-// import Sorceress from './views/Sorceress';
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
     name: 'home',
-    component: _views_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _views_Home__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: '/amazon',
     name: 'Amazon',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/assassin',
     name: 'Assassin',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/barbarian',
     name: 'Barbarian',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/druid',
     name: 'Druid',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/paladin',
     name: 'Paladin',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/necromancer',
     name: 'Necromancer',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {
     path: '/sorceress',
     name: 'Sorceress',
-    component: _views_Build__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _views_Build__WEBPACK_IMPORTED_MODULE_4__["default"]
   }]
 }); //Vuex store
 
@@ -41115,9 +40413,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   data: {},
   components: {
-    App: _views_App__WEBPACK_IMPORTED_MODULE_3__["default"]
+    App: _views_App__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  store: _store_store__WEBPACK_IMPORTED_MODULE_7__["store"],
+  store: _store_store__WEBPACK_IMPORTED_MODULE_5__["store"],
   router: router
 }); // Bulma NavBar Burger Script
 
@@ -41617,17 +40915,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TreeTabs_vue_vue_type_template_id_d95498b2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/helpers.js":
-/*!*********************************!*\
-  !*** ./resources/js/helpers.js ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
 
 
 
@@ -42147,6 +41434,1034 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/characters/assassin.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/characters/assassin.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  class: 'Assassin',
+  trees: [{
+    name: 'Martial Arts',
+    isActive: true,
+    skills: [{
+      id: 1,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: false,
+      name: 'Tiger Strike',
+      description: 'Charge-up Skill: Through extensive training in human, animal, and demonic anatomies, Assassins have developed the ability to perceive natural points of weakness in their foes and target these locations for especially devastating attacks.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: false,
+      name: 'Dragon Talon',
+      description: 'Finishing Move: An Assassin is taught to utilize her entire body as a weapon-using this skill, she lets loose a powerful kick to send her opponents flying.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Fists of Fire',
+      description: 'Charge-up Skill: Combining her powerful Martial Arts abilities with her psychic training, an Assassin can charge her own fists with pyrokinetic energies, scorching her opponents when the charge is released.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 6,
+      isPlaceholder: false,
+      name: 'Dragon Claw',
+      description: 'Finishing Move: This skill allows the Assassin to try to finish her opponent off with a rending double claw attack. (Requires two equipped Claw-class weapons.)',
+      points: 0,
+      prerequisites: ['Dragon Talon'],
+      unlockedBy: ['Dragon Talon'],
+      available: false
+    }, {
+      id: 7,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 8,
+      isPlaceholder: false,
+      name: 'Cobra Strike',
+      description: 'Charge-Up Skill: A properly trained Assassin can focus her mind to draw upon the ambient energies surrounding her. Using this skill, she can drain her adversary of life and spiritual essence.',
+      points: 0,
+      prerequisites: ['Tiger Strike'],
+      unlockedBy: ['Tiger Strike'],
+      available: false
+    }, {
+      id: 9,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 10,
+      isPlaceholder: false,
+      name: 'Claws of Thunder',
+      description: 'Charge Up Skill: Using her weapon\'s metal blades as conductors, an Assassin charges the ions surrounding her and delivers a devastating lightning attack to any who dare challenge her. (Requires equipped Claw - class weapon.)',
+      points: 0,
+      prerequisites: ['Fists of Fire'],
+      unlockedBy: ['Fists of Fire'],
+      available: false
+    }, {
+      id: 11,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 12,
+      isPlaceholder: false,
+      name: 'Dragon Tail',
+      description: 'Finishing Move: The experienced Assassin can deliver a kick so powerful it actually causes an explosion on impact, sending any nearby victims sprawling.',
+      points: 0,
+      prerequisites: ['Dragon Talon', 'Dragon Claw'],
+      unlockedBy: ['Dragon Claw'],
+      available: false
+    }, {
+      id: 13,
+      isPlaceholder: false,
+      name: 'Blades of Ice',
+      description: 'Charge-up Skill: Charging the ether around her claw blades, the trained Assassin can chill opponents with a vicious rake of her razors. (Requires equipped Claw-class weapon.)',
+      points: 0,
+      prerequisites: ['Fists of Fire', 'Claws of Thunder'],
+      unlockedBy: ['Claws of Thunder'],
+      available: false
+    }, {
+      id: 14,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 15,
+      isPlaceholder: false,
+      name: 'Dragon Flight',
+      description: 'Finishing Move: After years of disciplined physical conditioning, an Assassin can develop the ability to move faster than the eye can follow in one quick burst. Using this skill, she lunges at her target and delivers a devastating kick.',
+      points: 0,
+      prerequisites: ['Dragon Talon', 'Dragon Claw', 'Dragon Tail'],
+      unlockedBy: ['Dragon Tail'],
+      available: false
+    }, {
+      id: 16,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 17,
+      isPlaceholder: false,
+      name: 'Phoenix Strike',
+      description: 'Charge-up Skill: This mighty skill allows the Assassin trained in its arts to prepare an attack that gives off powerful elemental energies.',
+      points: 0,
+      prerequisites: ['Tiger Strike', 'Fists of Fire', 'Cobra Strike', 'Claws of Thunder', 'Blades of Ice'],
+      unlockedBy: ['Blades of Ice', 'Cobra Strike'],
+      available: false
+    }, {
+      id: 18,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }]
+  }, {
+    name: 'Shadow Disciplines',
+    isActive: false,
+    skills: [{
+      id: 1,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: false,
+      name: 'Claw Mastery',
+      description: 'Passive Effect: Well-disciplined training in this skill improves the artistry with which an Assassin wields her unique Claw-class weapons.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: false,
+      name: 'Psychic Hammer',
+      description: 'Effect: By utilizing her intense mental prowess, an Assassin creates a powerful force of mental energies and directs it towards a hostile creature, blasting it backwards.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Burst of Speed',
+      description: 'Increases Attack And Movement Speed For A Period Of Time',
+      points: 0,
+      prerequisites: ['Claw Mastery'],
+      unlockedBy: ['Claw Mastery'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 6,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 8,
+      isPlaceholder: false,
+      name: 'Weapon Block',
+      description: 'Passive Effect: After developing this skill, an Assassin wielding two Claw-class weapons can use her blades to deflect incoming attacks, thus giving herself a defensive edge without using a shield. (Requires two equipped Claw-class weapons.)',
+      points: 0,
+      prerequisites: ['Claw Mastery'],
+      unlockedBy: ['Claw Mastery'],
+      available: false
+    }, {
+      id: 9,
+      isPlaceholder: false,
+      name: 'Cloak of Shadows',
+      description: 'Moving through the darkness, unseen by her foes, the enshrouded Assassin can steal past opponents or ambush her unsuspecting victims with devastating attacks.',
+      points: 0,
+      prerequisites: ['Psychic Hammer'],
+      unlockedBy: ['Psychic Hammer'],
+      available: false
+    }, {
+      id: 10,
+      isPlaceholder: false,
+      name: 'Fade',
+      description: 'An Assassin can will her physical being to shift partially into the astral planes. As her body becomes less substantial, she becomes less susceptible to the effects of elemental attacks and magical curses.',
+      points: 0,
+      prerequisites: ['Claw Mastery', 'Burst of Speed'],
+      unlockedBy: ['Burst of Speed'],
+      available: false
+    }, {
+      id: 11,
+      isPlaceholder: false,
+      name: 'Shadow Warrior',
+      description: 'The Assassin trained in this discipline has the ability to project a "shadow" of herself. The Shadow Warrior makes use of normal attack and the two skills the Assassin has readied for herself.',
+      points: 0,
+      prerequisites: ['Claw Mastery', 'Psychic Hammer', 'Weapon Block', 'Cloak of Shadows'],
+      unlockedBy: ['Weapon Block', 'Cloak of Shadows'],
+      available: false
+    }, {
+      id: 12,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 13,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 14,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 15,
+      isPlaceholder: false,
+      name: 'Mind Blast',
+      description: 'Focusing her anima, an Assassin using this potent ability can crush the will of a group of enemies, stunning them and confusing the feebleminded into attacking their comrades.',
+      points: 0,
+      prerequisites: ['Psychic Hammer', 'Cloak of Shadows'],
+      unlockedBy: ['Cloak of Shadows'],
+      available: false
+    }, {
+      id: 16,
+      isPlaceholder: false,
+      name: 'Venom',
+      description: 'Poison use is another technique an Assassin has to help even the odds when battling demons and their ilk. An Assassin who has mastered this skill secretly coats her weapons with vile toxins.',
+      points: 0,
+      prerequisites: ['Claw Mastery', 'Burst of Speed', 'Fade'],
+      unlockedBy: ['Fade'],
+      available: false
+    }, {
+      id: 17,
+      isPlaceholder: false,
+      name: 'Shadow Master',
+      description: 'This discipline allows an Assassin to project an even more powerful shadow avatar. The Shadow Master has access to all of the Assassin skills, also skills you don\'t have yet.',
+      points: 0,
+      prerequisites: ['Claw Mastery', 'Psychic Hammer', 'Weapon Block', 'Cloak of Shadows', 'Shadow Warrior'],
+      unlockedBy: ['Shadow Warrior'],
+      available: false
+    }, {
+      id: 18,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }]
+  }, {
+    name: 'Traps',
+    isActive: false,
+    skills: [{
+      id: 1,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: false,
+      name: 'Fire Blast',
+      description: 'This skill gives an Assassin the ability to manufacture and throw a small incendiary device. This ordinance explodes on impact, damaging any foe within its small blast radius.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Shock Web',
+      description: 'These traps comprise a collection of small conductive components that arc electricity between one another, damaging any opponents who tread upon them.',
+      points: 0,
+      prerequisites: ['Fire Blast'],
+      unlockedBy: ['Fire Blast'],
+      available: false
+    }, {
+      id: 5,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 6,
+      isPlaceholder: false,
+      name: 'Blade Sentinal',
+      description: 'This skill allows the Assassin to throw a razor-sharp device that flies back and forth between the Assassin and its target, slicing any hostile creatures in its path.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: false,
+      name: 'Charged Bolt Sentry',
+      description: 'This small device, once cast upon the ground, emits charges of electricity that shock any adversary who strays too close.',
+      points: 0,
+      prerequisites: ['Fire Blast', 'Shock Web'],
+      unlockedBy: ['Shock Web'],
+      available: false
+    }, {
+      id: 8,
+      isPlaceholder: false,
+      name: 'Wake of Fire',
+      description: 'Once erected, this trap releases waves of flame that incinerate any opponents within its path.',
+      points: 0,
+      prerequisites: ['Fire Blast'],
+      unlockedBy: ['Fire Blast'],
+      available: false
+    }, {
+      id: 9,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 10,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 11,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 12,
+      isPlaceholder: false,
+      name: 'Blade Fury',
+      description: 'Using this skill, the Assassin throws several small blades, shredding her enemies with a barrage of metal.',
+      points: 0,
+      prerequisites: ['Fire Blast', 'Blade Sentinal', 'Wake of Fire'],
+      unlockedBy: ['Blade Sentinal', 'Wake of Fire'],
+      available: false
+    }, {
+      id: 13,
+      isPlaceholder: false,
+      name: 'Lightning Sentry',
+      description: 'This device discharges great bolts of electricity, frying assailants when they come near.',
+      points: 0,
+      prerequisites: ['Fire Blast', 'Shock Web', 'Charged Bolt Sentry'],
+      unlockedBy: ['Charged Bolt Sentry'],
+      available: false
+    }, {
+      id: 14,
+      isPlaceholder: false,
+      name: 'Wake of Inferno',
+      description: 'Enchants an arrow that does fire damage, and explodes into a patcOnce an Assassin throws it to the ground, this trap expels a large spout of fire at any opponent who moves within its range.h of fire on the ground. Creatures passing through the flames take additional damage.',
+      points: 0,
+      prerequisites: ['Fire Blast', 'Wake of Fire'],
+      unlockedBy: ['Wake of Fire'],
+      available: false
+    }, {
+      id: 15,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 16,
+      isPlaceholder: false,
+      name: 'Death Sentry',
+      description: 'This trap emits projectiles laden with a potent chemical catalyst, detonating the exposed cadavers of slain enemies.',
+      points: 0,
+      prerequisites: ['Fire Blast', 'Shock Web', 'Charged Bolt Sentry', 'Lightning Sentry'],
+      unlockedBy: ['Lightning Sentry'],
+      available: false
+    }, {
+      id: 17,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 18,
+      isPlaceholder: false,
+      name: 'Blade Shield',
+      description: 'This contrivance releases several small razors and uses magnetic forces to set them spinning about the Assassin, inflicting grievous wounds on any foe who approaches her too closely.',
+      points: 0,
+      prerequisites: ['Fire Blast', 'Blade Sentinal', 'Wake of Fire', 'Blade Fury'],
+      unlockedBy: ['Blade Fury'],
+      available: false
+    }]
+  }]
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/characters/barbarian.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/characters/barbarian.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  class: 'Barbarian',
+  trees: [{
+    name: 'Warcries',
+    isActive: true,
+    skills: [{
+      id: 1,
+      isPlaceholder: false,
+      name: 'Howl',
+      description: 'Frightens monsters into retreating. ',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: false,
+      name: 'Find Potion',
+      description: 'Grants a chance that a Health, Mana or Rejuvenation potion can be derived from a corpse. ',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Taunt',
+      description: 'Taunts a monster to walk to you and engage in melee range combat with you. Useful against spell casters and archer types. ',
+      points: 0,
+      prerequisites: ['Howl'],
+      unlockedBy: ['Howl'],
+      available: false
+    }, {
+      id: 5,
+      isPlaceholder: false,
+      name: 'Shout',
+      description: 'Increases the defense of friendly units.',
+      points: 0,
+      prerequisites: ['Howl'],
+      unlockedBy: ['Howl'],
+      available: false
+    }, {
+      id: 6,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 8,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 9,
+      isPlaceholder: false,
+      name: 'Find Item',
+      description: 'Grants a chance that an item can be found on a corpse.',
+      points: 0,
+      prerequisites: ['Find Potion'],
+      unlockedBy: ['Find Potion'],
+      available: false
+    }, {
+      id: 10,
+      isPlaceholder: false,
+      name: 'Battle Cry',
+      description: 'Frightens nearby enemies, lowers their defense, and damage. ',
+      points: 0,
+      prerequisites: ['Howl', 'Taunt'],
+      unlockedBy: ['Taunt'],
+      available: false
+    }, {
+      id: 11,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 12,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 13,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 14,
+      isPlaceholder: false,
+      name: 'Battle Orders',
+      description: 'Increases Mana, Life, and Stamina of party members.',
+      points: 0,
+      prerequisites: ['Howl', 'Shout'],
+      unlockedBy: ['Shout'],
+      available: false
+    }, {
+      id: 15,
+      isPlaceholder: false,
+      name: 'Grim Ward',
+      description: 'Turns a corpse into a fetish that will frighten monsters away.',
+      points: 0,
+      prerequisites: ['Find Potion', 'Find Item'],
+      unlockedBy: ['Find Item'],
+      available: false
+    }, {
+      id: 16,
+      isPlaceholder: false,
+      name: 'Warcry',
+      description: 'Damages and stuns your enemies. ',
+      points: 0,
+      prerequisites: ['Howl', 'Taunt', 'Shout', 'Battle Cry', 'Battle Orders'],
+      unlockedBy: ['Battle Cry', 'Battle Orders'],
+      available: false
+    }, {
+      id: 17,
+      isPlaceholder: false,
+      name: 'Battle Command',
+      description: 'Temporarily increases the skills of party members by 1. ',
+      points: 0,
+      prerequisites: ['Howl', 'Shout', 'Battle Orders'],
+      unlockedBy: ['Battle Orders'],
+      available: false
+    }, {
+      id: 18,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }]
+  }, {
+    name: 'Combat Masteries',
+    isActive: false,
+    skills: [{
+      id: 1,
+      isPlaceholder: false,
+      name: 'Sword Mastery',
+      description: 'Increased damage and Attack Rating when using swords.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: false,
+      name: 'Axe Mastery',
+      description: 'Increased damage and Attack Rating when using axes.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: false,
+      name: 'Mace Mastery',
+      description: 'Increased damage and Attack Rating when using maces.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Polearm Mastery',
+      description: 'Increased damage and Attack Rating when using polearms.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: false,
+      name: 'Throwing Mastery',
+      description: 'Increased damage and Attack Rating when throwing a weapon.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 6,
+      isPlaceholder: false,
+      name: 'Spear Mastery',
+      description: 'Increased damage and Attack Rating when using spears.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 7,
+      isPlaceholder: false,
+      name: 'Increased Stamina',
+      description: 'Increases stamina, and stamina recovery rate.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 8,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 9,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 10,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 11,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 12,
+      isPlaceholder: false,
+      name: 'Iron Skin',
+      description: 'Improves overall defense.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 13,
+      isPlaceholder: true,
+      name: 'Increased Speed',
+      description: 'Increases your walk and run speeds.',
+      points: 0,
+      prerequisites: ['Increased Stamina'],
+      unlockedBy: ['Increased Stamina'],
+      available: false
+    }, {
+      id: 14,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 15,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 16,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 17,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 18,
+      isPlaceholder: false,
+      name: 'Natural Resistance',
+      description: 'Increases resistances to elemental damage.',
+      points: 0,
+      prerequisites: ['Iron Skin'],
+      unlockedBy: ['Iron Skin'],
+      available: false
+    }]
+  }, {
+    name: 'Combat Skills',
+    isActive: false,
+    skills: [{
+      id: 1,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 2,
+      isPlaceholder: false,
+      name: 'Bash',
+      description: 'A powerful smashing blow that knocks the target back.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 3,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 4,
+      isPlaceholder: false,
+      name: 'Leap',
+      description: 'Barbarian jumps and knocks back enemies where he lands.',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 5,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 6,
+      isPlaceholder: false,
+      name: 'Double Swing',
+      description: 'A quick double attack that can damage two nearby enemies.',
+      points: 0,
+      prerequisites: ['Bash'],
+      unlockedBy: ['Bash'],
+      available: false
+    }, {
+      id: 7,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 8,
+      isPlaceholder: false,
+      name: 'Stun',
+      description: 'A successful attack briefly stuns the enemy.',
+      points: 0,
+      prerequisites: ['Bash'],
+      unlockedBy: ['Bash'],
+      available: false
+    }, {
+      id: 9,
+      isPlaceholder: false,
+      name: 'Double Throw',
+      description: 'Throws two weapons.',
+      points: 0,
+      prerequisites: ['Bash', 'Double Swing'],
+      unlockedBy: ['Double Swing'],
+      available: false
+    }, {
+      id: 10,
+      isPlaceholder: false,
+      name: 'Leap Attack',
+      description: 'Leaps onto a target and attacks when landing.',
+      points: 0,
+      prerequisites: ['Leap'],
+      unlockedBy: ['Leap'],
+      available: false
+    }, {
+      id: 11,
+      isPlaceholder: false,
+      name: 'Concentrate',
+      description: 'An uninterruptible attack that also temporarily improves your defense.',
+      points: 0,
+      prerequisites: ['Bash', 'Stun'],
+      unlockedBy: ['Stun'],
+      available: false
+    }, {
+      id: 12,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 13,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 14,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }, {
+      id: 15,
+      isPlaceholder: false,
+      name: 'Frenzy',
+      description: 'Every successful hit increases your velocity and attack speed.',
+      points: 0,
+      prerequisites: ['Bash', 'Double Swing', 'Double Throw'],
+      unlockedBy: ['Double Throw'],
+      available: false
+    }, {
+      id: 16,
+      isPlaceholder: false,
+      name: 'Whirlwind',
+      description: 'A fierce spinning attack.',
+      points: 0,
+      prerequisites: ['Bash', 'Leap', 'Stun', 'Concentrate', 'Leap Attack'],
+      unlockedBy: ['Concentrate', 'Leap Attack'],
+      available: false
+    }, {
+      id: 17,
+      isPlaceholder: false,
+      name: 'Berserk',
+      description: 'A powerful attack that leaves the Barbarian more vulnerable.',
+      points: 0,
+      prerequisites: ['Bash', 'Stun', 'Concentrate'],
+      unlockedBy: ['Concentrate'],
+      available: false
+    }, {
+      id: 18,
+      isPlaceholder: true,
+      name: 'Placeholder',
+      description: 'Placeholder',
+      points: 0,
+      prerequisites: ['None'],
+      unlockedBy: ['None'],
+      available: true
+    }]
+  }]
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/store.js":
 /*!*************************************!*\
   !*** ./resources/js/store/store.js ***!
@@ -42161,15 +42476,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _characters_amazon_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characters/amazon.js */ "./resources/js/store/characters/amazon.js");
+/* harmony import */ var _characters_assassin_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./characters/assassin.js */ "./resources/js/store/characters/assassin.js");
+/* harmony import */ var _characters_barbarian_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./characters/barbarian.js */ "./resources/js/store/characters/barbarian.js");
+
+
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    classes: ['Amazon', 'Assasin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
+    classes: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
     selectedClass: '',
-    characters: [_characters_amazon_js__WEBPACK_IMPORTED_MODULE_2__["default"]],
+    characters: [_characters_amazon_js__WEBPACK_IMPORTED_MODULE_2__["default"], _characters_assassin_js__WEBPACK_IMPORTED_MODULE_3__["default"], _characters_barbarian_js__WEBPACK_IMPORTED_MODULE_4__["default"]],
     tree: '',
     pointsSpent: 0,
     plusAllSkillsTotal: 0
@@ -42223,93 +42542,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     }
   }
 });
-
-/***/ }),
-
-/***/ "./resources/js/views/Amazon.vue":
-/*!***************************************!*\
-  !*** ./resources/js/views/Amazon.vue ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Amazon_vue_vue_type_template_id_85c3c43a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Amazon.vue?vue&type=template&id=85c3c43a& */ "./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a&");
-/* harmony import */ var _Amazon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Amazon.vue?vue&type=script&lang=js& */ "./resources/js/views/Amazon.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Amazon.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _Amazon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Amazon_vue_vue_type_template_id_85c3c43a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Amazon_vue_vue_type_template_id_85c3c43a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/Amazon.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/Amazon.vue?vue&type=script&lang=js&":
-/*!****************************************************************!*\
-  !*** ./resources/js/views/Amazon.vue?vue&type=script&lang=js& ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Amazon.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&":
-/*!************************************************************************!*\
-  !*** ./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Amazon.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a& ***!
-  \**********************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_template_id_85c3c43a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Amazon.vue?vue&type=template&id=85c3c43a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Amazon.vue?vue&type=template&id=85c3c43a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_template_id_85c3c43a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Amazon_vue_vue_type_template_id_85c3c43a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 

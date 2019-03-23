@@ -1,15 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Amazon from './characters/amazon.js';
+import Assassin from './characters/assassin.js';
+import Barbarian from './characters/barbarian.js';
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        classes: ['Amazon', 'Assasin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
+        classes: ['Amazon', 'Assassin', 'Barbarian', 'Druid', 'Paladin', 'Necromancer', 'Sorceress'],
         selectedClass: '',
         characters: [
             Amazon,
+            Assassin,
+            Barbarian,
         ],  
         tree: '',
         pointsSpent: 0,

@@ -26,6 +26,7 @@ export default {
                 return {
                     left: 'calc(' + this.preStats.left + 'px + 2rem)',
                     top: 'calc(' + this.preStats.top + 'px + 0.5rem)',
+                    height: this.y2,
                 }
             } else {
                 return {
@@ -94,7 +95,7 @@ export default {
     z-index: 0;
     left: 0;
     top: 0;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .skill-path line {
