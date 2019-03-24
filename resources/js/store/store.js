@@ -5,6 +5,7 @@ import Assassin from './characters/assassin.js';
 import Barbarian from './characters/barbarian.js';
 import Druid from './characters/druid.js';
 import Paladin from './characters/paladin.js';
+import Necromancer from './characters/necromancer.js';
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export const store = new Vuex.Store({
             Barbarian,
             Druid,
             Paladin,
+            Necromancer,
         ],  
         tree: '',
         pointsSpent: 0,
