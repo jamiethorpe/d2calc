@@ -24870,7 +24870,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "column is-two-fifths text-only has-vertically-centered-content"
+            "column is-three-fifths text-only has-vertically-centered-content"
         },
         [
           _c(
@@ -24902,8 +24902,6 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
       _c("div", { staticClass: "column is-one-fifth" }, [
         _c(
           "button",
@@ -24921,16 +24919,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column is-one-fifth" }, [
-      _c("button", { staticClass: "class-nav-button save" }, [_vm._v("Save")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
