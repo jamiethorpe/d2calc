@@ -4530,19 +4530,33 @@ __webpack_require__.r(__webpack_exports__);
       if (this.goesDownLeft) {
         return {
           left: 'calc(' + this.skillStats.left + 'px + 1.75rem)',
-          top: 'calc(' + this.preStats.top + 'px - 1rem)'
+          top: 'calc(' + this.preStats.top + 'px - 1rem)',
+          height: this.y1 + 'px',
+          width: this.x2 + 'px'
         };
       } else if (this.goesDownStraight) {
         return {
           left: 'calc(' + this.preStats.left + 'px + 2rem)',
           top: 'calc(' + this.preStats.top + 'px + 0.5rem)',
-          height: this.y2
+          height: this.y2 + 'px',
+          width: 'calc(' + this.x2 + 'px + 6px'
         };
       } else {
         return {
           left: 'calc(' + this.preStats.left + 'px + 2rem)',
-          top: 'calc(' + this.preStats.top + 'px - 0.5rem)'
+          top: 'calc(' + this.preStats.top + 'px - 0.5rem)',
+          height: this.y2 + 'px',
+          width: this.x2 + 'px'
         };
+      }
+    },
+    goes: function goes() {
+      if (this.goesDownLeft) {
+        return '-downLeft';
+      } else if (this.goesDownRight) {
+        return '-downRight';
+      } else {
+        return '-downStraight';
       }
     },
     y1: function y1() {
@@ -4570,10 +4584,16 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     determineDirection: function determineDirection() {
       if (this.skillStats.left - this.preStats.left < 0) {
+        this.goesDownRight = false;
+        this.goesDownStraight = false;
         this.goesDownLeft = true;
       } else if (this.x2 === 0) {
+        this.goesDownLeft = false;
+        this.goesDownRight = false;
         this.goesDownStraight = true;
       } else {
+        this.goesDownLeft = false;
+        this.goesDownStraight = false;
         this.goesDownRight = true;
       }
     }
@@ -4582,8 +4602,9 @@ __webpack_require__.r(__webpack_exports__);
     this.determineDirection();
   },
   updated: function updated() {
-    // this.$nextTick(function () {
-    this.determineDirection(); // });
+    this.$nextTick(function () {
+      this.determineDirection();
+    });
   }
 });
 
@@ -4607,9 +4628,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_popperjs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_popperjs__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-popperjs/dist/vue-popper.css */ "./node_modules/vue-popperjs/dist/vue-popper.css");
 /* harmony import */ var vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_popperjs_dist_vue_popper_css__WEBPACK_IMPORTED_MODULE_4__);
-//
-//
-//
 //
 //
 //
@@ -5073,7 +5091,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-name {\n    font-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n@media (max-width: 769px) {\nspan .popper {\n        max-width: 375px;\n}\n}\n.plus-skills {\n    color: #6A64D5 !important;\n}\n.tree {\n    height: 75vh;\n    width: 100%;\n    background-color: #333333;\n    border: 3px solid #beb8a2;\n    padding-top: .25rem;\n    min-height: 545px;\n    z-index: 1;\n}\n.skill-reset {\n    background-color:rgb(186,39,16);\n    background-color:rgba(186,39,16, 0.3);\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 3.5rem;\n    width: 88%;\n    font-family: 'Diablo Heavy', serif;\n    z-index: 4;\n}\n.skill-counter {\n    background-color: #000;\n    text-align: center;\n    display: inline-block;\n    color: #beb8a2;\n    position: relative;\n    top: 2rem;\n    left: 3.5rem;\n    width: 1.5rem;\n    z-index: 4;\n}\n.skill {\n    background-color: #614b34;\n    box-shadow: inset 6px -6px 29px 1px rgba(0,0,0,0.75);\n    width: 4rem;\n    height: 4rem;\n    margin: 0 auto;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    z-index: 3;\n}\n.skill.available {\n    -webkit-filter:grayscale(0%);\n            filter:grayscale(0%);\n}\n.skill.unavailable {\n    -webkit-filter:grayscale(100%);\n            filter:grayscale(100%);\n}\n.skill.placeholder {\n    opacity: 0;\n}\n.skill-name {\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -25064,7 +25082,15 @@ var render = function() {
       staticClass: "skill-path",
       style: _vm.boxStyle,
       attrs: {
-        id: _vm.prereq + "-to-" + _vm.skill.name,
+        id:
+          _vm.prereq +
+          "-to-" +
+          _vm.skill.name +
+          _vm.goes +
+          "-skillLeft-" +
+          _vm.skillStats.left +
+          "-preLeft-" +
+          _vm.preStats.left,
         xmlns: "http://www.w3.org/2000/svg"
       }
     },
@@ -25109,7 +25135,8 @@ var render = function() {
             }
           ],
           key: index,
-          staticClass: "tree column is-6 is-offset-3"
+          staticClass: "tree column is-6 is-offset-3",
+          attrs: { id: tree.name.replace(" ", "") }
         },
         [
           _vm._l(_vm.lines, function(line, index) {
@@ -25142,11 +25169,7 @@ var render = function() {
                         trigger: "hover",
                         options: {
                           placement: "top-end",
-                          modifiers: {
-                            preventOverflow: {
-                              enabled: true
-                            }
-                          }
+                          container: "#" + tree.name.replace(" ", "")
                         }
                       }
                     },
@@ -42510,9 +42533,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
             skill.points = 0;
           });
         });
-      }); // let tree = state.characters.find(character => character.class === state.selectedClass).trees[0].name;
-      // this.$store.commit('setTree', tree);
-
+      });
       state.pointsSpent = 0;
       state.plusAllSkillsTotal = 0;
       state.selectedClass = character;

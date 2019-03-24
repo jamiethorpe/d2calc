@@ -1,6 +1,6 @@
 <template>
     <div class="columns is-marginless">
-        <div v-show="tree.isActive" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
+        <div v-show="tree.isActive" :id="tree.name.replace(' ','')" v-for="(tree, index) in trees" :key="index" class="tree column is-6 is-offset-3">
             <skill-tree-path 
                 v-for="(line, index) in lines" 
                 :key="index"
@@ -16,11 +16,8 @@
                         trigger="hover" 
                         :options="{
                             placement: 'top-end', 
-                            modifiers: {
-                                preventOverflow: {
-                                    enabled: true,
-                                },
-                            },}">
+                            container: '#'+tree.name.replace(' ',''),
+                        }">
                         <div v-show="!skill.isPlaceholder" class="popper">
                             <span class="skill-name">{{ skill.name }}</span> - {{ skill.description }}
                         </div>
@@ -184,6 +181,12 @@ export default {
 </script>
 
 <style>
+    @media (max-width: 769px) {
+        span .popper {
+            max-width: 375px;
+        }
+    }
+    
     .plus-skills {
         color: #6A64D5 !important;
     }

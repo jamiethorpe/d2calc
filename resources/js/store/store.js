@@ -28,8 +28,6 @@ export const store = new Vuex.Store({
                     });
                 });
             });
-            // let tree = state.characters.find(character => character.class === state.selectedClass).trees[0].name;
-            // this.$store.commit('setTree', tree);
             state.pointsSpent = 0;
             state.plusAllSkillsTotal = 0;
             state.selectedClass = character;

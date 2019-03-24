@@ -1,5 +1,5 @@
 <template>
-    <svg v-show="x2+y1+y2 > 0" :id="prereq + '-to-' + skill.name" :style="boxStyle" xmlns="http://www.w3.org/2000/svg" class="skill-path">
+    <svg v-show="x2+y1+y2 > 0" :id="prereq + '-to-' + skill.name + goes + '-skillLeft-'+skillStats.left+'-preLeft-'+preStats.left" :style="boxStyle" xmlns="http://www.w3.org/2000/svg" class="skill-path">
         <line x1="0" :y1="y1" :x2="x2" :y2="y2"/>
     </svg>
 </template>
@@ -21,18 +21,32 @@ export default {
                 return {
                     left: 'calc(' + this.skillStats.left + 'px + 1.75rem)',
                     top: 'calc(' + this.preStats.top + 'px - 1rem)',
+                    height: this.y1 + 'px',
+                    width: this.x2 + 'px',
                 }  
             } else if (this.goesDownStraight) {
                 return {
                     left: 'calc(' + this.preStats.left + 'px + 2rem)',
                     top: 'calc(' + this.preStats.top + 'px + 0.5rem)',
-                    height: this.y2,
+                    height: this.y2 + 'px',
+                    width: 'calc(' + this.x2 + 'px + 6px',
                 }
             } else {
                 return {
                     left: 'calc(' + this.preStats.left + 'px + 2rem)',
                     top: 'calc(' + this.preStats.top + 'px - 0.5rem)',
+                    height: this.y2 + 'px',
+                    width: this.x2 + 'px',
                 }
+            }
+        },
+        goes() {
+            if (this.goesDownLeft) {
+                return '-downLeft';
+            }else if (this.goesDownRight) {
+                return '-downRight';
+            }else{
+                return '-downStraight';
             }
         },
         y1() {
@@ -68,21 +82,27 @@ export default {
     methods: {
         determineDirection() {
             if ((this.skillStats.left - this.preStats.left) < 0) {
+                this.goesDownRight = false;
+                this.goesDownStraight = false;
                 this.goesDownLeft = true;
             } else if (this.x2 === 0) {
+                this.goesDownLeft = false;
+                this.goesDownRight = false;
                 this.goesDownStraight = true;
             } else {
+                this.goesDownLeft = false;
+                this.goesDownStraight = false;
                 this.goesDownRight = true;
             }
-        }
+        },
     },
     mounted() {
         this.determineDirection();
     },
     updated() {
-        // this.$nextTick(function () {
+        this.$nextTick(function () {
             this.determineDirection();
-        // });
+        });
     }
 }
 </script>
