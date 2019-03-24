@@ -41,6 +41,16 @@ button:focus {
 	height: 100%;
 }
 
+nav.navbar.has-shadow {
+	background-color: #beb8a2;
+	box-shadow: 0 2px 0 0 #868274;
+	color: #190A09;
+}
+
+.navbar-item, .navbar-link {
+	color: #190A09;
+}
+
 @media screen and (max-width: 1087px) {
 	.navbar > .container .navbar-brand {
 		margin-left: 0;
@@ -63,6 +73,39 @@ button:focus {
 
 .navbar-dropdown.is-active {
     right: 0;
+}
+
+
+
+@media screen and (min-width: 0) {
+	.navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
+		background-color: #d4cdb3;
+		box-shadow: 0 2px 0 0 #868274;
+	}
+
+	.navbar-dropdown {
+		background-color: #d4cdb3;
+		border-top: 2px solid #868274;
+		box-shadow: 0 8px 8px rgba(10, 10, 10, 0.1);
+	}
+
+	.navbar-dropdown a.navbar-item:hover {
+		background-color: #e8e2c4;
+	}
+}
+
+.navbar-item.has-dropdown.character-select:hover {
+	background-color: #d4cdb3;
+	box-shadow: 0 2px 0 0 #868274;
+}
+
+a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+	background-color: #d4cdb3;
+	color: #190A09;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+	border-color: #190A09;
 }
 
 .container.is-main{
