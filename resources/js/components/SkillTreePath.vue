@@ -115,6 +115,7 @@ export default {
     z-index: 0;
     left: 0;
     top: 0;
+    min-height: 6px;
 }
 
 .skill-path line {
