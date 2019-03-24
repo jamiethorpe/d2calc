@@ -4,6 +4,7 @@ import Amazon from './characters/amazon.js';
 import Assassin from './characters/assassin.js';
 import Barbarian from './characters/barbarian.js';
 import Druid from './characters/druid.js';
+import Paladin from './characters/paladin.js';
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export const store = new Vuex.Store({
             Assassin,
             Barbarian,
             Druid,
+            Paladin,
         ],  
         tree: '',
         pointsSpent: 0,
