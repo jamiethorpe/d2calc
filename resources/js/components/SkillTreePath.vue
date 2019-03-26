@@ -19,22 +19,22 @@ export default {
         boxStyle() {
             if (this.goesDownLeft) {
                 return {
-                    left: 'calc(' + this.skillStats.left + 'px + 1.75rem)',
-                    top: 'calc(' + this.preStats.top + 'px - 1rem)',
+                    left: 'calc(' + (this.skillStats.left+window.pageXOffset) + 'px + 1.75rem)',
+                    top: 'calc(' + (this.preStats.top+window.pageYOffset) + 'px - 1rem)',
                     height: this.y1 + 'px',
                     width: this.x2 + 'px',
                 }  
             } else if (this.goesDownStraight) {
                 return {
-                    left: 'calc(' + this.preStats.left + 'px + 2rem)',
-                    top: 'calc(' + this.preStats.top + 'px + 0.5rem)',
+                    left: 'calc(' + (this.preStats.left+window.pageXOffset) + 'px + 2rem)',
+                    top: 'calc(' + (this.preStats.top+window.pageYOffset) + 'px + 0.5rem)',
                     height: this.y2 + 'px',
-                    width: 'calc(' + this.x2 + 'px + 6px',
+                    width: 'calc(' + this.x2 + 'px + 6px)',
                 }
             } else {
                 return {
-                    left: 'calc(' + this.preStats.left + 'px + 2rem)',
-                    top: 'calc(' + this.preStats.top + 'px - 0.5rem)',
+                    left: 'calc(' + (this.preStats.left+window.pageXOffset) + 'px + 2rem)',
+                    top: 'calc(' + (this.preStats.top+window.pageYOffset) + 'px - 0.5rem)',
                     height: this.y2 + 'px',
                     width: this.x2 + 'px',
                 }

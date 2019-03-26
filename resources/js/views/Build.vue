@@ -10,7 +10,7 @@
             :plus-all-skills-total="plusAllSkillsTotal"
         ></class-nav-bar>
 
-        <skill-trees :trees="trees" :class-name="lowerClassName" :plus-all-skills-total="plusAllSkillsTotal"></skill-trees>
+        <skill-trees v-if="character" :trees="trees" :class-name="lowerClassName" :plus-all-skills-total="plusAllSkillsTotal"></skill-trees>
         
     </div>
 </template>
@@ -33,14 +33,14 @@ export default {
         }
     },
     computed: {
-        class() {
+        character() {
             return this.$store.getters.selectedClass;
         },
         trees() {
             return this.$store.getters.trees;
         },
         lowerClassName() {
-            return this.class.toLowerCase();
+            return this.character.toLowerCase();
         },
         pointsSpent() {
             return this.$store.getters.pointsSpent;
