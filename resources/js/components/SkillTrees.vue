@@ -13,12 +13,13 @@
             <div class="columns is-marginless is-multiline is-centered is-mobile">
                 <div v-for="(skill, index) in tree.skills" :key="index" class="column is-4">
                     <popper 
+                        :ref="'popper'+skill.name.replace(/ /g,'')"
                         trigger="hover" 
                         :options="{
                             placement: 'top-end', 
                             container: '#'+tree.name.replace(/ /g,''),
                         }">
-                        <div v-show="!skill.isPlaceholder" class="popper">
+                        <div @click="hidePopper(skill.name.replace(/ /g,''))" v-show="!skill.isPlaceholder" class="popper">
                             <span class="skill-name">{{ skill.name }}</span> - {{ skill.description }}
                         </div>
                         <div 
@@ -151,9 +152,9 @@ export default {
                 }
             });
         },
-        // hidePopper(ref) {
-        //     this.$refs.popper.doClose();
-        // },
+        hidePopper(skill) {
+            this.$refs['popper'+skill][0].doClose();
+        },
     },
     created() {
         window.addEventListener("resize", debounce(this.positionSkillPaths,500));
@@ -186,6 +187,7 @@ export default {
 <style>
     span .popper {
         max-width: 375px;
+        z-index: 1000;
     }
     
     .plus-skills {

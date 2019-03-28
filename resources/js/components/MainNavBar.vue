@@ -69,6 +69,10 @@
 </script>
 
 <style scoped>
+.navbar {
+    z-index: auto;
+}
+
 
 .navbar-brand {
     font-family: 'Diablo Heavy', serif;
