@@ -14,7 +14,7 @@ Vue.mixin({
     data() {
         return {
             get appName() {
-                return "D2Calc";
+                return "D2SkillCalc";
             }
         }
     },
