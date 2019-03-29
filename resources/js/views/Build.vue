@@ -12,6 +12,7 @@
 
         <skill-trees v-if="character" :trees="trees" :class-name="lowerClassName" :plus-all-skills-total="plusAllSkillsTotal"></skill-trees>
         
+        <feedback-footer></feedback-footer>
     </div>
 </template>
 
@@ -19,12 +20,14 @@
 import treeTabs from '../components/TreeTabs.vue';
 import classNavBar from '../components/ClassNavBar.vue';
 import skillTrees from '../components/SkillTrees.vue';
+import feedbackFooter from '../components/FeedbackFooter.vue';
 
 export default {
     components: {
         'tree-tabs':treeTabs,
         'class-nav-bar':classNavBar,
         'skill-trees':skillTrees,
+        'feedback-footer':feedbackFooter,
     },
     name: 'Build',
     data() {

@@ -12,28 +12,32 @@
                 <button @click="selectClass(character)" class="button character-button">{{ character }}</button>
             </div>
         </div>
+        <feedback-footer></feedback-footer>
     </div>
 </template>
 
 <script>
-    export default {
-        components: {
-        },
-        computed: {
-            characters() {
-                return this.$store.getters.classes;
-            }
-        },
-        methods: {
-            selectClass(character) {
-                this.$store.commit('selectClass', character);
-                this.$router.push('/' + character);
-            },
-        },
-        mounted() {
-            this.$store.commit('selectClass', '');
+import feedbackFooter from '../components/FeedbackFooter.vue';
+
+export default {
+    components: {
+        'feedback-footer':feedbackFooter,
+    },
+    computed: {
+        characters() {
+            return this.$store.getters.classes;
         }
+    },
+    methods: {
+        selectClass(character) {
+            this.$store.commit('selectClass', character);
+            this.$router.push('/' + character);
+        },
+    },
+    mounted() {
+        this.$store.commit('selectClass', '');
     }
+}
 </script>
 
 <style scoped>

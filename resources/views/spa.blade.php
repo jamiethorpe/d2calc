@@ -14,6 +14,9 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+        <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137234754-1"></script>
         <script>
