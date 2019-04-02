@@ -229,7 +229,7 @@ export default {
                     points: 0,
                     prerequisites: ['Claw Mastery'],
                     unlockedBy: ['Claw Mastery'],
-                    available: true,
+                    available: false,
                 },
                 {
                     id: 5,
