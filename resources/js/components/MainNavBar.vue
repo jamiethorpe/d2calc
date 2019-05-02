@@ -10,7 +10,7 @@
                     
                 </div>
                 <div class="navbar-end">
-                    <div v-on-clickaway="notActive" @click="toggleActive" class="navbar-item has-dropdown character-select">
+                    <div v-if="$route.name !== 'home'" v-on-clickaway="notActive" @click="toggleActive" class="navbar-item has-dropdown character-select">
                         <a v-if="selectedClass" class="navbar-link" href="#">{{ selectedClass }}</a>
                         <a v-else class="navbar-link" href="#">Character</a>
 
@@ -48,7 +48,7 @@
             },
             selectedClass() {
                 return this.$store.getters.selectedClass;
-            }
+            },
         },
         methods: {
             selectClass(character) {
