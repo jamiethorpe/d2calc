@@ -1,4 +1,5 @@
 # D2 Skill Calc
+https://d2skillcalc.com
 
 ## About
 I created this skill calculator to learn some new front end tools, challenge myself and to provide a calculator that works well on mobile devices.
