@@ -1,3 +1,6 @@
+# Update February 2021
+This application was only created as a learning experience. With the announcement of Diablo 2 Resurrected, I'm planning on creating an entirely new application that will only be focused on being a great Diablo 2 skill calculator.
+
 # D2 Skill Calc
 https://d2skillcalc.com
 
